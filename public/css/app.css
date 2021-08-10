@@ -1,0 +1,7 @@
+table form {
+    margin: 0;
+}
+
+tr.datatable-row {
+    border-bottom: 1px solid #EBEDF3;
+}
