@@ -80,17 +80,14 @@ Route::group(
             Route::resource('blogs', BlogController::class);
             Route::resource('faqCategories', FaqCategoryController::class);
             Route::resource('faqs', FaqController::class);
-            Route::resource('appFeatures', AppFeatureController::class);
-
             // Pages CRUD
             Route::resource('pages', 'PageController');
             Route::resource('pages.paragraphs', 'ParagraphController')->shallow();
             Route::resource('pages.images', 'imagesController')->shallow();
 
             Route::resource('options', OptionController::class);
-           
-            Route::resource('notifications', NotificationController::class);
 
+            Route::resource('notifications', NotificationController::class);
         });
     }
 );
@@ -98,4 +95,3 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
-
