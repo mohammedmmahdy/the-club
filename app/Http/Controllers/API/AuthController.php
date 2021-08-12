@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use Auth;
+use App\Models\User;
 use App\Models\Driver;
-use App\Models\Customer;
 use App\Models\Company;
 use App\Helpers\MailsTrait;
 use Illuminate\Http\Request;
@@ -13,111 +13,62 @@ use App\Helpers\HelperFunctionTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
-    use HelperFunctionTrait, MailsTrait, AuthenticatesUsers;
+    use  AuthenticatesUsers;
 
-    // Start Customer
+    // Start user
 
-    public function login_or_register_customer(Request $request)
+    public function register_user(Request $request)
     {
-        $phone = $request->validate(['phone' => 'required|numeric']);
+        $data = $request->validate([
+            'first_name'    => 'required|string|max:191',
+            'phone'             => 'required|numeric|unique:users,phone',
+            'last_name'     => 'required|string|max:191',
+            'email'              => 'required|email|max:191',
+        ]);
+        $user = User::create($data);
 
-        $customer = Customer::where($phone)->firstOr(function () {
-            return Customer::create(['phone' => request('phone')]);
-        });
+        // return response()->json(['msg' => 'A confirmation code has been sent, check your inbox', 'code' => $user->verify_code]);
+        return response()->json(['msg' => 'Success Registration', 'user' => $user]);
+    }
 
-        $customer->update(['verify_code' => $this->randomCode(4)]);
+    public function login_user(Request $request)
+    {
+        $data = $request->validate(['phone' => 'required|numeric']);
 
-        return response()->json(['msg' => 'A confirmation code has been sent, check your inbox', 'code' => $customer->verify_code]);
+        $user = User::firstWhere($data);
+
+        if (empty($user)) {
+            return response()->json(['msg' => 'Wrong Phone Number, Please try again'], 403);
+        }
+
+        $user->update(['verify_code' => $this->randomCode(4)]);
+
+        return response()->json(['msg' => 'A confirmation code has been sent, check your inbox', 'code' => $user->verify_code]);
     }
 
 
-    public function verify_code_customer(Request $request)
+    public function verify_code_user(Request $request)
     {
         $inputs = $request->validate(['phone' => 'required|numeric', 'verify_code' => 'required|min:4|max:5']);
 
-        $customer = Customer::firstWhere($inputs);
+        $user = User::firstWhere($inputs);
 
-        if (empty($customer)) {
+        if (empty($user)) {
             return response()->json(['msg' => 'Verify code is not correct'], 403);
         }
 
-        $token = auth('api.customer')->tokenById($customer->id);
+        $token = auth('api.user')->tokenById($user->id);
 
-        return response()->json(compact('customer', 'token'));
+        return response()->json(compact('user', 'token'));
     }
 
-    // End Customer
+    // End user
 
-    // Start Driver
-
-    public function login_or_register_driver(Request $request)
-    {
-        $phone = $request->validate(['phone' => 'required|numeric']);
-
-        $driver = Driver::where($phone)->firstOr(function () {
-            return Driver::create(['phone' => request('phone')]);
-        });
-
-        $driver->update(['verify_code' => $this->randomCode(4)]);
-
-        return response()->json(['msg' => 'A confirmation code has been sent, check your inbox', 'code' => $driver->verify_code]);
-
-    }
-
-    public function verify_code_driver(Request $request)
-    {
-        $inputs = $request->validate(['phone' => 'required|numeric', 'verify_code' => 'required|min:4|max:5']);
-
-        $driver = Driver::firstWhere($inputs);
-
-        if (empty($driver)) {
-            return response()->json(['msg' => 'Verify code is not correct'], 403);
-        }
-
-        $token = auth('api.driver')->tokenById($driver->id);
-
-        return response()->json(compact('driver', 'token'));
-    }
-
-    // End Driver
-
-    // Start Company
-
-    public function login_or_register_company(Request $request)
-    {
-        $phone = $request->validate(['phone' => 'required|numeric']);
-
-        $company = Company::where($phone)->firstOr(function () {
-            return Company::create(['phone' => request('phone')]);
-        });
-
-        $company->update(['verify_code' => $this->randomCode(4)]);
-
-        return response()->json(['msg' => 'A confirmation code has been sent, check your inbox', 'code' => $company->verify_code]);
-    }
-
-    public function verify_code_company(Request $request)
-    {
-
-        $inputs = $request->validate(['phone' => 'required|numeric', 'verify_code' => 'required|min:4|max:5']);
-
-        $company = Company::firstWhere($inputs);
-
-        if (empty($company)) {
-            return response()->json(['msg' => 'Verify code is not correct'], 403);
-        }
-
-        $token = auth('api.company')->tokenById($company->id);
-
-        return response()->json(compact('company', 'token'));
-    }
-
-    // End Company
 
     public function logout()
     {
@@ -135,5 +86,32 @@ class AuthController extends Controller
     public function username()
     {
         return 'phone';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///////////////////////////////////////// Helpeers  /////////////////////////////////////////
+
+    public function randomCode($length = 8)
+    {
+        // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
     }
 }

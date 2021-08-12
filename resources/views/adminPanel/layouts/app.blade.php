@@ -341,7 +341,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!--begin::Copyright-->
                 <div class="text-dark order-2 order-md-1">
                     <span class="text-muted font-weight-bold mr-2">{{date('Y')}}&copy;</span>
-                    <a href="{{ route('home') }}" target="_blank" class="text-dark-75 text-hover-primary">4GO</a>
+                    <a href="/" target="_blank" class="text-dark-75 text-hover-primary">{{env('APP_NAME')}}</a>
                 </div>
                 <!--end::Copyright-->
 
