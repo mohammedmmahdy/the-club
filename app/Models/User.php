@@ -71,4 +71,28 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return [];
     }
+
+
+
+    /////////////////// Appends ///////////////////
+
+    public $appends = ['status_text'];
+
+    public function getStatusTextAttribute()
+    {
+        switch ($this->status) {
+            case 0:
+                return 'Inactive';
+                break;
+            case 1:
+                return 'Lead';
+                break;
+            case 2:
+                return 'Member';
+                break;
+
+            default:
+                break;
+        }
+    }
 }

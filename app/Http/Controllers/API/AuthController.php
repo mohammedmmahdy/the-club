@@ -33,7 +33,7 @@ class AuthController extends Controller
         ]);
 
         // Make User Credintials Till Take Them form System.
-        $data['member_id'] = request('phone');
+        // $data['member_id'] = request('phone');
         $data['password'] = Hash::make('password');
         //////////////////////////////////////////
 

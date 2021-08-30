@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +70,9 @@ Route::group(
 
 
             Route::resource('admins', AdminController::class);
+            Route::resource('users', UserController::class)->only(['index', 'show']);
+            Route::patch('users/add-member-id/{user}', 'UserController@addMemberId')->name('users.addMemberId');
+
             Route::resource('metas', MetaController::class);
 
             Route::resource('socialLinks', SocialLinkController::class);
