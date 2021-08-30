@@ -124,7 +124,7 @@ return [
     '' => '',
 
     // W w
-    'wrongCredential' => 'wrong email or password',
+    'wrongCredential' => 'wrong Credential',
     'wrongOldPassword' => 'old password not correct',
     '' => '',
     '' => '',
