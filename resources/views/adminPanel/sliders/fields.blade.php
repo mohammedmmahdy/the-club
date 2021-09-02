@@ -59,10 +59,8 @@
     @php $i = 0; @endphp
     @endforeach
 
+    <!-- Photo -->
     <div class="form-group col-sm-6">
-        {{-- @if (isset($slider))
-        <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{asset('uploads/images/thumbnail/'. $slider->photo)}}" class="" style="width: 200px" alt="">
-        @endif --}}
         {!! Form::label('photo', __('models/sliders.fields.photo').':') !!}
         <br>
         <div class="image-input image-input-outline" id="kt_image_4" style="background-image: url({{asset('uploads/images/original/default.png')}})">
@@ -82,13 +80,18 @@
                 <i class="ki ki-bold-close icon-xs text-muted"></i>
             </span>
         </div>
-
     </div>
 
     <!-- Link Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('link', __('models/sliders.fields.link').':') !!}
         {!! Form::text('link', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <!-- video_link Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('video_link', __('models/sliders.fields.video_link').':') !!}
+        {!! Form::text('video_link', null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Sort Field -->
@@ -99,7 +102,7 @@
 
     <!-- Status Field -->
     <div class="form-group col-sm-12">
-        {!! Form::label('status', __('models/services.fields.status').':') !!}
+        {!! Form::label('status', __('models/sliders.fields.status').':') !!}
         <div class="radio-inline">
             <label class="radio">
                 {!! Form::radio('status', "1", 'Active') !!}
@@ -122,3 +125,15 @@
     </div>
 
 </div>
+
+
+
+
+@section('styles')
+<style>
+    .image-input-wrapper {
+        width: 500px !important;
+        height: 200px !important;
+    }
+</style>
+@endsection

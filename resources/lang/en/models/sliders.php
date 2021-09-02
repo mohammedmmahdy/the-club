@@ -13,6 +13,7 @@ return array(
         'description' => 'Description',
         'button_text' => 'Button Text',
         'link' => 'Link',
+        'video_link' => 'Video Link',
         'status' => 'Status',
         'sort' => 'Sort',
         'created_at' => 'Created At',

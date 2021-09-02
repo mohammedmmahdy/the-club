@@ -28,6 +28,12 @@
     <p>{{ $slider->link }}</p>
 </div>
 
+<!-- video_link Field -->
+<div class="form-group">
+    {!! Form::label('video_link', __('models/sliders.fields.video_link').':') !!}
+    <p>{{ $slider->video_link }}</p>
+</div>
+
 <!-- Status Field -->
 <div class="form-group">
     {!! Form::label('status', __('models/sliders.fields.status').':') !!}

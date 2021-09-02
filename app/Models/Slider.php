@@ -36,6 +36,7 @@ class Slider extends Model
         'photo',
         'status',
         'link',
+        'video_link',
     ];
 
     /**
@@ -72,6 +73,7 @@ class Slider extends Model
         $rules['in_order_to'] = 'nullable';
         $rules['photo'] = 'required|image|mimes:jpeg,jpg,png';
         $rules['link'] = 'nullable';
+        $rules['video_link'] = 'nullable';
 
         return $rules;
     }
