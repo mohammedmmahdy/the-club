@@ -35,81 +35,9 @@ class MainController extends Controller
 
     ##########################################################################
 
-    // Authentication
 
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['msg' => __('lang.wrongCredential')], 401);
-        } else {
-            $user = auth('api')->user();
-            if ($user->status == 'Inactive') {
-                return response()->json(['msg' => __('lang.notActive')], 403);
-            }
-            if (!$user->approved_at) {
-                return response()->json(['msg' => __('lang.notApproved')], 403);
-            }
-        }
-
-        $user = auth('api')->user();
-
-        return response()->json(compact('user', 'token'));
-    }
-
-    public function register(Request $request)
-    {
-        $validated = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'address' => 'required',
-            'identification' => 'nullable|image',
-        ]);
-        $validated['code'] = strtoupper($request->first_name[0]) . strtoupper($request->last_name[0]) .  $this->randomCode(4);
-        $user = User::create($validated);
-
-        return response()->json(['msg' => 'ok']);
-    }
-
-
-    public function logout()
-    {
-        auth('api')->logout();
-
-        return response()->json(['msg' => __('lang.logoutMsg')]);
-    }
-
-    ##########################################################################
 
     // General
-
-    public function brands()
-    {
-        $brands = Brand::get();
-
-        return response()->json(compact('brands'));
-    }
-
-    public function colors()
-    {
-        $colors = Color::get();
-
-        return response()->json(compact('colors'));
-    }
-
-    public function categories(Request $request)
-    {
-        $categories = Category::where('service_id', $request->service_id)->active()->get();
-
-        return response()->json(compact('categories'));
-    }
 
 
     ##########################################################################
@@ -118,12 +46,11 @@ class MainController extends Controller
 
     public function landing_page()
     {
-        $slider = Slider::active()->orderBy('in_order_to')->get();
-        $services = Service::active()->get();
-        $blogs = Blog::latest()->limit(3)->get();
-        $appFeatures = AppFeature::get();
+        $data['slider'] = Slider::active()->orderBy('in_order_to')->get();
 
-        return response()->json(compact('slider', 'services', 'blogs', 'appFeatures'));
+        // $blogs = Blog::latest()->limit(3)->get();
+
+        return response()->json($data);
     }
 
     public function pages($id)
@@ -140,7 +67,7 @@ class MainController extends Controller
         $data['phone']          = $informations->where('id', 1)->first()->value;
         $data['email']          = $informations->where('id', 2)->first()->value;
         $data['address']        = $informations->where('id', 3)->first()->value;
-        $data['description']    = $informations->where('id', 4)->first()->value;
+        // $data['description']    = $informations->where('id', 4)->first()->value;
 
         $social = SocialLink::get();
 
@@ -185,7 +112,7 @@ class MainController extends Controller
 
     public function blogs()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::latest()->paginate(8);
 
         return response()->json(compact('blogs'));
     }
@@ -195,12 +122,5 @@ class MainController extends Controller
         $blog = Blog::findOrFail($id);
 
         return response()->json(compact('blog'));
-    }
-
-    public function faqs()
-    {
-        $data['faqCategories'] = FaqCategory::orderByTranslation('name')->with('faqs')->get();
-
-        return response()->json($data);
     }
 }
