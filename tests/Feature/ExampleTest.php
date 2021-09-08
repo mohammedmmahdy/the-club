@@ -14,8 +14,17 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('en/adminPanel/login');
 
-        $response->assertStatus(200);
+        $response = $this->get('api/metas');
+
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function usersTest()
+    {
+        $response = $this->get('/en/api/informations');
+
+        $response->assertOk();
     }
 }
