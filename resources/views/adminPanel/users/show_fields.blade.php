@@ -34,6 +34,18 @@
     <b>{{ $user->phone }}</b>
 </div>
 
+<!-- social_status Field -->
+<div class="form-group show">
+    {!! Form::label('social_status', __('models/users.fields.social_status').':') !!}
+    <b>{{ $user->social_status == 1 ? 'Single' : 'Married' }}</b>
+</div>
+
+<!-- num_of_children Field -->
+<div class="form-group show">
+    {!! Form::label('num_of_children', __('models/users.fields.num_of_children').':') !!}
+    <b>{{ $user->num_of_children }}</b>
+</div>
+
 <!-- status Field -->
 <div class="form-group show">
     {!! Form::label('status', __('models/users.fields.status').':') !!}

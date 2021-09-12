@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('phone')->nullable();
             $table->unsignedTinyInteger('status')->default(1);
+            $table->unsignedTinyInteger('social_status')->comment(" 1 => Single, 2 => Married ");
+            $table->unsignedInteger('num_of_children')->nullable();
+            $table->unsignedInteger('balance')->default(0);
             $table->unsignedInteger('points')->default(0);
             $table->rememberToken();
             $table->timestamps();

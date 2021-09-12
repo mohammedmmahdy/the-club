@@ -77,13 +77,13 @@
 
 
                 <!-- Button trigger modal-->
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#memberIdModalLong">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#member-{{$user->id}}">
                     Add ID
                 </button>
 
                 <!-- Modal-->
                 {!! Form::model($user, ['route' => ['adminPanel.users.addMemberId', $user->id], 'method' => 'patch']) !!}
-                <div class="modal fade" id="memberIdModalLong" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                <div class="modal fade" id="member-{{$user->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -25,8 +26,11 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'email',
         'password',
         'phone',
+        'balance',
         'points',
         'status',
+        'social_status', //  1 => Single, 2 => Married
+        'num_of_children',
     ];
 
     /**
@@ -73,6 +77,12 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     }
 
 
+
+
+    public function setPasswordAttribute($value)
+    {
+        return $this->attributes['password'] = Hash::make($value);
+    }
 
     /////////////////// Appends ///////////////////
 

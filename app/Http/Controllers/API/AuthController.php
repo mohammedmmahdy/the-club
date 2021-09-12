@@ -30,35 +30,34 @@ class AuthController extends Controller
             'last_name'         => 'required|string|max:191',
             'email'             => 'required|email|max:191|unique:users,email',
             'phone'             => 'required|numeric|unique:users,phone',
+            'password'          => 'required|string|min:3|max:191|confirmed',
+            'social_status'     => 'required|in:1,2',
+            'num_of_children'   => 'nullable|required_if:social_status,2|numeric'
         ]);
-
-        // Make User Credintials Till Take Them form System.
-        // $data['member_id'] = request('phone');
-        $data['password'] = Hash::make('password');
-        //////////////////////////////////////////
-
 
         $user = User::create($data);
 
-        // return response()->json(['msg' => 'A confirmation code has been sent, check your inbox', 'code' => $user->verify_code]);
         return response()->json(['msg' => 'Success Registration', 'user' => $user]);
     }
 
     public function login_user(Request $request)
     {
-        // dd(Hash::make('password'));
-        $credentials = $request->validate(['member_id' => 'required|numeric', 'password' => 'required|string|max:191']);
+        $credentials = $request->validate(['phone' => 'required|numeric', 'password' => 'required|string|max:191']);
 
-        $user = User::firstWhere($credentials);
+        // $user = User::firstWhere($credentials);
+
 
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['msg' => __('lang.wrongCredential')], 401);
         }
-
-        // $user->update(['verify_code' => $this->randomCode(4)]);
-
-        // $token = auth('api')->tokenById($user->id);
         $user = auth('api')->user();
+
+        // dd($user);
+
+        if ($user->status != 2 ) {
+            return response()->json(['msg' => 'You are not a member'], 403);
+        }
+
 
         return response()->json(compact('user', 'token'));
     }
@@ -90,15 +89,6 @@ class AuthController extends Controller
     }
 
 
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        return 'phone';
-    }
 
 
 
