@@ -87,6 +87,8 @@ Route::group(
             Route::resource('options', OptionController::class);
 
             Route::resource('notifications', NotificationController::class);
+
+            Route::resource('branches', BranchController::class);
         });
     }
 );
@@ -94,3 +96,4 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
+
