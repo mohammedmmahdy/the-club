@@ -91,6 +91,8 @@ Route::group(
             Route::resource('branches', BranchController::class);
 
             Route::resource('academies', AcademyController::class);
+            Route::get('academies/destroy-photo/{id}', 'AcademyController@destroyPhoto')->name('academies.destroyPhoto');
+
         });
     }
 );

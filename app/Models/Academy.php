@@ -105,4 +105,18 @@ class Academy extends Model
         return $this->icon ? asset('uploads/images/thumbnail/' . $this->icon) : null;
     }
     // icon
+
+
+
+    ################################### Relations #################################
+
+    public function photos()
+    {
+        return $this->hasMany(AcademyPhoto::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 }

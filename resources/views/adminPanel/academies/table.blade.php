@@ -1,23 +1,25 @@
 <!--begin: Datatable-->
 <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
     <thead>
-        <tr>
-            <th>@lang('models/academies.fields.branch_id')</th>
+    <tr>
+        <th>@lang('models/academies.fields.branch_id')</th>
+        <th>@lang('models/academies.fields.icon')</th>
         <th>@lang('models/academies.fields.name')</th>
         <th>@lang('models/academies.fields.about')</th>
         <th>@lang('models/academies.fields.team')</th>
-        <th>@lang('models/academies.fields.icon')</th>
             <th>@lang('crud.action')</th>
         </tr>
     </thead>
     <tbody>
         @foreach($academies as $academy)
             <tr>
-                <td>{{ $academy->branch_id }}</td>
+            <td>{{ $academy->branch->name ?? ''}}</td>
+            <td>
+                <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{$academy->icon_thumbnail_path}}" alt="" width="100">
+            </td>
             <td>{{ $academy->name }}</td>
-            <td>{{ $academy->about }}</td>
-            <td>{{ $academy->team }}</td>
-            <td>{{ $academy->icon }}</td>
+            <td>{!! Str::limit($academy->about,50) !!}</td>
+            <td>{!! Str::limit($academy->team,50) !!}</td>
                 <td nowrap>
                     {!! Form::open(['route' => ['adminPanel.academies.destroy', $academy->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

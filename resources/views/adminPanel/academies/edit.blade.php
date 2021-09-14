@@ -21,7 +21,7 @@
                             <h3 class="card-title">Edit @lang('models/academies.singular')</h3>
                         </div>
                         <div class="card-body">
-                            {!! Form::model($academy, ['route' => ['adminPanel.academies.update', $academy->id], 'method' => 'patch']) !!}
+                            {!! Form::model($academy, ['route' => ['adminPanel.academies.update', $academy->id], 'method' => 'patch', 'files' => true]) !!}
                               @include('adminPanel.academies.fields')
                             {!! Form::close() !!}
                         </div>

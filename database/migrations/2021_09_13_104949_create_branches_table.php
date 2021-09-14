@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Branch;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -36,7 +37,15 @@ class CreateBranchesTable extends Migration
                 ->on('branches')
                 ->onDelete('cascade');
         });
+
+
+
+        Branch::create([
+            'en' => ['name' => '6th of October', 'address' => '6th of October'],
+            'ar' => ['name' => 'السادس من اكتوبر', 'address' => 'السادس من اكتوبر'],
+        ]);
     }
+
 
     /**
      * Reverse the migrations.

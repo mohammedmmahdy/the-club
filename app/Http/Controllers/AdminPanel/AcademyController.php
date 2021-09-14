@@ -10,6 +10,8 @@ use App\Http\Controllers\AppBaseController;
 use App\Repositories\AdminPanel\AcademyRepository;
 use App\Http\Requests\AdminPanel\CreateAcademyRequest;
 use App\Http\Requests\AdminPanel\UpdateAcademyRequest;
+use App\Models\Academy;
+use App\Models\AcademyPhoto;
 
 class AcademyController extends AppBaseController
 {
@@ -43,8 +45,10 @@ class AcademyController extends AppBaseController
      */
     public function create()
     {
-        $branches = Branch::get()->pluck('name', 'id');
-        return view('adminPanel.academies.create',compact('branches'));
+        $data['branches'] = Branch::get()->pluck('name', 'id');
+        $data['days'] = ['SAT','SUN','MON','TUE','WED','THU','FRI'];
+
+        return view('adminPanel.academies.create',compact('data'));
     }
 
     /**
@@ -59,6 +63,14 @@ class AcademyController extends AppBaseController
         $input = $request->all();
 
         $academy = $this->academyRepository->create($input);
+
+
+        foreach (request('photos') as $photo) {
+            $academy->photos()->create([
+                'photo' => $photo
+            ]);
+        }
+
 
         Flash::success(__('messages.saved', ['model' => __('models/academies.singular')]));
 
@@ -102,7 +114,10 @@ class AcademyController extends AppBaseController
             return redirect(route('adminPanel.academies.index'));
         }
 
-        return view('adminPanel.academies.edit')->with('academy', $academy);
+        $data['branches'] = Branch::get()->pluck('name', 'id');
+        $data['days'] = ['SAT','SUN','MON','TUE','WED','THU','FRI'];
+
+        return view('adminPanel.academies.edit',compact('academy', 'data'));
     }
 
     /**
@@ -121,6 +136,16 @@ class AcademyController extends AppBaseController
             Flash::error(__('messages.not_found', ['model' => __('models/academies.singular')]));
 
             return redirect(route('adminPanel.academies.index'));
+        }
+
+
+        if (request('photos')) {
+            // $academy->photos()->delete();
+            foreach (request('photos') as $photo) {
+                $academy->photos()->create([
+                    'photo' => $photo
+                ]);
+            }
         }
 
         $academy = $this->academyRepository->update($request->all(), $id);
@@ -154,5 +179,13 @@ class AcademyController extends AppBaseController
         Flash::success(__('messages.deleted', ['model' => __('models/academies.singular')]));
 
         return redirect(route('adminPanel.academies.index'));
+    }
+
+    public function destroyPhoto($id)
+    {
+        $photo = AcademyPhoto::find($id);
+        $photo->delete($id);
+
+        return back();
     }
 }
