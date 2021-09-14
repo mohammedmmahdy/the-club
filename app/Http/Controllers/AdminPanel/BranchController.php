@@ -6,6 +6,7 @@ use App\Http\Requests\AdminPanel\CreateBranchRequest;
 use App\Http\Requests\AdminPanel\UpdateBranchRequest;
 use App\Repositories\AdminPanel\BranchRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use Flash;
 use Response;

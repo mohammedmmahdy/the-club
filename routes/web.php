@@ -89,6 +89,8 @@ Route::group(
             Route::resource('notifications', NotificationController::class);
 
             Route::resource('branches', BranchController::class);
+
+            Route::resource('academies', AcademyController::class);
         });
     }
 );
