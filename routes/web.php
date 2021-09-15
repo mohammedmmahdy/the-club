@@ -92,6 +92,7 @@ Route::group(
 
             Route::resource('academies', AcademyController::class);
             Route::get('academies/destroy-photo/{id}', 'AcademyController@destroyPhoto')->name('academies.destroyPhoto');
+            Route::delete('academies/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroy.time');
 
         });
     }

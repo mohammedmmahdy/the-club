@@ -7,24 +7,24 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
+    // /**
+    //  * A basic test example.
+    //  *
+    //  * @return void
+    //  */
+    // public function testBasicTest()
+    // {
 
-        $response = $this->get('api/metas');
+    //     $response = $this->get('api/metas');
 
-        $response->assertOk();
-    }
+    //     $response->assertOk();
+    // }
 
-    /** @test */
-    public function usersTest()
-    {
-        $response = $this->get('/en/api/informations');
+    // /** @test */
+    // public function usersTest()
+    // {
+    //     $response = $this->get('/en/api/informations');
 
-        $response->assertOk();
-    }
+    //     $response->assertOk();
+    // }
 }

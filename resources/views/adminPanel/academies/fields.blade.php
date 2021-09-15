@@ -112,6 +112,59 @@
     <br>
 
 
+    <div class="clearfix"></div>
+            <br>
+            <hr>
+            <br>
+            <h3>academy times</h3>
+            <br>
+            <div id="academy-times">
+                @if (isset($academy->schedules))
+                @foreach ($academy->schedules as $time)
+                <div class="time-{{$time->id}} w-100 d-flex my-1">
+                    <input type="hidden" name="{{"time[$time->id][id]"}}" value="{{$time->id}}">
+                    {!! Form::select("time[$time->id][day]", [
+                        'SAT' => 'SAT',
+                        'SUN' => 'SUN',
+                        'MON' => 'MON',
+                        'TUE' => 'TUE',
+                        'WED' => 'WED',
+                        'THU' => 'THU',
+                        'FRI' => 'FRI'
+                        ], $time->day, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'Select Day']) !!}
+                    {!! Form::time("time[$time->id][from]", $time->from, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'From']) !!}
+                    {!! Form::time("time[$time->id][to]", $time->to, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'To']) !!}
+
+
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+                    <a href="{{route('adminPanel.academies.destroy.time',$time->id)}}" id="time-{{$time->id}}" data-id="{{ $time->id }}" data-url="{{route('adminPanel.academies.destroy.time',$time->id)}}" class="delete-time btn btn-danger">Delete</a>
+
+
+                    @php $timeCounter = $time->id @endphp
+                </div>
+                @endforeach
+                @else
+                @php $timeCounter = 0 @endphp
+                <div class="time-{{$timeCounter}} w-100 d-flex my-1">
+                    {!! Form::select("time[$timeCounter][day]", ['SAT','SUN','MON','TUE','WED','THU','FRI'], null, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'Select Day']) !!}
+                    {!! Form::time("time[$timeCounter][from]", null, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'From']) !!}
+                    {!! Form::time("time[$timeCounter][to]", null, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'To']) !!}
+
+
+                    <span id="time-{{$timeCounter}}" data-id="{{$timeCounter}}" class="remove-time btn btn-danger">Remove</span>
+
+                </div>
+                @endif
+            </div>
+            <span id="add-time" class="btn btn-success col-2 my-3" counter="{{isset($timeCounter) ? ++$timeCounter : 0}}">Add time</span>
+            <div class="clearfix"></div>
+            <br>
+            <hr>
+
+
+
+
     <!-- Submit Field -->
     <div class="form-group col-sm-12">
         {!! Form::submit(__('crud.save'), ['class' => 'btn btn-sm btn-primary']) !!}
@@ -343,33 +396,26 @@
 })();
 </script>
 
-{{-- <script>
-    var count = $('span#add-item').attr('counter');
+<script>
+    var count = $('span#add-time').attr('counter');
     $(document).ready(function () {
 
-    ////////////////////// Add Item //////////////////////
-    $('#add-item').click(function () {
+    ////////////////////// Add time //////////////////////
+    $('#add-time').click(function () {
 
-        $('#product-items').append(`
-            <div class="item-${count} w-100 d-flex my-1">
-                <input type="hidden" name="item[${count}][id]" value="${count}">
-                <select name="item[${count}][size_id]" class="form-control col-2 mx-1" placeholder="Select Size">
-                    <option value="">Select Size</option>
-                    @foreach ($sizes as $key => $size)
-                    <option value="{{$key}}">{{$size}}</option>
-@endforeach
-</select>
-<select name="item[${count}][color_id]" class="form-control col-2 mx-1" placeholder="Select Color">
-    <option value="">Select Color</option>
-    @foreach ($colors as $key => $color)
-    <option value="{{$key}}">{{$color}}</option>
-    @endforeach
-</select>
-<input type="number" name="item[${count}][sale_price]" class="form-control col-2 mx-1" placeholder="Sale Price">
-<input type="number" name="item[${count}][price]" class="form-control col-2 mx-1" placeholder="Price">
-<input type="number" name="item[${count}][stock]" class="form-control col-2 mx-1" placeholder="Stock">
-<span id="item-${count}" data-id="${count}" class="remove-item btn btn-danger">Remove</span>
-</div>
+        $('#academy-times').append(`
+            <div class="time-${count} w-100 d-flex my-1">
+                <input type="hidden" name="time[${count}][id]" value="${count}">
+                <select name="time[${count}][day]" class="form-control col-2 mx-1" placeholder="Select Day">
+                    <option value="">Select Time</option>
+                    @foreach ($data['days'] as $key => $day)
+                        <option value="{{$day}}">{{$day}}</option>
+                    @endforeach
+                </select>
+                <input type="time" name="time[${count}][from]" class="form-control col-2 mx-1" placeholder="from">
+                <input type="time" name="time[${count}][to]" class="form-control col-2 mx-1" placeholder="to">
+                <span id="time-${count}" data-id="${count}" class="remove-time btn btn-danger">Remove</span>
+            </div>
 `)
 
 count++
@@ -378,8 +424,8 @@ count++
 
 
 
-////////////////////// Delete Item //////////////////////
-$("body").on("click",".delete-item",function(e){
+////////////////////// Delete time //////////////////////
+$("body").on("click",".delete-time",function(e){
 
 if(!confirm("Do you really want to do this?")) {
 return false;
@@ -404,26 +450,26 @@ success: function (response){
 $("#success").html(response.message)
 Swal.fire(
 'Remind!',
-'Item deleted successfully!',
+'time deleted successfully!',
 'success'
 )
-$('.item-'+id).remove();
+$('.time-'+id).remove();
 }
 });
 return false;
 });
 
 
-////////////////////// Remove Item //////////////////////
-$("body").on("click",".remove-item",function(e){
+////////////////////// Remove time //////////////////////
+$("body").on("click",".remove-time",function(e){
 e.preventDefault()
 var id = $(this).data("id");
-$('.item-'+id).remove();
+$('.time-'+id).remove();
 });
 
 
 
 });
 
-</script> --}}
+</script>
 @endsection

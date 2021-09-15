@@ -12,6 +12,7 @@ use App\Http\Requests\AdminPanel\CreateAcademyRequest;
 use App\Http\Requests\AdminPanel\UpdateAcademyRequest;
 use App\Models\Academy;
 use App\Models\AcademyPhoto;
+use App\Models\AcademySchedule;
 
 class AcademyController extends AppBaseController
 {
@@ -70,6 +71,11 @@ class AcademyController extends AppBaseController
                 'photo' => $photo
             ]);
         }
+
+        foreach ($request->item as $key => $item) {
+            $academy->schedules()->create($item);
+        }
+
 
 
         Flash::success(__('messages.saved', ['model' => __('models/academies.singular')]));
@@ -140,11 +146,16 @@ class AcademyController extends AppBaseController
 
 
         if (request('photos')) {
-            // $academy->photos()->delete();
             foreach (request('photos') as $photo) {
                 $academy->photos()->create([
                     'photo' => $photo
                 ]);
+            }
+        }
+
+        if (!empty($request->time)) {
+            foreach ($request->time as $key => $time) {
+                $academy->schedules()->updateOrCreate(['id' => $key], $time);
             }
         }
 
@@ -188,4 +199,19 @@ class AcademyController extends AppBaseController
 
         return back();
     }
+
+
+
+
+    public function destroyTime($id)
+    {
+        AcademySchedule::find($id)->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+
+        return back();
+    }
+
 }
