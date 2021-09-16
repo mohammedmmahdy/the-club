@@ -42,7 +42,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="{{asset('metronic/assets/css/themes/layout/aside/dark.css?v=7.0.6')}}" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
 
-    <link rel="shortcut icon" href="{{\App\Models\Option::first()->logo_thumbnail_path}}" />
+    <link rel="shortcut icon" href="{{\App\Models\Option::first()->logo_thumbnail_path ?? ''}}" />
 
     <style>
         .overlay {
@@ -83,7 +83,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
                     <!--begin::Aside header-->
                     <a href="{{ route('home') }}" class="text-center mb-10">
-                        <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{\App\Models\Option::first()->logo_thumbnail_path}}" class="max-h-70px" alt="" />
+                        <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{\App\Models\Option::first()->logo_thumbnail_path ?? ''}}" class="max-h-70px" alt="" />
                     </a>
                     <!--end::Aside header-->
 
