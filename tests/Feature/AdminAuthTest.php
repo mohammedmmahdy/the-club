@@ -2,11 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\Admin;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AdminAuthTest extends TestCase
 {
@@ -23,14 +24,21 @@ class AdminAuthTest extends TestCase
     /** @test */
     public function isAdminCanLogin()
     {
-        $response = Admin::create([
+        $admin = Admin::create([
             'email' => 'test@admin.com',
             'password' => Hash::make('testadmin'),
             'name' => 'Test Admin',
         ]);
 
-        $response->assertStatus(200)->dump();
+        $this->assertDatabaseHas('admins', [
+            'email' => 'test@admin.com',
+        ]);
 
+        $response = Auth::guard('admin')->attempt([
+            'email' => 'test@admin.com',
+            'password' => 'testadmin',
+        ]);
+        $this->actingAs($admin);
 
     }
 
