@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Seek;
-use App\Models\Trip;
-use App\Models\Option;
-use App\Models\Reward;
 use App\Models\DriverRate;
 use App\Models\CustomerRate;
 use App\Models\Notification;
 use Illuminate\Http\Request;
-use App\Helpers\CapServiceTrait;
-use App\Helpers\TowingTruckTrait;
 use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
