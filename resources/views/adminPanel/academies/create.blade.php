@@ -21,7 +21,7 @@
                             <h3 class="card-title">Create @lang('models/academies.singular')</h3>
                         </div>
                         <div class="card-body">
-                            {!! Form::open(['route' => 'adminPanel.academies.store', 'files' = true]) !!}
+                            {!! Form::open(['route' => 'adminPanel.academies.store', 'files' => true]) !!}
                                 @include('adminPanel.academies.fields')
                             {!! Form::close() !!}
                         </div>

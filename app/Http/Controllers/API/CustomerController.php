@@ -38,6 +38,35 @@ class CustomerController extends Controller
         }
 
     //------------------------- End Main --------------------------//
+    ##################################################################
+    # Academies
+    ##################################################################
+
+        public function academySubscribe()
+        {
+                $attributes = request()->validate([
+                    'academy_id' => 'required|exists:academies,id',
+                    'academy_schedule_id' => 'required|exists:academy_schedules,id',
+                    'name' => 'nullable|string|min:3|max:191',
+                    'age' => 'required|integer',
+                    'gender' => 'required|integer|in:1,2'
+                ]);
+
+                $data['user'] = auth('api')->user();
+
+                $data['academy'] = $data['user']->academies()->create($attributes);
+                $data['user']->load('academies');
+
+                return response()->json($data);
+
+
+
+        }
+
+    //------------------------- End Academies --------------------------//
+
+
+
 
     ##################################################################
     # Notifications

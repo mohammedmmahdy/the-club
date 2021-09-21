@@ -118,20 +118,25 @@
             <br>
             <h3>academy times</h3>
             <br>
+           @php
+            $days = [
+            'SAT' => 'SAT',
+            'SUN' => 'SUN',
+            'MON' => 'MON',
+            'TUE' => 'TUE',
+            'WED' => 'WED',
+            'THU' => 'THU',
+            'FRI' => 'FRI'
+            ];
+            @endphp
             <div id="academy-times">
                 @if (isset($academy->schedules))
                 @foreach ($academy->schedules as $time)
                 <div class="time-{{$time->id}} w-100 d-flex my-1">
                     <input type="hidden" name="{{"time[$time->id][id]"}}" value="{{$time->id}}">
-                    {!! Form::select("time[$time->id][day]", [
-                        'SAT' => 'SAT',
-                        'SUN' => 'SUN',
-                        'MON' => 'MON',
-                        'TUE' => 'TUE',
-                        'WED' => 'WED',
-                        'THU' => 'THU',
-                        'FRI' => 'FRI'
-                        ], $time->day, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'Select Day']) !!}
+
+
+                    {!! Form::select("time[$time->id][day]",$days, $time->day, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'Select Day']) !!}
                     {!! Form::time("time[$time->id][from]", $time->from, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'From']) !!}
                     {!! Form::time("time[$time->id][to]", $time->to, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'To']) !!}
 
@@ -147,7 +152,7 @@
                 @else
                 @php $timeCounter = 0 @endphp
                 <div class="time-{{$timeCounter}} w-100 d-flex my-1">
-                    {!! Form::select("time[$timeCounter][day]", ['SAT','SUN','MON','TUE','WED','THU','FRI'], null, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'Select Day']) !!}
+                    {!! Form::select("time[$timeCounter][day]", $days, null, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'Select Day']) !!}
                     {!! Form::time("time[$timeCounter][from]", null, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'From']) !!}
                     {!! Form::time("time[$timeCounter][to]", null, ['class' => 'form-control col-2 mx-1', 'placeholder' => 'To']) !!}
 

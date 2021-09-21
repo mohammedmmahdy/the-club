@@ -72,8 +72,8 @@ class AcademyController extends AppBaseController
             ]);
         }
 
-        foreach ($request->item as $key => $item) {
-            $academy->schedules()->create($item);
+        foreach ($request->time as $key => $time) {
+            $academy->schedules()->create($time);
         }
 
 

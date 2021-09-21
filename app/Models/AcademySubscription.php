@@ -17,4 +17,15 @@ class AcademySubscription extends Model
         'gender', // 1 => Male, 2 => Female
     ];
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function schedules()
+    {
+        return $this->belongsTo(AcademySchedule::class);
+    }
+
 }

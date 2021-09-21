@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,8 @@ Route::post('user/verify-code', 'AuthController@verify_code_user');
 //////////////////////////////////////////////////////////////////////////////
 
 Route::group(['middleware' => ['auth:api']], function () {
+
+    Route::post('academy-subscribe', [CustomerController::class, 'academySubscribe']);
 });
 
 //////////////////////////////////////////////////////////////////////////////

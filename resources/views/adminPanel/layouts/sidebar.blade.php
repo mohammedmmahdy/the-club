@@ -4,7 +4,7 @@
     <div class="brand flex-column-auto " id="kt_brand">
         <!--begin::Logo-->
         <a href="{{ route('adminPanel.dashboard') }}" class="brand-logo">
-            <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" alt="Logo" src="{{\App\Models\Option::first()->logo_thumbnail_path}}" width="50px" />
+            <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" alt="Logo" src="{{\App\Models\Option::first()->logo_thumbnail_path ?? asset('uploads/images/original/logo.png')}}" width="50px" />
         </a>
         <!--end::Logo-->
 

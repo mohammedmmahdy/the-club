@@ -105,4 +105,13 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
                 break;
         }
     }
+
+
+
+    ///////////////////////// Relations ////////////////////////////
+
+    public function academies()
+    {
+        return $this->hasMany(Academy::class);
+    }
 }

@@ -65,6 +65,16 @@ class Academy extends Model
             $rules[$language . '.about'] = 'required|string|min:3';
             $rules[$language . '.team'] = 'required|string|min:3';
         }
+        $rules['branch_id'] = 'required|exists:branches,id';
+        $rules['icon']      = 'required|image|mimes:jpg,jpeg,png';
+
+        $rules['photos']    = 'required|array';
+        $rules['photos.*']  = 'required|image|mimes:jpg,jpeg,png';
+
+        $rules['time']                 = 'required|array';
+        $rules['time.*.day']           = 'required|string|max:191';
+        $rules['time.*.from']          = 'required|string';
+        $rules['time.*.to']            = 'required|string';
 
         return $rules;
     }
@@ -125,4 +135,10 @@ class Academy extends Model
     {
         return $this->hasMany(AcademySchedule::class);
     }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(AcademySubscription::class);
+    }
+
 }

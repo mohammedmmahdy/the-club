@@ -17,8 +17,8 @@ class CreateOptionsTable extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->increments('id');
             $table->string('logo')->default('logo.png');
-            $table->string('fav_icon')->default('fav_icon.png');
-            $table->string('welcome_message')->default('Welcome to Thub');
+            $table->string('fav_icon')->default('logo.png');
+            $table->string('welcome_message')->default('Welcome');
             $table->string('welcome_photo')->default('welcome.jpg');
 
             $table->timestamps();
