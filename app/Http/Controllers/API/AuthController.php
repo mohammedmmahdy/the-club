@@ -22,79 +22,52 @@ class AuthController extends Controller
     use  AuthenticatesUsers;
 
     // Start user
+        public function register_user(Request $request)
+        {
+            $data = $request->validate([
+                'first_name'        => 'required|string|max:191',
+                'last_name'         => 'required|string|max:191',
+                'email'             => 'required|email|max:191|unique:users,email',
+                'phone'             => 'required|numeric|unique:users,phone',
+                'password'          => 'required|string|min:3|max:191|confirmed',
+                'social_status'     => 'required|in:1,2',
+                'num_of_children'   => 'nullable|required_if:social_status,2|numeric'
+            ]);
 
-    public function register_user(Request $request)
-    {
-        $data = $request->validate([
-            'first_name'        => 'required|string|max:191',
-            'last_name'         => 'required|string|max:191',
-            'email'             => 'required|email|max:191|unique:users,email',
-            'phone'             => 'required|numeric|unique:users,phone',
-            'password'          => 'required|string|min:3|max:191|confirmed',
-            'social_status'     => 'required|in:1,2',
-            'num_of_children'   => 'nullable|required_if:social_status,2|numeric'
-        ]);
+            $user = User::create($data);
 
-        $user = User::create($data);
-
-        return response()->json(['msg' => 'Success Registration', 'user' => $user]);
-    }
-
-    public function login_user(Request $request)
-    {
-        $credentials = $request->validate(['phone' => 'required|numeric', 'password' => 'required|string|max:191']);
-
-        // $user = User::firstWhere($credentials);
-
-
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['msg' => __('lang.wrongCredential')], 401);
-        }
-        $user = auth('api')->user();
-
-        // dd($user);
-
-        if ($user->status != 2 ) {
-            return response()->json(['msg' => 'You are not a member'], 403);
+            return response()->json(['msg' => 'Success Registration', 'user' => $user]);
         }
 
+        public function login_user(Request $request)
+        {
+            $credentials = $request->validate(['phone' => 'required|numeric', 'password' => 'required|string|max:191']);
 
-        return response()->json(compact('user', 'token'));
-    }
-
-
-    // public function verify_code_user(Request $request)
-    // {
-    //     $inputs = $request->validate(['phone' => 'required|numeric', 'verify_code' => 'required|min:4|max:5']);
-
-    //     $user = User::firstWhere($inputs);
-
-    //     if (empty($user)) {
-    //         return response()->json(['msg' => 'Verify code is not correct'], 403);
-    //     }
-
-    //     $token = auth('api.user')->tokenById($user->id);
-
-    //     return response()->json(compact('user', 'token'));
-    // }
-
-    // End user
+            // $user = User::firstWhere($credentials);
 
 
-    public function logout()
-    {
-        auth()->logout();
+            if (!$token = auth('api')->attempt($credentials)) {
+                return response()->json(['msg' => __('lang.wrongCredential')], 401);
+            }
+            $user = auth('api')->user();
 
-        return response()->json(['msg' => 'success'], 200);
-    }
+            // dd($user);
 
-
-
-
-
-
+            if ($user->status != 2 ) {
+                return response()->json(['msg' => 'You are not a member'], 403);
+            }
 
 
+            return response()->json(compact('user', 'token'));
+        }
+
+
+        public function logout()
+        {
+            auth()->logout();
+
+            return response()->json(['msg' => 'success'], 200);
+        }
 
 
 
@@ -104,16 +77,16 @@ class AuthController extends Controller
 
     ///////////////////////////////////////// Helpeers  /////////////////////////////////////////
 
-    public function randomCode($length = 8)
-    {
-        // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
+        public function randomCode($length = 8)
+        {
+            // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
 
-        return $randomString;
-    }
+            return $randomString;
+        }
 }

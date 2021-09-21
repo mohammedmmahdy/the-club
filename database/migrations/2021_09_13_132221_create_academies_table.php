@@ -63,6 +63,21 @@ class CreateAcademiesTable extends Migration
             $table->softDeletes();
 
         });
+
+        Schema::create('academy_subscriptions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->foreignId('academy_id');
+            $table->foreignId('user_id');
+            $table->foreignId('academy_schedule_id');
+
+            $table->string('name')->nullable();
+            $table->unsignedInteger('age');
+            $table->unsignedTinyInteger('gender')->comment('1 => Male, 2 => Female');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+        });
     }
 
     /**
