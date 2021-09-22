@@ -7,6 +7,8 @@ use App\Models\CustomerRate;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Academy;
+use App\Models\User;
 
 class CustomerController extends Controller
 {
@@ -45,11 +47,11 @@ class CustomerController extends Controller
         public function academySubscribe()
         {
                 $attributes = request()->validate([
-                    'academy_id' => 'required|exists:academies,id',
-                    'academy_schedule_id' => 'required|exists:academy_schedules,id',
-                    'name' => 'nullable|string|min:3|max:191',
-                    'age' => 'required|integer',
-                    'gender' => 'required|integer|in:1,2'
+                    'academy_id'            => 'required|exists:academies,id',
+                    'academy_schedule_id'   => 'required|exists:academy_schedules,id',
+                    'name'                  => 'nullable|string|min:3|max:191',
+                    'age'                   => 'required|integer',
+                    'gender'                => 'required|integer|in:1,2'
                 ]);
 
                 $data['user'] = auth('api')->user();
@@ -58,71 +60,15 @@ class CustomerController extends Controller
                 $data['user']->load('academies');
 
                 return response()->json($data);
+        }
 
-
-
+        public function academySchedule(Academy $academy)
+        {
+            $schedules = $academy->schedules;
+            return response()->json(compact('schedules'));
         }
 
     //------------------------- End Academies --------------------------//
-
-
-
-
-    ##################################################################
-    # Notifications
-    ##################################################################
-
-        public function notifications()
-        {
-            $notifications = Notification::customer()->get();
-
-            return response()->json($notifications, 200);
-        }
-
-        public function notification(Notification $notification)
-        {
-            return response()->json($notification, 200);
-        }
-
-    //--------------------- End Notifications -----------------------//
-
-    ##################################################################
-    # Rates
-    ##################################################################
-
-        public function rates($customerId)
-        {
-            $data['rates'] = CustomerRate::where('customer_id', $customerId)->get();
-            $data['rates']->load('customer', 'driver');
-            return response()->json($data);
-        }
-
-        public function rate(CustomerRate $customerRate)
-        {
-            $customerRate->load('customer', 'driver');
-            return response()->json($customerRate);
-        }
-
-        public function addOrUpdateRate()
-        {
-            $validated = request()->validate([
-                'driver_id'         => 'required',
-                'rate'              => 'required',
-                'report'            => 'required',
-            ]);
-
-            $validated['customer_id'] =  auth('api.customer')->id();
-
-            $data['rate'] = DriverRate::updateOrCreate([
-                'customer_id'   => auth('api.customer')->id(),
-                'driver_id'     => request('driver_id')
-            ], $validated);
-            $data['rate']->load('customer', 'driver');
-            return response()->json($data);
-        }
-
-    //--------------------- End Rates -----------------------//
-
 
 
 }

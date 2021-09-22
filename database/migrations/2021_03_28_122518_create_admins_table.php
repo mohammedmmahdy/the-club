@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Admin;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -27,16 +26,6 @@ class CreateAdminsTable extends Migration
             $table->timestamps();
         });
 
-        Admin::create([
-
-                'name' => 'admin',
-                'email' => 'admin@email.com',
-                'password' => bcrypt('clubvillage'),
-                'created_at' => now(),
-                'updated_at' => now(),
-                'approved_at' => now(),
-
-        ]);
     }
 
     /**

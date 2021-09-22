@@ -2,29 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Faq;
 use App\Models\Blog;
 use App\Models\Meta;
 use App\Models\Page;
-use App\Models\Trip;
-use App\Models\User;
-use App\Models\Brand;
-use App\Models\Driver;
 use App\Models\Slider;
 use App\Models\Contact;
-use App\Models\Service;
-use App\Models\AppFeature;
 use App\Models\Newsletter;
 use App\Models\SocialLink;
-use App\Models\FaqCategory;
 use App\Models\Information;
-use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Color;
-use App\Models\Reason;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Branch;
 
 class MainController extends Controller
 {
@@ -35,10 +23,7 @@ class MainController extends Controller
 
     ##########################################################################
 
-
-
     // General
-
 
     ##########################################################################
 
@@ -122,5 +107,13 @@ class MainController extends Controller
         $blog = Blog::findOrFail($id);
 
         return response()->json(compact('blog'));
+    }
+
+    public function academies()
+    {
+        $branch = Branch::firstOrFail();
+        $academies = $branch->academies->load('photos','schedules');
+
+        return response()->json(compact('academies'));
     }
 }

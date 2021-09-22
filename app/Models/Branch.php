@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Astrotomic\Translatable\Translatable;
 use Eloquent as Model;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -55,5 +55,13 @@ class Branch extends Model
         }
 
         return $rules;
+    }
+
+
+    ################################ Relations ################################
+
+    public function academies()
+    {
+        return $this->hasMany(Academy::class);
     }
 }

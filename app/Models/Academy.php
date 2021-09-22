@@ -130,7 +130,6 @@ class Academy extends Model
         return $this->belongsTo(Branch::class);
     }
 
-
     public function schedules()
     {
         return $this->hasMany(AcademySchedule::class);

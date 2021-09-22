@@ -2,26 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Auth;
 use App\Models\User;
-use App\Models\Driver;
-use App\Models\Company;
-use App\Helpers\MailsTrait;
 use Illuminate\Http\Request;
-use App\Mail\RegistrationMail;
-use App\Helpers\HelperFunctionTrait;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Auth\Events\Registered;
-use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     use  AuthenticatesUsers;
 
-    // Start user
         public function register_user(Request $request)
         {
             $data = $request->validate([
@@ -43,24 +32,17 @@ class AuthController extends Controller
         {
             $credentials = $request->validate(['phone' => 'required|numeric', 'password' => 'required|string|max:191']);
 
-            // $user = User::firstWhere($credentials);
-
-
             if (!$token = auth('api')->attempt($credentials)) {
                 return response()->json(['msg' => __('lang.wrongCredential')], 401);
             }
             $user = auth('api')->user();
 
-            // dd($user);
-
-            if ($user->status != 2 ) {
+            // Handle if the user not a member Or academy member ( 2 => member, 3 => academy member )
+            if (!in_array( $user->status, [2, 3])) {
                 return response()->json(['msg' => 'You are not a member'], 403);
             }
-
-
             return response()->json(compact('user', 'token'));
         }
-
 
         public function logout()
         {
