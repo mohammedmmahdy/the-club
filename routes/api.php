@@ -24,13 +24,13 @@ use Illuminate\Support\Facades\Route;
 ///////////////////////////////// End Pages //////////////////////////////////
 
 //////////////////////////////// Start Academy //////////////////////////////////
-    Route::get('academy-schedule/{academy}', [CustomerController::class, 'academySchedule']);
+Route::get('academy-schedule/{academy}', [CustomerController::class, 'academySchedule']);
+Route::post('academy-subscribe', [CustomerController::class, 'academySubscribe']);
     Route::get('academies', [MainController::class, 'academies']);
 //////////////////////////////// End Academy //////////////////////////////////
 
 //////////////////////////////// Start User //////////////////////////////////
     Route::group(['middleware' => ['auth:api']], function () {
-        Route::post('academy-subscribe', [CustomerController::class, 'academySubscribe']);
 
     });
 ////////////////////////////////// End User //////////////////////////////////

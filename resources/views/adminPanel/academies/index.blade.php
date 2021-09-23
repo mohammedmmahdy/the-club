@@ -34,6 +34,10 @@
                     @lang('crud.add_new')
                 </a>
                 <!--end::Button-->
+
+                <a href="{{route('adminPanel.academies.requests')}}" class="btn btn-primary font-weight-bolder mx-2">
+                    Requests  <span class="badge badge-danger">{{$requests_count}}</span>
+                </a>
             </div>
             @endcan
         </div>

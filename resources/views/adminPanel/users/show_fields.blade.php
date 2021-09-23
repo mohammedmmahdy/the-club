@@ -37,7 +37,18 @@
 <!-- social_status Field -->
 <div class="form-group show">
     {!! Form::label('social_status', __('models/users.fields.social_status').':') !!}
-    <b>{{ $user->social_status == 1 ? 'Single' : 'Married' }}</b>
+    <b>
+        @switch($user->social_status)
+        @case(1)
+        Single
+        @break
+        @case(2)
+        Married
+        @break
+        @default
+
+        @endswitch
+    </b>
 </div>
 
 <!-- num_of_children Field -->

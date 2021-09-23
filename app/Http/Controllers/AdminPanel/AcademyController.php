@@ -13,6 +13,7 @@ use App\Http\Requests\AdminPanel\UpdateAcademyRequest;
 use App\Models\Academy;
 use App\Models\AcademyPhoto;
 use App\Models\AcademySchedule;
+use App\Models\AcademySubscription;
 
 class AcademyController extends AppBaseController
 {
@@ -34,9 +35,9 @@ class AcademyController extends AppBaseController
     public function index(Request $request)
     {
         $academies = $this->academyRepository->all();
+        $requests_count = $this->requests()->requests->count();
 
-        return view('adminPanel.academies.index')
-            ->with('academies', $academies);
+        return view('adminPanel.academies.index', compact('requests_count', 'academies'));
     }
 
     /**
@@ -200,9 +201,6 @@ class AcademyController extends AppBaseController
         return back();
     }
 
-
-
-
     public function destroyTime($id)
     {
         AcademySchedule::find($id)->delete();
@@ -210,6 +208,20 @@ class AcademyController extends AppBaseController
         return response()->json([
             'success' => 'Record deleted successfully!'
         ]);
+
+        return back();
+    }
+
+    public function requests()
+    {
+        $requests = AcademySubscription::inactive()->get();
+
+        return view('adminPanel.academies.requests', compact('requests'));
+    }
+
+    public function changeRequestStatus(AcademySubscription $subscription)
+    {
+        $subscription->update(['status' => request('status')]);
 
         return back();
     }

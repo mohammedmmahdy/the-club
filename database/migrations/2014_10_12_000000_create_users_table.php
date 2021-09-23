@@ -17,12 +17,12 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('member_id')->nullable();
-            $table->string('email')->unique();
-            $table->string('password')->nullable();
             $table->string('phone')->nullable();
+            $table->string('member_id')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->unsignedTinyInteger('status')->default(1);
-            $table->unsignedTinyInteger('social_status')->comment(" 1 => Single, 2 => Married ");
+            $table->unsignedTinyInteger('social_status')->nullable()->comment(" 1 => Single, 2 => Married ");
             $table->unsignedInteger('num_of_children')->nullable();
             $table->unsignedInteger('balance')->default(0);
             $table->unsignedInteger('points')->default(0);

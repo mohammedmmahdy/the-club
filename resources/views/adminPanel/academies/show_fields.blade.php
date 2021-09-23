@@ -57,13 +57,13 @@
 <hr>
 <h3>Academy Photos</h3>
 <br>
- <div class="academy-photos d-flex">
-     @foreach ($academy->photos as $photo)
-         <div class="photo image-thumbnail m-2">
-             <img src="{{$photo->photo_original_path}}" alt="" width="200">
-         </div>
-     @endforeach
- </div>
+<div class="academy-photos d-flex">
+    @foreach ($academy->photos as $photo)
+    <div class="photo image-thumbnail m-2">
+        <img src="{{$photo->photo_original_path}}" alt="" width="200">
+    </div>
+    @endforeach
+</div>
 <br>
 <hr>
 <h3>Academy Times</h3>
@@ -87,28 +87,4 @@
             @endforeach
         </tbody>
     </table>
-</div>
-<br>
-<hr>
-<h3>Academy Times</h3>
-<br>
-<div class="academy-subscriptions">
-   <table class="table">
-       <thead>
-           <tr>
-               <th>User</th>
-               <th>Age</th>
-               <th>Gender</th>
-           </tr>
-       </thead>
-       <tbody>
-           @foreach ($academy->subscriptions as $subscriber)
-           <tr>
-               <td scope="row">{{$subscriber->user->first_name ?? ''}} {{$subscriber->user->last_name ?? ''}}</td>
-               <td>{{$subscriber->age}}</td>
-               <td>{{$subscriber->gender}}</td>
-           </tr>
-           @endforeach
-       </tbody>
-   </table>
 </div>

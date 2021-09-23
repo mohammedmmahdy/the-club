@@ -16,16 +16,17 @@ class AuthController extends Controller
             $data = $request->validate([
                 'first_name'        => 'required|string|max:191',
                 'last_name'         => 'required|string|max:191',
-                'email'             => 'required|email|max:191|unique:users,email',
                 'phone'             => 'required|numeric|unique:users,phone',
+                'email'             => 'required|email|max:191|unique:users,email',
                 'password'          => 'required|string|min:3|max:191|confirmed',
                 'social_status'     => 'required|in:1,2',
                 'num_of_children'   => 'nullable|required_if:social_status,2|numeric'
             ]);
 
             $user = User::create($data);
+            $userData = User::findOrFail($user->id);
 
-            return response()->json(['msg' => 'Success Registration', 'user' => $user]);
+            return response()->json(['msg' => 'Success Registration', 'user' => $userData]);
         }
 
         public function login_user(Request $request)

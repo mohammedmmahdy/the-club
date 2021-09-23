@@ -40,26 +40,40 @@ class CustomerController extends Controller
         }
 
     //------------------------- End Main --------------------------//
+
     ##################################################################
     # Academies
     ##################################################################
 
         public function academySubscribe()
         {
-                $attributes = request()->validate([
-                    'academy_id'            => 'required|exists:academies,id',
-                    'academy_schedule_id'   => 'required|exists:academy_schedules,id',
-                    'name'                  => 'nullable|string|min:3|max:191',
-                    'age'                   => 'required|integer',
-                    'gender'                => 'required|integer|in:1,2'
-                ]);
+            $attributes = request()->validate([
+                'academy_id'            => 'required|exists:academies,id',
+                'academy_schedule_id'   => 'required|exists:academy_schedules,id',
+                'first_name'            => 'required|string|max:191',
+                'last_name'             => 'required|string|max:191',
+                'phone'                 => 'required|numeric',
+                'age'                   => 'required|integer',
+                'gender'                => 'required|integer|in:1,2'
+            ]);
 
+            if (auth('api')->user()) {
+                if (in_array($attributes['academy_schedule_id'], auth('api')->user()->academies->pluck('academy_schedule_id')->toArray())) {
+                    return response()->json(['msg' => 'You have another appointment in this time'], 420);
+                }
                 $data['user'] = auth('api')->user();
+            }else{
+                $data['user'] = User::create([
+                    'first_name'            => $attributes['first_name'],
+                    'last_name'             => $attributes['last_name'],
+                    'phone'                 => $attributes['phone'],
+                ]);
+            }
 
-                $data['academy'] = $data['user']->academies()->create($attributes);
-                $data['user']->load('academies');
+            $data['academy'] = $data['user']->academies()->create($attributes);
+            $data['user']->load('academies');
 
-                return response()->json($data);
+            return response()->json($data);
         }
 
         public function academySchedule(Academy $academy)

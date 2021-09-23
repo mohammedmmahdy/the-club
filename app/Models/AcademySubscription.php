@@ -12,20 +12,43 @@ class AcademySubscription extends Model
         'academy_id',
         'user_id',
         'academy_schedule_id',
-        'name',
+
+        'first_name',
+        'last_name',
+        'phone',
+        'status',
+
         'age',
         'gender', // 1 => Male, 2 => Female
     ];
 
+    ################################# Relations #################################
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function schedules()
+    public function academy()
+    {
+        return $this->belongsTo(Academy::class);
+    }
+
+    public function appointment()
     {
         return $this->belongsTo(AcademySchedule::class);
+    }
+
+    ################################# Scopes #################################
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 0);
     }
 
 }

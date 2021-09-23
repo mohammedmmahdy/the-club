@@ -10,12 +10,12 @@
 
 ## Academies
 [x] - Create Academies Crud.
-[] - Make CRUD Multilang.
+[x] - Make CRUD Multilang.
     [x] * Edit Migration
     [x] * Edit Models
     [x] * Edit Requests
-    [] * Edit Fields & Views
-[] - Create Academy Gallery.
-[] - Create Academy Schedule.
+    [x] * Edit Fields & Views
+[x] - Create Academy Gallery.
+[x] - Create Academy Schedule.
 [] - Create Academy Subscription.
-
+    [] * Handle Subscribe status or approvel.

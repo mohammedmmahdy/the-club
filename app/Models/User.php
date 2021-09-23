@@ -22,13 +22,13 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     protected $fillable = [
         'first_name',
         'last_name',
+        'phone',
+        'status',
         'member_id',
         'email',
         'password',
-        'phone',
         'balance',
         'points',
-        'status',
         'social_status', //  1 => Single, 2 => Married
         'num_of_children',
     ];
