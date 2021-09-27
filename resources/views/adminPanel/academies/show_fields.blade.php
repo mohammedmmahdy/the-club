@@ -1,13 +1,13 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', __('models/academies.fields.id').':') !!}
-    <b>{{ $academy->id }}</b>
-</div>
-
 <!-- Icon Field -->
 <div class="form-group">
     {!! Form::label('icon', __('models/academies.fields.icon').':') !!}
     <img src="{{$academy->icon_thumbnail_path}}" alt="" width="100">
+</div>
+
+<!-- Id Field -->
+<div class="form-group">
+    {!! Form::label('id', __('models/academies.fields.id').':') !!}
+    <b>{{ $academy->id }}</b>
 </div>
 
 <!-- Branch Id Field -->
@@ -46,13 +46,13 @@
     <b>{{ $academy->created_at }}</b>
 </div>
 
-
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', __('models/academies.fields.updated_at').':') !!}
     <b>{{ $academy->updated_at }}</b>
 </div>
-
+<div class="clearfix"></div>
+<br>
 <br>
 <hr>
 <h3>Academy Photos</h3>
@@ -65,6 +65,7 @@
     @endforeach
 </div>
 <br>
+<div class="clearfix"></div>
 <hr>
 <h3>Academy Times</h3>
 <br>

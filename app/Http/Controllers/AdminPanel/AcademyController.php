@@ -4,16 +4,17 @@ namespace App\Http\Controllers\AdminPanel;
 
 use Flash;
 use Response;
+use Carbon\Carbon;
 use App\Models\Branch;
+use App\Models\Academy;
+use App\Models\AcademyPhoto;
 use Illuminate\Http\Request;
+use App\Models\AcademySchedule;
+use App\Models\AcademySubscription;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\AdminPanel\AcademyRepository;
 use App\Http\Requests\AdminPanel\CreateAcademyRequest;
 use App\Http\Requests\AdminPanel\UpdateAcademyRequest;
-use App\Models\Academy;
-use App\Models\AcademyPhoto;
-use App\Models\AcademySchedule;
-use App\Models\AcademySubscription;
 
 class AcademyController extends AppBaseController
 {
@@ -224,6 +225,21 @@ class AcademyController extends AppBaseController
         $subscription->update(['status' => request('status')]);
 
         return back();
+    }
+
+
+    public function dateFilter()
+    {
+        $fromDate = (new Carbon(request('academy_request_from')))->format('y-m-d G:i:s');
+        $toDate = (new Carbon(request('academy_request_to')))->format('y-m-d G:i:s');
+
+        $requestsQuery = AcademySubscription::inactive();
+        if (request()->filled('academy_request_from') || request()->filled('academy_request_to')) {
+            $requestsQuery->whereBetween('created_at', [$fromDate, $toDate]);
+        }
+        $requests = $requestsQuery->get();
+
+        return view('adminPanel.academies.requests', compact('requests'));
     }
 
 }

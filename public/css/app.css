@@ -3,5 +3,16 @@ table form {
 }
 
 tr.datatable-row {
-    border-bottom: 1px solid #EBEDF3;
+    border-bottom: 1px solid #ebedf3;
+}
+
+.show-fields .form-group {
+    margin: 0.3rem 0.3rem;
+    padding: 1rem;
+    vertical-align: top;
+    border: 1px solid #e0e3ea;
+    width: 49%;
+    float: left;
+    display: grid;
+    background: #eef0f88a;
 }

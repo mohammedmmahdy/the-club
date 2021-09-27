@@ -45,36 +45,6 @@
             <td>{{ $user->id }}</td>
             @if ($user->member_id == null)
             <td>
-                {{-- <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_member_id">
-                    Add Member ID
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="add_member_id" tabindex="-1" role="dialog" aria-labelledby="add_member_id" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Add Member ID</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                {!! Form::open([['route' => 'adminPanel.users.addMemberId',$user->id], 'method' => 'patch']) !!}
-                                {!! Form::text('member_id', null, ['class' => 'form-control']) !!}
-                                {!! Form::close() !!}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-
-
-
 
                 <!-- Button trigger modal-->
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#member-{{$user->id}}">

@@ -18,7 +18,7 @@
 			<div class="row">
                 <div class="col-lg-12">
                     <!--begin::Card-->
-                    <div class="card card-custom gutter-b example example-compact">
+                    <div class="card card-custom gutter-b example example-compact show-fields">
                         <div class="card-header">
                             <h3 class="card-title">Details</h3>
                             <div class="card-toolbar">

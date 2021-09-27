@@ -4,22 +4,6 @@
     <p>{{ $page->id }}</p>
 </div>
 
-@foreach ( config('langs') as $locale => $name)
-<h3>
-    <center>
-        <code> {{ $name }} </code>
-    </center>
-</h3>
-<div class="form-group">
-    <b>{!! Form::label('name', __('models/pages.fields.name').':') !!}</b>
-    <p>{{ $page->translate($locale)->name }}</p>
-</div>
-<div class="form-group">
-    <b>{!! Form::label('content', __('models/pages.fields.content').':') !!}</b>
-    <p>{!! $page->translate($locale)->content !!}</p>
-</div>
-@endforeach
-
 <!-- Active Field -->
 <div class="form-group">
     <b>{!! Form::label('active', __('models/pages.fields.active').':') !!}</b>
@@ -49,4 +33,28 @@
     <b>{!! Form::label('updated_at', __('models/pages.fields.updated_at').':') !!}</b>
     <p>{{ $page->updated_at }}</p>
 </div>
+<br>
+<div class="clearfix"></div>
+<br>
 
+@foreach ( config('langs') as $locale => $name)
+<br>
+<div class="clearfix"></div>
+
+<h3>
+    <center>
+        <code> {{ $name }} </code>
+    </center>
+</h3>
+<br>
+<div class="form-group">
+    <b>{!! Form::label('name', __('models/pages.fields.name').':') !!}</b>
+    <p>{{ $page->translate($locale)->name }}</p>
+</div>
+<div class="form-group">
+    <b>{!! Form::label('content', __('models/pages.fields.content').':') !!}</b>
+    <p>{!! $page->translate($locale)->content !!}</p>
+</div>
+<div class="clearfix"></div>
+
+@endforeach
