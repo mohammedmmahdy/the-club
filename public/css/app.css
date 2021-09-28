@@ -7,12 +7,21 @@ tr.datatable-row {
 }
 
 .show-fields .form-group {
-    margin: 0.3rem 0.3rem;
-    padding: 1rem;
+    margin: 0.2rem 0.2rem;
+    padding: 1.2rem;
     vertical-align: top;
-    border: 1px solid #e0e3ea;
     width: 49%;
     float: left;
     display: grid;
     background: #eef0f88a;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    justify-items: center;
+}
+.show-fields .form-group:hover {
+    background: #1e1e2dc7;
+    color: #eee;
+}
+.show-fields .form-group:hover label {
+    color: #eee;
 }

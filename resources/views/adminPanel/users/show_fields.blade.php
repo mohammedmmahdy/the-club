@@ -1,8 +1,3 @@
-<!-- id Field -->
-<div class="form-group show">
-    {!! Form::label('id', __('models/users.fields.id').':') !!}
-    <b>{{ $user->id }}</b>
-</div>
 
 <!-- first_name Field -->
 <div class="form-group show">
@@ -16,16 +11,10 @@
     <b>{{ $user->last_name }}</b>
 </div>
 
-<!-- member_id Field -->
+<!-- id Field -->
 <div class="form-group show">
-    {!! Form::label('member_id', __('models/users.fields.member_id').':') !!}
-    <b>{{ $user->member_id }}</b>
-</div>
-
-<!-- email Field -->
-<div class="form-group show">
-    {!! Form::label('email', __('models/users.fields.email').':') !!}
-    <b>{{ $user->email }}</b>
+    {!! Form::label('id', __('models/users.fields.id').':') !!}
+    <b>{{ $user->id }}</b>
 </div>
 
 <!-- phone Field -->
@@ -33,6 +22,20 @@
     {!! Form::label('phone', __('models/users.fields.phone').':') !!}
     <b>{{ $user->phone }}</b>
 </div>
+
+<!-- member_id Field -->
+<div class="form-group show">
+    {!! Form::label('member_id', __('models/users.fields.member_id').':') !!}
+    <b>{{ $user->member_id }}</b>
+</div>
+
+
+<!-- email Field -->
+<div class="form-group show">
+    {!! Form::label('email', __('models/users.fields.email').':') !!}
+    <b>{{ $user->email }}</b>
+</div>
+
 
 <!-- social_status Field -->
 <div class="form-group show">
@@ -51,17 +54,18 @@
     </b>
 </div>
 
+<!-- status Field -->
+<div class="form-group show">
+    {!! Form::label('status', __('models/users.fields.status').':') !!}
+    <b>{{ $user->status_text }}</b>
+</div>
+
 <!-- num_of_children Field -->
 <div class="form-group show">
     {!! Form::label('num_of_children', __('models/users.fields.num_of_children').':') !!}
     <b>{{ $user->num_of_children }}</b>
 </div>
 
-<!-- status Field -->
-<div class="form-group show">
-    {!! Form::label('status', __('models/users.fields.status').':') !!}
-    <b>{{ $user->status_text }}</b>
-</div>
 
 <!-- created_at Field -->
 <div class="form-group show">
@@ -85,8 +89,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>User</th>
-                <th>Phone</th>
                 <th>Branch</th>
                 <th>Academy</th>
                 <th>Age</th>
@@ -97,10 +99,6 @@
         <tbody>
             @foreach ($user->academies as $request)
             <tr>
-                <td>
-                    {{$request->user->first_name ?? ''}} {{$request->user->last_name ?? ''}}
-                </td>
-                <td>{{$request->phone}}</td>
                 <td>{{$request->academy->branch->name ?? ''}}</td>
                 <td>{{$request->academy->name ?? ''}}</td>
                 <td>{{$request->age}}</td>

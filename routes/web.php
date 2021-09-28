@@ -93,9 +93,9 @@ Route::group(
             Route::get('academies/requests', 'AcademyController@requests')->name('academies.requests');
             Route::post('academies/requests-date-filter', 'AcademyController@dateFilter')->name('academies.requests.dateFilter');
             Route::patch('academies/change-request-status/{subscription}', 'AcademyController@changeRequestStatus')->name('academies.changeRequestStatus');
-            Route::resource('academies', AcademyController::class);
             Route::get('academies/destroy-photo/{id}', 'AcademyController@destroyPhoto')->name('academies.destroyPhoto');
             Route::delete('academies/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroy.time');
+            Route::resource('academies', AcademyController::class);
 
         });
     }

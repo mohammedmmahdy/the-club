@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminsTableSeeder::class,
+            UserSeeder::class,
             RolesPermissionsTableSeeder::class,
             OptionTableSeeder::class,
             SliderTableSeeder::class,
             PageTableSeeder::class,
             InformationTableSeeder::class,
             SocialLinkTableSeeder::class,
+            AcademySeeder::class,
         ]);
     }
 }

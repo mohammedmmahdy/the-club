@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\ImageUploaderTrait;
 use Astrotomic\Translatable\Translatable;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Academy extends Model
 {
-    use SoftDeletes,Translatable,ImageUploaderTrait;
+    use SoftDeletes,Translatable,ImageUploaderTrait, HasFactory;
 
 
     public $table = 'academies';

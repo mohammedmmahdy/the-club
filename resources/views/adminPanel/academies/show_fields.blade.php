@@ -23,23 +23,6 @@
     <b>{{ $academy->name }}</b>
 </div>
 
-
-<!-- About Field -->
-<div class="form-group">
-    {!! Form::label('about', __('models/academies.fields.about').':') !!}
-    <b>{!! $academy->about !!}</b>
-</div>
-
-
-<!-- Team Field -->
-<div class="form-group">
-    {!! Form::label('team', __('models/academies.fields.team').':') !!}
-    <b>{!! $academy->team !!}</b>
-</div>
-
-
-
-
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('models/academies.fields.created_at').':') !!}
@@ -51,13 +34,29 @@
     {!! Form::label('updated_at', __('models/academies.fields.updated_at').':') !!}
     <b>{{ $academy->updated_at }}</b>
 </div>
+
+<!-- About Field -->
+<div class="form-group">
+    {!! Form::label('about', __('models/academies.fields.about').':') !!}
+    <b>{!! $academy->about !!}</b>
+</div>
+
+<!-- Team Field -->
+<div class="form-group">
+    {!! Form::label('team', __('models/academies.fields.team').':') !!}
+    <b>{!! $academy->team !!}</b>
+</div>
+
+
+
+
 <div class="clearfix"></div>
 <br>
 <br>
 <hr>
 <h3>Academy Photos</h3>
 <br>
-<div class="academy-photos d-flex">
+<div class="academy-photos d-flex flex-wrap">
     @foreach ($academy->photos as $photo)
     <div class="photo image-thumbnail m-2">
         <img src="{{$photo->photo_original_path}}" alt="" width="200">
