@@ -97,6 +97,7 @@ Route::group(
             Route::delete('academies/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroy.time');
             Route::resource('academies', AcademyController::class);
 
+            Route::resource('events', EventController::class);
         });
     }
 );
