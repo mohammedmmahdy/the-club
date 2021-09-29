@@ -13,7 +13,8 @@
         @foreach($events as $event)
             <tr>
                 <td>
-                    <img onerror="{{asset('uploads/images/original/default.png')}}"
+                    <img
+                        onerror=this.src="{{asset('uploads/images/original/default.png')}}"
                         src="{{$event->icon_original_path}}"
                         alt="{{$event->title}}"
                         width="60">

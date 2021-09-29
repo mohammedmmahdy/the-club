@@ -14,18 +14,20 @@
 <!-- icon Field -->
 <div class="form-group">
     {!! Form::label('icon', __('models/events.fields.icon').':') !!}
-    <img src="{{$event->icon_original_path}}"
+    <img
+    src="{{$event->icon_original_path}}"
     alt="{{$event->title}}"
-    onerror="{{asset('uploads/images/original/default.png')}}"
+    onerror=this.src="{{asset('uploads/images/original/default.png')}}"
     width="100" >
 </div>
 
 <!-- Photo Field -->
 <div class="form-group">
     {!! Form::label('photo', __('models/events.fields.photo').':') !!}
-    <img src="{{$event->photo_original_path}}"
+    <img
+    onerror=this.src="{{asset('uploads/images/original/default.png')}}"
+    src="{{$event->photo_original_path}}"
     alt="{{$event->title}}"
-    onerror="{{asset('uploads/images/original/default.png')}}"
     width="200" >
 </div>
 
