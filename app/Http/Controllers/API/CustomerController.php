@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Academy;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
 class CustomerController extends Controller
 {
@@ -58,11 +59,14 @@ class CustomerController extends Controller
             ]);
 
             if (auth('api')->user()) {
-                if (in_array($attributes['academy_schedule_id'], auth('api')->user()->academies->pluck('academy_schedule_id')->toArray())) {
-                    return response()->json(['msg' => 'You have another appointment in this time'], 420);
-                }
                 $data['user'] = auth('api')->user();
-            }else{
+
+                throw_if(
+                    in_array($attributes['academy_schedule_id'], auth('api')->user()->academies->pluck('academy_schedule_id')->toArray()),
+                    ValidationException::withMessages(['appointment' => 'You have another appointment in this time'])
+                );
+
+            } else {
                 $data['user'] = User::create([
                     'first_name'            => $attributes['first_name'],
                     'last_name'             => $attributes['last_name'],

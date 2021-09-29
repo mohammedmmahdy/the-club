@@ -53,6 +53,9 @@ License: You must have a valid license purchased only from themeforest(the above
         * {
             font-family: 'Tajawal', sans-serif;
         }
+        #kt_content {
+            background-image: url({{asset('uploads/images/original/grass.jpg')}})
+        }
     </style>
 
     <script>
@@ -105,7 +108,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!--begin::Body-->
 
-<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading"
+style="background-image: url({{asset('uploads/images/original/grass.jpg')}});
+    background-size: cover;"
+>
 
     <!--begin::Main-->
     <!--begin::Header Mobile-->
@@ -298,7 +304,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <!--end::Header-->
 
         <!--begin::Content-->
-        <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="content  d-flex flex-column flex-column-fluid" id="kt_content"
+
+        >
             <!--begin::Subheader-->
             <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
                 <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
