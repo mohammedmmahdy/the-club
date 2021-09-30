@@ -36,6 +36,7 @@ class Event extends Model
         'date',
         'icon',
         'photo',
+        'members_only',
     ];
 
     /**

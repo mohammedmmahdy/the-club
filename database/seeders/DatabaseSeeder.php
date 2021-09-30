@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             InformationTableSeeder::class,
             SocialLinkTableSeeder::class,
             AcademySeeder::class,
+            EventSeeder::class,
         ]);
     }
 }

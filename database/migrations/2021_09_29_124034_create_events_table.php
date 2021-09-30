@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('date');
             $table->string('icon');
             $table->string('photo');
+            $table->unsignedTinyInteger('members_only');
             $table->timestamps();
             $table->softDeletes();
         });

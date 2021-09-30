@@ -24,8 +24,8 @@ class AcademyFactory extends Factory
         return [
             'branch_id' => 1,
             'name' => $this->faker->sentence(3),
-            'about' => $this->faker->sentence(100),
-            'team' => $this->faker->sentence(100),
+            'about' => $this->faker->paragraph(10),
+            'team' => $this->faker->paragraph(10),
             'icon' => 'icon.png'
         ];
     }
