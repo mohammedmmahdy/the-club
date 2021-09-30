@@ -351,7 +351,7 @@
     </a>
 </li>
 
-<li class="menu-item  {{ Request::is('adminPanel/events*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
+<li class="menu-item  {{ Request::is('*events*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
     <a href="{{ route('adminPanel.events.index') }}" class="menu-link ">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->

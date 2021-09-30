@@ -2,8 +2,8 @@
 <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
     <thead>
     <tr>
-        <th>@lang('models/academies.fields.branch_id')</th>
         <th>@lang('models/academies.fields.icon')</th>
+        <th>@lang('models/academies.fields.branch_id')</th>
         <th>@lang('models/academies.fields.name')</th>
         <th>@lang('models/academies.fields.about')</th>
         <th>@lang('models/academies.fields.team')</th>
@@ -13,10 +13,10 @@
     <tbody>
         @foreach($academies as $academy)
             <tr>
+                <td>
+                    <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{$academy->icon_thumbnail_path}}" alt="" width="60">
+                </td>
             <td>{{ $academy->branch->name ?? ''}}</td>
-            <td>
-                <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{$academy->icon_thumbnail_path}}" alt="" width="100">
-            </td>
             <td>{{ $academy->name }}</td>
             <td>{!! Str::limit($academy->about,50) !!}</td>
             <td>{!! Str::limit($academy->team,50) !!}</td>
