@@ -19,7 +19,7 @@ class EventSeeder extends Seeder
 
         for ($i=1; $i <= 10 ; $i++) {
             Event::create([
-                'date' => $faker->dateTimeAD($max = null, $timezone = null),
+                'date' => date(rand(1632996259,1664532259)),
                 'icon' => 'icon.png',
                 'photo' => 'image.jpg',
                 'members_only' => rand(0,1),

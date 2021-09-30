@@ -11,6 +11,7 @@ return array (
     'date' => 'Date',
     'photo' => 'Photo',
     'icon' => 'Icon',
+    'members_only' => 'Members Only',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
   ),

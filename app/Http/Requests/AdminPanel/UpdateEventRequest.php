@@ -26,6 +26,8 @@ class UpdateEventRequest extends FormRequest
     public function rules()
     {
         $rules = Event::rules();
+        $rules['photo'] = 'sometimes';
+        $rules['icon'] = 'sometimes';
 
         return $rules;
     }

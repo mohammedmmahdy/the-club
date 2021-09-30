@@ -112,7 +112,23 @@
     </div>
 
 
+<!-- members_only Field -->
+<div class="form-group col-sm-12">
+    {!! Form::label('members_only', __('models/events.fields.members_only').':') !!}
+    <div class="radio-inline">
+        <label class="radio">
+            {!! Form::radio('members_only', "1", 'Active') !!}
+            <span></span>
+            @lang('lang.yes')
+        </label>
 
+        <label class="radio">
+            {!! Form::radio('members_only', " 0", null) !!}
+            <span></span>
+            @lang('lang.no')
+        </label>
+    </div>
+</div>
 
 
 <!-- Submit Field -->

@@ -37,18 +37,25 @@
     <b>{{ $event->date }}</b>
 </div>
 
+<!-- members_only Field -->
+<div class="form-group">
+    {!! Form::label('members_only', __('models/events.fields.members_only').':') !!}
+    <b>{{ $event->members_only ? __('lang.yes') : __('lang.no') }}</b>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('models/events.fields.created_at').':') !!}
     <b>{{ $event->created_at }}</b>
 </div>
 
-
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', __('models/events.fields.updated_at').':') !!}
     <b>{{ $event->updated_at }}</b>
 </div>
+
+
 
 
 <!-- Description Field -->

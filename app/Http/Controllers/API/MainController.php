@@ -13,6 +13,7 @@ use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\Event;
 
 class MainController extends Controller
 {
@@ -23,11 +24,7 @@ class MainController extends Controller
 
     ##########################################################################
 
-    // General
-
-    ##########################################################################
-
-    // Pages
+// Pages
 
     public function landing_page()
     {
@@ -109,11 +106,37 @@ class MainController extends Controller
         return response()->json(compact('blog'));
     }
 
+
+// Academies
     public function academies()
     {
         $branch = Branch::firstOrFail();
         $academies = $branch->academies->load('photos','schedules');
 
         return response()->json(compact('academies'));
+    }
+
+
+// Events
+    public function events()
+    {
+        $events = Event::where('date', '>' , now())->get();
+
+        return response()->json(compact('events'));
+    }
+
+    public function event(Event $event)
+    {
+        return response()->json(compact('event'));
+    }
+
+    public function upcominEvent()
+    {
+        $upcomingEvent = Event::query()
+                        ->where('date' , '>', now())
+                        ->orderBy('date')
+                        ->first();
+
+        return response()->json(compact('upcomingEvent'));
     }
 }
