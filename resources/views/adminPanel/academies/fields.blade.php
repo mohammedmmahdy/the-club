@@ -9,19 +9,20 @@
     @endforeach
 </ul>
 <div class="tab-content mt-5" id="myTabContent">
+    {{-- {{dd($academy)}} --}}
     @foreach ( config('langs') as $locale => $name)
     <div class="tab-pane fade {{request('languages') == $locale?'show active':''}}" id="{{$name}}" role="tabpanel" aria-labelledby="{{$name}}-tab">
         <!-- Name Field -->
         <div class="form-group col-sm-6">
             {!! Form::label('name', __('models/academies.fields.name').':') !!}
-            {!! Form::text($locale . '[name]', isset($academy)? $academy->translate($locale)->name : '' , ['class' =>
+            {!! Form::text($locale . '[name]', isset($academy)? $academy->translateOrNew($locale)->name : '' , ['class' =>
             'form-control', 'placeholder' => $name . ' name']) !!}
         </div>
 
         <!-- about Field -->
         <div class="form-group col-sm-12">
             {!! Form::label('about', __('models/academies.fields.about').':') !!}
-            {!! Form::textarea($locale . '[about]', isset($academy)? $academy->translate($locale)->about : '' , ['class' =>
+            {!! Form::textarea($locale . '[about]', isset($academy)? $academy->translateOrNew($locale)->about : '' , ['class' =>
             'form-control', 'placeholder' => $name . ' about']) !!}
         </div>
         <script type="text/javascript">

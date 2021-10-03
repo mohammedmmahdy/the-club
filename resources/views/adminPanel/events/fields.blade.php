@@ -100,6 +100,7 @@
     {{-- Date --}}
     <div class="form-group col-sm-12">
         <div class="col-sm-4">
+            <label for="date">Date:</label>
             <div class="input-group date" id="kt_datetimepicker_1" data-target-input="nearest">
                 <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#kt_datetimepicker_1" name="date" value="{{isset($event) ? $event->date :old('date', request('date'))}}" />
                 <div class=" input-group-append" data-target="#kt_datetimepicker_1" data-toggle="datetimepicker">

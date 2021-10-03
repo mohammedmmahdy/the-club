@@ -25,6 +25,8 @@ class Academy extends Model
     use SoftDeletes,Translatable,ImageUploaderTrait, HasFactory;
 
 
+    const WEEK_DAYS =  ['SAT','SUN','MON','TUE','WED','THU','FRI'];
+
     public $table = 'academies';
 
 

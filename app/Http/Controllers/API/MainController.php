@@ -5,15 +5,16 @@ namespace App\Http\Controllers\API;
 use App\Models\Blog;
 use App\Models\Meta;
 use App\Models\Page;
+use App\Models\Event;
+use App\Models\Branch;
 use App\Models\Slider;
+use App\Models\Academy;
 use App\Models\Contact;
 use App\Models\Newsletter;
 use App\Models\SocialLink;
 use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Branch;
-use App\Models\Event;
 
 class MainController extends Controller
 {
@@ -116,6 +117,11 @@ class MainController extends Controller
         return response()->json(compact('academies'));
     }
 
+    public function academySchedule(Academy $academy)
+    {
+        $schedules = $academy->schedules;
+        return response()->json(compact('schedules'));
+    }
 
 // Events
     public function events()

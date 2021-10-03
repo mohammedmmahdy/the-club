@@ -49,7 +49,7 @@ class AcademyController extends AppBaseController
     public function create()
     {
         $data['branches'] = Branch::get()->pluck('name', 'id');
-        $data['days'] = ['SAT','SUN','MON','TUE','WED','THU','FRI'];
+        $data['days'] = Academy::WEEK_DAYS;
 
         return view('adminPanel.academies.create',compact('data'));
     }
@@ -123,7 +123,7 @@ class AcademyController extends AppBaseController
         }
 
         $data['branches'] = Branch::get()->pluck('name', 'id');
-        $data['days'] = ['SAT','SUN','MON','TUE','WED','THU','FRI'];
+        $data['days'] = Academy::WEEK_DAYS;
 
         return view('adminPanel.academies.edit',compact('academy', 'data'));
     }

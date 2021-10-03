@@ -80,11 +80,6 @@ class CustomerController extends Controller
             return response()->json($data);
         }
 
-        public function academySchedule(Academy $academy)
-        {
-            $schedules = $academy->schedules;
-            return response()->json(compact('schedules'));
-        }
 
     //------------------------- End Academies --------------------------//
 
