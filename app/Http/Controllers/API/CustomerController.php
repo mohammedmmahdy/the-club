@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
+use App\Models\Academy;
 use App\Models\DriverRate;
 use App\Models\CustomerRate;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Models\AcademySchedule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Academy;
-use App\Models\User;
 use Illuminate\Validation\ValidationException;
+
+use function PHPUnit\Framework\throwException;
 
 class CustomerController extends Controller
 {
@@ -58,13 +62,28 @@ class CustomerController extends Controller
                 'gender'                => 'required|integer|in:1,2'
             ]);
 
+            $schedule = AcademySchedule::find($attributes['academy_schedule_id'])->only('day', 'from', 'to');
+
             if (auth('api')->user()) {
                 $data['user'] = auth('api')->user();
 
-                throw_if(
-                    in_array($attributes['academy_schedule_id'], auth('api')->user()->academies->pluck('academy_schedule_id')->toArray()),
-                    ValidationException::withMessages(['appointment' => 'You have another appointment in this time'])
-                );
+                // Check If Appointment Time Is Available
+                $scheduleFrom = date('Y-m-d', strtotime($schedule['from']));
+                $scheduleTo = date('Y-m-d', strtotime($schedule['to']));
+                $data['user']->academies->each(function ($subscription, $key) use ($schedule, $scheduleFrom, $scheduleTo) {
+
+                    $subscriptionFrom = date('Y-m-d', strtotime($subscription->appointment->from));
+                    $subscriptionTo = date('Y-m-d', strtotime($subscription->appointment->to));
+
+                    if ($scheduleFrom >= $subscriptionFrom && $scheduleFrom <= $subscriptionTo){
+                        if ($scheduleTo >= $subscriptionFrom && $scheduleFrom <= $subscriptionTo) {
+                            if ($schedule['day'] == $subscription->appointment->day) {
+                                throw(ValidationException::withMessages(['appointment' => 'You have another appointment in this time']));
+                            }
+                        }
+                    }
+                });
+                // End Check If Appointment Time Is Available
 
             } else {
                 $data['user'] = User::create([

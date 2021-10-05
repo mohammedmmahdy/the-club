@@ -36,7 +36,7 @@ class AcademySubscription extends Model
 
     public function appointment()
     {
-        return $this->belongsTo(AcademySchedule::class);
+        return $this->belongsTo(AcademySchedule::class, 'academy_schedule_id', 'id');
     }
 
     ################################# Scopes #################################
