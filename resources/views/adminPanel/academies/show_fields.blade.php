@@ -29,16 +29,16 @@
     <b>{{ $academy->created_at }}</b>
 </div>
 
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', __('models/academies.fields.updated_at').':') !!}
-    <b>{{ $academy->updated_at }}</b>
-</div>
-
 <!-- About Field -->
 <div class="form-group">
     {!! Form::label('about', __('models/academies.fields.about').':') !!}
     <b>{!! $academy->about !!}</b>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', __('models/academies.fields.updated_at').':') !!}
+    <b>{{ $academy->updated_at }}</b>
 </div>
 
 <!-- Team Field -->
