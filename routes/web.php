@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\AdminPanel\EventController;
 
 // Custom Routs
 
@@ -97,6 +98,9 @@ Route::group(
             Route::delete('academies/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroy.time');
             Route::resource('academies', AcademyController::class);
 
+            Route::post('events/reservations-date-filter', [ EventController::class, 'dateFilter'])->name('events.reservations.dateFilter');
+            Route::patch('events/reservations-status/{reservation}', [ EventController::class, 'changeReservationStatus'])->name('events.reservations.changeReservationStatus');
+            Route::get('events/reservations', [ EventController::class, 'reservations'])->name('events.reservations');
             Route::resource('events', EventController::class);
         });
     }

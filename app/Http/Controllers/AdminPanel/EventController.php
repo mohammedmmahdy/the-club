@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\AdminPanel;
 
-use App\Http\Requests\AdminPanel\CreateEventRequest;
-use App\Http\Requests\AdminPanel\UpdateEventRequest;
-use App\Repositories\AdminPanel\EventRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Models\EventReservation;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\AdminPanel\EventRepository;
+use App\Http\Requests\AdminPanel\CreateEventRequest;
+use App\Http\Requests\AdminPanel\UpdateEventRequest;
 
 class EventController extends AppBaseController
 {
@@ -30,9 +32,8 @@ class EventController extends AppBaseController
     public function index(Request $request)
     {
         $events = $this->eventRepository->all();
-
-        return view('adminPanel.events.index')
-            ->with('events', $events);
+        $reservations_count = $this->reservations()->reservations->count();
+        return view('adminPanel.events.index',compact('reservations_count','events'));
     }
 
     /**
@@ -153,4 +154,37 @@ class EventController extends AppBaseController
 
         return redirect(route('adminPanel.events.index'));
     }
+
+
+
+    public function reservations()
+    {
+        $reservations = EventReservation::inactive()->get();
+
+        return view('adminPanel.events.reservations', compact('reservations'));
+    }
+
+
+    public function changeReservationStatus(EventReservation $reservation)
+    {
+        $reservation->update(['status' => request('status')]);
+
+        return back();
+    }
+
+
+    public function dateFilter()
+    {
+        $fromDate = (new Carbon(request('event_reservation_from')))->format('y-m-d G:i:s');
+        $toDate = (new Carbon(request('event_reservation_to')))->format('y-m-d G:i:s');
+
+        $reservationsQuery = EventReservation::inactive();
+        if (request()->filled('event_reservation_from') || request()->filled('event_reservation_to')) {
+            $reservationsQuery->whereBetween('created_at', [$fromDate, $toDate]);
+        }
+        $reservations = $reservationsQuery->get();
+
+        return view('adminPanel.events.reservations', compact('reservations'));
+    }
+
 }

@@ -102,5 +102,39 @@ class CustomerController extends Controller
 
     //------------------------- End Academies --------------------------//
 
+    ##################################################################
+    # Events
+    ##################################################################
+
+        public function eventReservation()
+        {
+            $attributes = request()->validate([
+                'event_id'              => 'required|exists:events,id',
+                'first_name'            => 'required|string|max:191',
+                'last_name'             => 'required|string|max:191',
+                'phone'                 => 'required|numeric',
+                'number_of_tickets'     => 'nullable|numeric',
+            ]);
+
+            if (auth('api')->user()) {
+                $data['user'] = auth('api')->user();
+
+            } else {
+                $data['user'] = User::create([
+                    'first_name'            => $attributes['first_name'],
+                    'last_name'             => $attributes['last_name'],
+                    'phone'                 => $attributes['phone'],
+                ]);
+            }
+
+            $data['event'] = $data['user']->events()->create($attributes);
+            $data['user']->load('events');
+
+            return response()->json($data);
+        }
+
+
+    //------------------------- End Events --------------------------//
+
 
 }

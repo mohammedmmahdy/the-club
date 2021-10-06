@@ -16,8 +16,8 @@
                     <span class="d-block text-muted pt-2 font-size-sm">Descriptions</span>
                 </h3>
             </div>
-            @can('academies create')
             <div class="card-toolbar">
+                @can('academies create')
                 <!--begin::Button-->
                 <a href="{{ route('adminPanel.academies.create') . "?languages=" . \App::getLocale() }}" class="btn btn-primary font-weight-bolder">
                     <span class="svg-icon svg-icon-md">
@@ -34,12 +34,12 @@
                     @lang('crud.add_new')
                 </a>
                 <!--end::Button-->
+                @endcan
 
                 <a href="{{route('adminPanel.academies.requests')}}" class="btn btn-primary font-weight-bolder mx-2">
                     Requests  <span class="badge badge-danger">{{$requests_count}}</span>
                 </a>
             </div>
-            @endcan
         </div>
 
         <div class="card-body">

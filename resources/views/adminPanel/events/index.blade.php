@@ -16,8 +16,8 @@
                     <span class="d-block text-muted pt-2 font-size-sm">Descriptions</span>
                 </h3>
             </div>
-            @can('events create')
             <div class="card-toolbar">
+                @can('events create')
                 <!--begin::Button-->
                 <a href="{{ route('adminPanel.events.create') }}" class="btn btn-primary font-weight-bolder">
                     <span class="svg-icon svg-icon-md">
@@ -34,14 +34,18 @@
                     @lang('crud.add_new')
                 </a>
                 <!--end::Button-->
+                @endcan
+
+                <a href="{{route('adminPanel.events.reservations')}}" class="btn btn-primary font-weight-bolder mx-2">
+                    Reservations  <span class="badge badge-danger">{{$reservations_count}}</span>
+                </a>
             </div>
-            @endcan
         </div>
 
         <div class="card-body">
             @include('adminPanel.events.table')
             <div class="pull-right mr-3">
-                    
+
             </div>
         </div>
     </div>

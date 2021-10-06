@@ -35,6 +35,23 @@ class CreateEventsTable extends Migration
 
             $table->unique(['event_id', 'locale']);
         });
+
+
+        Schema::create('event_reservations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->foreignId('event_id');
+            $table->foreignId('user_id');
+
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone')->nullable();
+            $table->unsignedInteger('number_of_tickets')->default(1);
+            $table->unsignedTinyInteger('status')->default(0);
+
+            $table->timestamps();
+            $table->softDeletes();
+
+        });
     }
 
     /**
@@ -44,6 +61,8 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('event_reservations');
+        Schema::drop('event_translations');
         Schema::drop('events');
     }
 }

@@ -24,12 +24,13 @@ use Illuminate\Support\Facades\Route;
 ///////////////////////////////// End Pages //////////////////////////////////
 
 //////////////////////////////// Start Academy //////////////////////////////////
-    Route::get('academy-schedule/{academy}', [MainController::class, 'academySchedule']);
-    Route::post('academy-subscribe', [CustomerController::class, 'academySubscribe']);
+    Route::get('academies/academy-schedule/{academy}', [MainController::class, 'academySchedule']);
+    Route::post('academies/academy-subscribe', [CustomerController::class, 'academySubscribe']);
     Route::get('academies', [MainController::class, 'academies']);
-//////////////////////////////// End Academy //////////////////////////////////
+    //////////////////////////////// End Academy //////////////////////////////////
 
-//////////////////////////////// Start Events //////////////////////////////////
+    //////////////////////////////// Start Events //////////////////////////////////
+    Route::post('events/event-reservation', [CustomerController::class, 'eventReservation']);
     Route::get('events/upcoming-event', [MainController::class, 'upcominEvent']);
     Route::get('events', [MainController::class, 'events']);
     Route::get('events/{event}', [MainController::class, 'event']);
