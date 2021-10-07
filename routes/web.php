@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\AdminPanel\EventController;
 
 // Custom Routs
 
@@ -102,6 +101,10 @@ Route::group(
             Route::patch('events/reservations-status/{reservation}', [ EventController::class, 'changeReservationStatus'])->name('events.reservations.changeReservationStatus');
             Route::get('events/reservations', [ EventController::class, 'reservations'])->name('events.reservations');
             Route::resource('events', EventController::class);
+
+            Route::resource('playgroundTypes', PlaygroundTypeController::class);
+            Route::resource('playgrounds', PlaygroundController::class);
+            Route::resource('playgroundReservations', PlaygroundReservationController::class)->only(['show', 'index']);
         });
     }
 );
@@ -109,4 +112,3 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
-

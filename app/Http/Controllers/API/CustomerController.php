@@ -136,5 +136,39 @@ class CustomerController extends Controller
 
     //------------------------- End Events --------------------------//
 
+    ##################################################################
+    # Playgrounds
+    ##################################################################
+
+        public function playgroundReservation()
+        {
+            $attributes = request()->validate([
+                'playground_id'         => 'required|exists:playgrounds,id',
+                'first_name'            => 'required|string|max:191',
+                'last_name'             => 'required|string|max:191',
+                'phone'                 => 'required|numeric',
+                'date'                  => 'required|date',
+                'time'                  => 'required|date_format:H:i:s',
+                'number_of_people'      => 'required|numeric',
+            ]);
+
+            if (auth('api')->user()) {
+                $data['user'] = auth('api')->user();
+            } else {
+                $data['user'] = User::create([
+                    'first_name'            => $attributes['first_name'],
+                    'last_name'             => $attributes['last_name'],
+                    'phone'                 => $attributes['phone'],
+                ]);
+            }
+
+            $data['playground'] = $data['user']->playgrounds()->create($attributes);
+            $data['user']->load('playgrounds');
+
+            return response()->json($data);
+        }
+
+
+    //------------------------- End Playgrounds --------------------------//
 
 }

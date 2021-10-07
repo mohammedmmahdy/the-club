@@ -15,6 +15,7 @@ use App\Models\SocialLink;
 use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Playground;
 
 class MainController extends Controller
 {
@@ -144,5 +145,12 @@ class MainController extends Controller
                         ->first();
 
         return response()->json(compact('upcomingEvent'));
+    }
+
+    public function playgrounds()
+    {
+        $playgrounds = Playground::with('playgroundType')->get();
+
+        return response()->json(compact('playgrounds'));
     }
 }

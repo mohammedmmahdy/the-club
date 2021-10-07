@@ -119,4 +119,9 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->hasMany(EventReservation::class);
     }
+
+    public function playgrounds()
+    {
+        return $this->hasMany(PlaygroundReservation::class);
+    }
 }

@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 <ul class="nav nav-light-success nav-pills" id="myTab" role="tablist">
     @php $i = 1; @endphp
     @foreach ( config('langs') as $locale => $name)
@@ -113,28 +105,27 @@
     </div>
 
 
-<!-- members_only Field -->
-<div class="form-group col-sm-12">
-    {!! Form::label('members_only', __('models/events.fields.members_only').':') !!}
-    <div class="radio-inline">
-        <label class="radio">
-            {!! Form::radio('members_only', "1", 'Active') !!}
-            <span></span>
-            @lang('lang.yes')
-        </label>
+    <!-- members_only Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('members_only', __('models/events.fields.members_only').':') !!}
+        <div class="radio-inline">
+            <label class="radio">
+                {!! Form::radio('members_only', "1", 'Active') !!}
+                <span></span>
+                @lang('lang.yes')
+            </label>
 
-        <label class="radio">
-            {!! Form::radio('members_only', " 0", null) !!}
-            <span></span>
-            @lang('lang.no')
-        </label>
+            <label class="radio">
+                {!! Form::radio('members_only', " 0", null) !!}
+                <span></span>
+                @lang('lang.no')
+            </label>
+        </div>
     </div>
-</div>
 
 
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('adminPanel.events.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
-</div>
-
+    <!-- Submit Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}
+        <a href="{{ route('adminPanel.events.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
+    </div>

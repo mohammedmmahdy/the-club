@@ -36,6 +36,11 @@ use Illuminate\Support\Facades\Route;
     Route::get('events/{event}', [MainController::class, 'event']);
 //////////////////////////////// End Events //////////////////////////////////
 
+    //////////////////////////////// Start playgrounds //////////////////////////////////
+    Route::post('playgrounds/playground-reservation', [CustomerController::class, 'playgroundReservation']);
+    Route::get('playgrounds', [MainController::class, 'playgrounds']);
+//////////////////////////////// End playgrounds //////////////////////////////////
+
 //////////////////////////////// Start User //////////////////////////////////
     Route::group(['middleware' => ['auth:api']], function () {
 
