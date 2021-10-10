@@ -491,8 +491,7 @@ $eventReservationsCount = \App\Models\EventReservation::inactive()->count();
     </a>
 </li>
 
-<li class="menu-item  {{ Request::is('adminPanel/playgroundTypes*') ? 'menu-item-active' : '' }}"
-    aria-haspopup="true">
+<li class="menu-item  {{ Request::is('*playgroundTypes*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
     <a href="{{ route('adminPanel.playgroundTypes.index') }}" class="menu-link ">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -514,7 +513,7 @@ $eventReservationsCount = \App\Models\EventReservation::inactive()->count();
     </a>
 </li>
 
-<li class="menu-item  {{ Request::is('adminPanel/playgrounds*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+<li class="menu-item  {{ Request::is('*playgrounds*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
     <a href="{{ route('adminPanel.playgrounds.index') }}" class="menu-link ">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -536,8 +535,7 @@ $eventReservationsCount = \App\Models\EventReservation::inactive()->count();
     </a>
 </li>
 
-<li class="menu-item  {{ Request::is('adminPanel/playgroundReservations*') ? 'menu-item-active' : '' }}"
-    aria-haspopup="true">
+<li class="menu-item  {{ Request::is('*playgroundReservations*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
     <a href="{{ route('adminPanel.playgroundReservations.index') }}" class="menu-link ">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
