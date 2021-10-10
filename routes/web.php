@@ -97,9 +97,9 @@ Route::group(
             Route::delete('academies/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroy.time');
             Route::resource('academies', AcademyController::class);
 
-            Route::post('events/reservations-date-filter', [ EventController::class, 'dateFilter'])->name('events.reservations.dateFilter');
-            Route::patch('events/reservations-status/{reservation}', [ EventController::class, 'changeReservationStatus'])->name('events.reservations.changeReservationStatus');
-            Route::get('events/reservations', [ EventController::class, 'reservations'])->name('events.reservations');
+            Route::post('events/reservations-date-filter', 'EventController@dateFilter')->name('events.reservations.dateFilter');
+            Route::patch('events/reservations-status/{reservation}', 'EventController@changeReservationStatus')->name('events.reservations.changeReservationStatus');
+            Route::get('events/reservations', 'EventController@reservations')->name('events.reservations');
             Route::resource('events', EventController::class);
 
             Route::resource('playgroundTypes', PlaygroundTypeController::class);

@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             SocialLinkTableSeeder::class,
             AcademySeeder::class,
             EventSeeder::class,
+            PlaygroundSeeder::class,
         ]);
     }
 }
