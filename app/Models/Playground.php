@@ -69,4 +69,9 @@ class Playground extends Model
         return $this->belongsTo(PlaygroundType::class);
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(PlaygroundReservation::class);
+    }
+
 }
