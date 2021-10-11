@@ -18,11 +18,23 @@
     <b>{{ $playground->name }}</b>
 </div>
 
+<!-- price Field -->
+<div class="form-group">
+    {!! Form::label('price', __('models/playgrounds.fields.price') . ':') !!}
+    <b>{{ $playground->price }} @lang('lang.currency')</b>
+</div>
+
 
 <!-- Description Field -->
 <div class="form-group">
     {!! Form::label('description', __('models/playgrounds.fields.description') . ':') !!}
     <b>{{ $playground->description }}</b>
+</div>
+
+<!-- branch Field -->
+<div class="form-group">
+    {!! Form::label('branch_id', __('models/branches.singular') . ':') !!}
+    <b>{{ $playground->branch->name ?? '' }}</b>
 </div>
 
 

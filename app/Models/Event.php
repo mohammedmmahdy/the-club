@@ -31,6 +31,7 @@ class Event extends Model
 
 
     public $fillable = [
+        'branch_id',
         'title',
         'description',
         'date',
@@ -135,5 +136,14 @@ class Event extends Model
         return asset('uploads/images/thumbnail/' . $this->icon);
     }
     // End Icon
+
+
+    ####################################### Relations #######################################
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
 
 }

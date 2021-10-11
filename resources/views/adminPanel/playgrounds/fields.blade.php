@@ -41,10 +41,23 @@
 
     @php $i = 0; @endphp
     @endforeach
+
     <!-- Type Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('playground_type_id', __('models/playgrounds.fields.type_id').':') !!}
         {!! Form::select('playground_type_id', $playgroundTypes, null, ['class' => 'form-control','placeholder' => 'Select Type']) !!}
+    </div>
+
+    <!-- branch Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('branch_id', __('models/branches.singular').':') !!}
+        {!! Form::select('branch_id', $branches, null, ['class' => 'form-control','placeholder' => 'Select Branch']) !!}
+    </div>
+
+    <!-- Price Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('price', __('models/playgrounds.fields.price').':') !!}
+        {!! Form::number('price', null, ['class' => 'form-control']) !!}
     </div>
 
 

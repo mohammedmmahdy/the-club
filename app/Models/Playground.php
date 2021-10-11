@@ -30,8 +30,8 @@ class Playground extends Model
 
     public $fillable = [
         'playground_type_id',
-        'name',
-        'description'
+        'branch_id',
+        'price',
     ];
 
     /**
@@ -58,6 +58,7 @@ class Playground extends Model
         }
 
         $rules['playground_type_id'] = 'required|integer|exists:playground_types,id';
+        $rules['branch_id'] = 'required|integer|exists:branches,id';
 
         return $rules;
     }
@@ -67,6 +68,11 @@ class Playground extends Model
     public function playgroundType()
     {
         return $this->belongsTo(PlaygroundType::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 
     public function reservations()

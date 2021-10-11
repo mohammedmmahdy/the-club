@@ -11,6 +11,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Repositories\AdminPanel\EventRepository;
 use App\Http\Requests\AdminPanel\CreateEventRequest;
 use App\Http\Requests\AdminPanel\UpdateEventRequest;
+use App\Models\Branch;
 
 class EventController extends AppBaseController
 {
@@ -33,6 +34,7 @@ class EventController extends AppBaseController
     {
         $events = $this->eventRepository->all();
         $reservations_count = $this->reservations()->reservations->count();
+
         return view('adminPanel.events.index',compact('reservations_count','events'));
     }
 
@@ -43,7 +45,8 @@ class EventController extends AppBaseController
      */
     public function create()
     {
-        return view('adminPanel.events.create');
+        $branches = Branch::get()->pluck('name','id');
+        return view('adminPanel.events.create', compact('branches'));
     }
 
     /**
@@ -101,7 +104,9 @@ class EventController extends AppBaseController
             return redirect(route('adminPanel.events.index'));
         }
 
-        return view('adminPanel.events.edit')->with('event', $event);
+        $branches = Branch::get()->pluck('name','id');
+
+        return view('adminPanel.events.edit',compact('branches', 'event'));
     }
 
     /**

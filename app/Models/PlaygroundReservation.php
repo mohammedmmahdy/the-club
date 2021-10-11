@@ -36,7 +36,8 @@ class PlaygroundReservation extends Model
         'phone',
         'date',
         'time',
-        'number_of_people'
+        'number_of_people',
+        'price',
     ];
 
     /**

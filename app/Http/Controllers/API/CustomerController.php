@@ -171,6 +171,8 @@ class CustomerController extends Controller
                 }
             }
 
+            $attributes['price'] = $playground->price;
+
             $data['playground'] = $data['user']->playgrounds()->create($attributes);
             $data['user']->load('playgrounds');
 

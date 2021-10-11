@@ -23,6 +23,7 @@ return [
 
     // C c
 
+    'currency' => 'EGP',
     '' => '',
     '' => '',
 

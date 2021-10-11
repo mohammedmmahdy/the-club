@@ -17,6 +17,8 @@ class CreatePlaygroundsTable extends Migration
         Schema::create('playgrounds', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('playground_type_id');
+            $table->foreignId('branch_id');
+            $table->integer('price');
             $table->timestamps();
             $table->softDeletes();
         });

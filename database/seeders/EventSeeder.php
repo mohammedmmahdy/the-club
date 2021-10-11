@@ -20,6 +20,7 @@ class EventSeeder extends Seeder
 // Create Events
         for ($i=1; $i <= 10 ; $i++) {
             Event::create([
+                'branch_id' => 1,
                 'date' => date(rand(1632996259,1664532259)),
                 'icon' => 'icon.png',
                 'photo' => 'image.jpg',

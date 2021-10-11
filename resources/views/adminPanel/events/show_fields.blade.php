@@ -43,6 +43,12 @@
     <b>{{ $event->members_only ? __('lang.yes') : __('lang.no') }}</b>
 </div>
 
+<!-- branch Field -->
+<div class="form-group">
+    {!! Form::label('branch_id', __('models/branches.singular').':') !!}
+    <b>{{ $event->branch->name ?? '' }}</b>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('models/events.fields.created_at').':') !!}

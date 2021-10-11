@@ -6,7 +6,7 @@ return array (
   'fields' =>
   array (
     'id' => 'Id',
-    'playground_id' => 'Playground Id',
+    'playground_id' => 'Playground',
     'date' => 'Date',
     'time' => 'Time',
     'number_of_people' => 'Number Of People',

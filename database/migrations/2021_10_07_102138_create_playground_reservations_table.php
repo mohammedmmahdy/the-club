@@ -25,6 +25,7 @@ class CreatePlaygroundReservationsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->integer('number_of_people');
+            $table->integer('price');
             $table->timestamps();
             $table->softDeletes();
         });

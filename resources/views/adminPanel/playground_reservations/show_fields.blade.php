@@ -8,7 +8,7 @@
 <!-- Playground Id Field -->
 <div class="form-group">
     {!! Form::label('playground_id', __('models/playgroundReservations.fields.playground_id').':') !!}
-    <b>{{ $playgroundReservation->playground_id }}</b>
+    <b>{{ $playgroundReservation->playground->name }}</b>
 </div>
 
 
@@ -23,6 +23,12 @@
 <div class="form-group">
     {!! Form::label('time', __('models/playgroundReservations.fields.time').':') !!}
     <b>{{ $playgroundReservation->time }}</b>
+</div>
+
+<!-- price Field -->
+<div class="form-group">
+    {!! Form::label('price', __('models/playgrounds.fields.price').':') !!}
+    <b>{{ $playgroundReservation->price }} @lang('lang.currency')</b>
 </div>
 
 

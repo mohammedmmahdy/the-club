@@ -42,6 +42,7 @@
     @php $i = 0; @endphp
     @endforeach
 
+
     <!-- Photo -->
     <div class="form-group col-sm-6">
         {!! Form::label('photo', __('models/events.fields.photo').':') !!}
@@ -89,9 +90,15 @@
     </div>
 
 
+    <!-- branch_id Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('branch_id', __('models/branches.singular').':') !!}
+        {!! Form::select('branch_id', $branches,null, ['class' => 'form-control', 'placeholder' => 'Select Branch']) !!}
+    </div>
+
     {{-- Date --}}
-    <div class="form-group col-sm-12">
-        <div class="col-sm-4">
+
+    <div class="form-group col-sm-6">
             <label for="date">Date:</label>
             <div class="input-group date" id="kt_datetimepicker_1" data-target-input="nearest">
                 <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#kt_datetimepicker_1" name="date" value="{{isset($event) ? $event->date :old('date', request('date'))}}" />
@@ -102,7 +109,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
 
     <!-- members_only Field -->

@@ -42,7 +42,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="{{asset('metronic/assets/css/themes/layout/aside/dark.css?v=7.0.6')}}" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
 
-    <link rel="shortcut icon" href="{{\App\Models\Option::first()->logo_thumbnail_path ?? ''}}" />
+    <link rel="shortcut icon" href="{{\App\Models\Option::first()->logo_thumbnail_path ?? asset('img/logo.png')}}" />
 
     <style>
         .overlay {

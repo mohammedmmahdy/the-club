@@ -6,6 +6,7 @@ use App\Http\Requests\AdminPanel\CreatePlaygroundRequest;
 use App\Http\Requests\AdminPanel\UpdatePlaygroundRequest;
 use App\Repositories\AdminPanel\PlaygroundRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Branch;
 use App\Models\Playground;
 use App\Models\PlaygroundType;
 use Illuminate\Http\Request;
@@ -45,7 +46,8 @@ class PlaygroundController extends AppBaseController
     public function create()
     {
         $playgroundTypes = PlaygroundType::get()->pluck('name', 'id');
-        return view('adminPanel.playgrounds.create', compact('playgroundTypes'));
+        $branches = Branch::get()->pluck('name', 'id');
+        return view('adminPanel.playgrounds.create', compact('playgroundTypes','branches'));
     }
 
     /**
@@ -103,8 +105,9 @@ class PlaygroundController extends AppBaseController
             return redirect(route('adminPanel.playgrounds.index'));
         }
         $playgroundTypes = PlaygroundType::get()->pluck('name', 'id');
+        $branches = Branch::get()->pluck('name', 'id');
 
-        return view('adminPanel.playgrounds.edit',compact('playgroundTypes', 'playground'));
+        return view('adminPanel.playgrounds.edit',compact('playgroundTypes', 'playground','branches'));
     }
 
     /**

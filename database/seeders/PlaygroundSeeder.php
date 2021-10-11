@@ -47,7 +47,9 @@ class PlaygroundSeeder extends Seeder
             Playground::create([
                 'en' => ['name' => 'Playground ' . $i, 'description' => $faker->paragraph(10)],
                 'ar' => ['name' => 'Playground ' . $i, 'description' => $faker->paragraph(10)],
+                'branch_id' => 1,
                 'playground_type_id' => rand(1, 3),
+                'price' => rand(200,300),
             ]);
         }
 
@@ -63,6 +65,7 @@ class PlaygroundSeeder extends Seeder
                 'date' => $faker->date,
                 'time' => $faker->time,
                 'number_of_people' => rand(8,12),
+                'price' => rand(200,300),
             ]);
 
 
