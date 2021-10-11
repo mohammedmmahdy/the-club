@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\AcademySchedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Playground;
 use Illuminate\Validation\ValidationException;
 
 use function PHPUnit\Framework\throwException;
@@ -156,10 +157,18 @@ class CustomerController extends Controller
                 $data['user'] = auth('api')->user();
             } else {
                 $data['user'] = User::create([
-                    'first_name'            => $attributes['first_name'],
-                    'last_name'             => $attributes['last_name'],
-                    'phone'                 => $attributes['phone'],
+                    'first_name'       => $attributes['first_name'],
+                    'last_name'        => $attributes['last_name'],
+                    'phone'            => $attributes['phone'],
                 ]);
+            }
+
+            $playground = Playground::findOrFail($attributes['playground_id']);
+
+            if ( in_array($attributes['date'],$playground->reservations->pluck('date')->toArray()) ) {
+                if (in_array($attributes['time'],$playground->reservations->where('date', $attributes['date'])->pluck('time')->toArray())) {
+                    throw ValidationException::withMessages(['time' => 'This time is not available.']);
+                }
             }
 
             $data['playground'] = $data['user']->playgrounds()->create($attributes);
@@ -168,6 +177,18 @@ class CustomerController extends Controller
             return response()->json($data);
         }
 
+
+
+    public function playgroundReservedTimes(Playground $playground)
+    {
+
+        $reservedTimes = $playground->reservations
+        ->mapToGroups(function ($item, $key) {
+            return [$item['date'] => $item['time']];
+        });
+
+        return response()->json(compact('reservedTimes'));
+    }
 
     //------------------------- End Playgrounds --------------------------//
 

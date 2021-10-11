@@ -19,6 +19,9 @@ class CreatePlaygroundReservationsTable extends Migration
             $table->foreignId('playground_id');
             $table->foreignId('user_id');
 
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone')->nullable();
             $table->date('date');
             $table->time('time');
             $table->integer('number_of_people');

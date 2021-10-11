@@ -31,6 +31,9 @@ class PlaygroundReservation extends Model
     public $fillable = [
         'playground_id',
         'user_id',
+        'first_name',
+        'last_name',
+        'phone',
         'date',
         'time',
         'number_of_people'

@@ -110,7 +110,7 @@
                         </a>
                     </td>
                     <td>{{$reservation->phone}}</td>
-                    <td>{{$reservation->event->name ?? ''}}</td>
+                    <td>{{$reservation->event->title ?? ''}}</td>
                     <td>{{$reservation->status}}</td>
                     <td>{{$reservation->created_at}}</td>
                     <td>

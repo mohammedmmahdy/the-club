@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('events/{event}', [MainController::class, 'event']);
 //////////////////////////////// End Events //////////////////////////////////
 
-    //////////////////////////////// Start playgrounds //////////////////////////////////
+//////////////////////////////// Start playgrounds //////////////////////////////////
     Route::post('playgrounds/reservation', [CustomerController::class, 'playgroundReservation']);
     Route::get('playgrounds/{playground}/reserved-times', [MainController::class, 'playgroundReservedTimes']);
     Route::get('playgrounds', [MainController::class, 'playgrounds']);

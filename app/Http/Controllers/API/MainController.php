@@ -155,11 +155,6 @@ class MainController extends Controller
         return response()->json(compact('playgrounds'));
     }
 
-    public function playgroundReservedTimes(Playground $playground)
-    {
 
-        $reservedTimes = $playground->reservations->groupBy('date');
-// dd($reservedTimes);
-        return response()->json(compact('reservedTimes'));
-    }
+
 }
