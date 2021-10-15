@@ -105,6 +105,8 @@ Route::group(
             Route::resource('playgroundTypes', PlaygroundTypeController::class);
             Route::resource('playgrounds', PlaygroundController::class);
             Route::resource('playgroundReservations', PlaygroundReservationController::class)->only(['show', 'index']);
+
+            Route::resource('ticketReservations', TicketReservationController::class)->only(['show', 'index']);
         });
     }
 );
@@ -112,3 +114,7 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
+
+
+Route::group(['prefix' => 'adminPanel'], function () {
+});

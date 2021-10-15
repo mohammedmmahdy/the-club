@@ -12,6 +12,7 @@ use App\Models\AcademySchedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Playground;
+use Faker\Provider\Uuid;
 use Illuminate\Validation\ValidationException;
 
 use function PHPUnit\Framework\throwException;
@@ -191,6 +192,38 @@ class CustomerController extends Controller
 
         return response()->json(compact('reservedTimes'));
     }
+
+    //------------------------- End Playgrounds --------------------------//
+
+    ##################################################################
+    # Tickets
+    ##################################################################
+
+        public function ticketReservation()
+        {
+            $attributes = request()->validate([
+                'first_name'            => 'required|string|max:191',
+                'last_name'             => 'required|string|max:191',
+                'phone'                 => 'required|numeric',
+                'date'                  => 'required|date',
+                'number_of_people'      => 'required|numeric',
+            ]);
+
+            if (auth('api')->user()) {
+                $data['user'] = auth('api')->user();
+            } else {
+                $data['user'] = User::create([
+                    'first_name'       => $attributes['first_name'],
+                    'last_name'        => $attributes['last_name'],
+                    'phone'            => $attributes['phone'],
+                ]);
+            }
+
+            $data['ticket'] = $data['user']->tickets()->create($attributes);
+            $data['user']->load('tickets');
+
+            return response()->json($data);
+        }
 
     //------------------------- End Playgrounds --------------------------//
 
