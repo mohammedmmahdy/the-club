@@ -182,16 +182,16 @@ class CustomerController extends Controller
 
 
 
-    public function playgroundReservedTimes(Playground $playground)
-    {
+        public function playgroundReservedTimes(Playground $playground)
+        {
 
-        $reservedTimes = $playground->reservations
-        ->mapToGroups(function ($item, $key) {
-            return [$item['date'] => $item['time']];
-        });
+            $reservedTimes = $playground->reservations
+            ->mapToGroups(function ($item, $key) {
+                return [$item['date'] => $item['time']];
+            });
 
-        return response()->json(compact('reservedTimes'));
-    }
+            return response()->json(compact('reservedTimes'));
+        }
 
     //------------------------- End Playgrounds --------------------------//
 
@@ -225,6 +225,6 @@ class CustomerController extends Controller
             return response()->json($data);
         }
 
-    //------------------------- End Playgrounds --------------------------//
+    //------------------------- End Tickets --------------------------//
 
 }

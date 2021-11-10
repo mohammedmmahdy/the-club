@@ -1,6 +1,8 @@
 ## Auth
 
+
 ## Branches
+
 [x] - Generate CRUD.
 [x] - Make CRUD Multilang.
     [x] * Edit Migration
@@ -9,6 +11,7 @@
     [x] * Edit Fields & Views
 
 ## Academies
+
 [x] - Create Academies Crud.
 [x] - Make CRUD Multilang.
     [x] * Edit Migration
