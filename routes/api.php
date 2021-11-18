@@ -5,6 +5,13 @@ use App\Http\Controllers\API\MainController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+
+
+// Test
+Route::get('test', [MainController::class, 'test']);
+Route::post('test-webhook', [MainController::class, 'testWebhook']);
+
 //////////////////////////////// Start Auth //////////////////////////////////
     Route::post('user/register', 'AuthController@register_user');
     Route::post('user/login', 'AuthController@login_user');
