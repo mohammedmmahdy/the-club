@@ -60,7 +60,7 @@ class MainController extends Controller
 
     public function testWebhook()
     {
-        dd(request());
+        return request();
     }
 
     ##########################################################################
