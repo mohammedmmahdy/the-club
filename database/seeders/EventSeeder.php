@@ -13,7 +13,7 @@ class EventSeeder extends Seeder
      *
      * @return void
      */
-    public function run()authcon
+    public function run()
     {
         $faker = \Faker\Factory::create();
 
