@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('test', [MainController::class, 'test']);
 // Route::post('test-webhook', [MainController::class, 'testWebhook']);
 
-Route::webhooks('test-webhook');
+// Route::webhooks('test-webhook');
+
+Route::post('test-webhook', [MainController::class, 'testWebhook']);
 
 //////////////////////////////// Start Auth //////////////////////////////////
     Route::post('user/register', 'AuthController@register_user');

@@ -60,7 +60,10 @@ class MainController extends Controller
 
     public function testWebhook()
     {
-        return request();
+        User::create([
+            'first_name' => request('before'),
+            'last_name' => request('after'),
+        ]);
     }
 
     ##########################################################################
