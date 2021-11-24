@@ -10,11 +10,16 @@ use Illuminate\Support\Facades\Route;
 
 // Test
 Route::get('test', [MainController::class, 'test']);
+
+// Webhooks
+Route::post('user/insert', [MainController::class, 'insertUsers']);
+Route::post('user/update', [MainController::class, 'updateUsers']);
+Route::post('user/delete', [MainController::class, 'deleteUsers']);
 // Route::post('test-webhook', [MainController::class, 'testWebhook']);
 
-// Route::webhooks('test-webhook');
+Route::webhooks('test-webhook');
 
-Route::post('test-webhook', [MainController::class, 'testWebhook']);
+// Route::post('test-webhook', [MainController::class, 'testWebhook']);
 
 //////////////////////////////// Start Auth //////////////////////////////////
     Route::post('user/register', 'AuthController@register_user');

@@ -20,17 +20,34 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'phone',
-        'status',
-        'member_id',
-        'email',
-        'password',
-        'balance',
-        'points',
-        'social_status', //  1 => Single, 2 => Married
-        'num_of_children',
+        // 'first_name',
+        // 'last_name',
+        // 'phone',
+        // 'status',
+        // 'member_id',
+        // 'email',
+        // 'password',
+        // 'balance',
+        // 'points',
+        // 'social_status', //  1 => Single, 2 => Married
+        // 'num_of_children',
+
+
+
+        'iMemberId',
+        'strCardNumber',
+        'member_mobile',
+        'dateCardDateValidFrom',
+        'dateCardDateExpire',
+        'timeTimeFrom',
+        'timeTimeTo',
+        'strMemberName',
+        'iMemberType',
+        'dateBirthdate',
+        'boolMemberStatus',
+        'iMainMemberID',
+        'strImageName_DataSoft',
+        'strImgURL_DataSoft',
     ];
 
     /**

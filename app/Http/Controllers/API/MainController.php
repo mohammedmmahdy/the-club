@@ -60,10 +60,128 @@ class MainController extends Controller
 
     public function testWebhook()
     {
-        User::create([
-            'first_name' => request('before'),
-            'last_name' => request('after'),
+        if($json = json_decode(file_get_contents("php://input"), true)) {
+            print_r($json);
+            $data = $json;
+        } else{
+            $data = $json;
+            print_r($data);
+        }
+        // User::create([
+        //     'first_name' => request('before'),
+        //     'last_name' => request('after'),
+        // ]);
+    }
+
+    public function insertUsers()
+    {
+        // Validate Data
+        $validated = request()->validate([
+            'MemberData'                         => 'array|required',
+            'MemberData.*.iMemberId'             => 'required',
+            'MemberData.*.member_mobile'         => 'required',
+            'MemberData.*.strCardNumber'         => 'required',
+            'MemberData.*.dateCardDateValidFrom' => 'required',
+            'MemberData.*.dateCardDateExpire'    => 'required',
+            'MemberData.*.timeTimeFrom'          => 'required',
+            'MemberData.*.timeTimeTo'            => 'required',
+            'MemberData.*.strMemberName'         => 'required',
+            'MemberData.*.iMemberType'           => 'required',
+            'MemberData.*.dateBirthdate'         => 'required',
+            'MemberData.*.boolMemberStatus'      => 'required',
+            'MemberData.*.iMainMemberID'         => 'required',
+            'MemberData.*.strImageName_DataSoft' => 'required',
+            'MemberData.*.strImgURL_DataSoft'    => 'required',
         ]);
+
+        // loop on request data
+        foreach (request('MemberData') as  $user) {
+            // insert users to database
+            User::create([
+                'iMemberId'             => $user['iMemberId'],
+                'strCardNumber'         => $user['strCardNumber'],
+                'member_mobile'         => $user['member_mobile'],
+                'dateCardDateValidFrom' => $user['dateCardDateValidFrom'],
+                'dateCardDateExpire'    => $user['dateCardDateExpire'],
+                'timeTimeFrom'          => $user['timeTimeFrom'],
+                'timeTimeTo'            => $user['timeTimeTo'],
+                'strMemberName'         => $user['strMemberName'],
+                'iMemberType'           => $user['iMemberType'],
+                'dateBirthdate'         => $user['dateBirthdate'],
+                'boolMemberStatus'      => $user['boolMemberStatus'],
+                'iMainMemberID'         => $user['iMainMemberID'],
+                'strImageName_DataSoft' => $user['strImageName_DataSoft'],
+                'strImgURL_DataSoft'    => $user['strImgURL_DataSoft'],
+            ]);
+        }
+
+        // return response
+        return response()->json(['message' => 'Users Inserted Successfuly']);
+    }
+
+    public function updateUsers()
+    {
+        // Validate Data
+        $validated = request()->validate([
+            'MemberData'                         => 'array|required',
+            'MemberData.*.iMemberId'             => 'required|exists:users,iMemberId',
+            'MemberData.*.strCardNumber'         => 'required',
+            'MemberData.*.member_mobile'         => 'required',
+            'MemberData.*.dateCardDateValidFrom' => 'required',
+            'MemberData.*.dateCardDateExpire'    => 'required',
+            'MemberData.*.timeTimeFrom'          => 'required',
+            'MemberData.*.timeTimeTo'            => 'required',
+            'MemberData.*.strMemberName'         => 'required',
+            'MemberData.*.iMemberType'           => 'required',
+            'MemberData.*.dateBirthdate'         => 'required',
+            'MemberData.*.boolMemberStatus'      => 'required',
+            'MemberData.*.iMainMemberID'         => 'required',
+            'MemberData.*.strImageName_DataSoft' => 'required',
+            'MemberData.*.strImgURL_DataSoft'    => 'required',
+        ]);
+        // loop on request data
+        foreach (request('MemberData') as  $user) {
+            // define user
+            $selectedUser = User::where('iMemberId', $user['iMemberId'])->first();
+            //  users to database
+            $selectedUser->update([
+                'iMemberId'             => $user['iMemberId'],
+                'strCardNumber'         => $user['strCardNumber'],
+                'member_mobile'         => $user['member_mobile'],
+                'dateCardDateValidFrom' => $user['dateCardDateValidFrom'],
+                'dateCardDateExpire'    => $user['dateCardDateExpire'],
+                'timeTimeFrom'          => $user['timeTimeFrom'],
+                'timeTimeTo'            => $user['timeTimeTo'],
+                'strMemberName'         => $user['strMemberName'],
+                'iMemberType'           => $user['iMemberType'],
+                'dateBirthdate'         => $user['dateBirthdate'],
+                'boolMemberStatus'      => $user['boolMemberStatus'],
+                'iMainMemberID'         => $user['iMainMemberID'],
+                'strImageName_DataSoft' => $user['strImageName_DataSoft'],
+                'strImgURL_DataSoft'    => $user['strImgURL_DataSoft'],
+            ]);
+        }
+
+        // return response
+        return response()->json(['message' => 'Users Updated Successfuly']);
+    }
+
+    public function deleteUsers()
+    {
+        // Validate Data
+        $validated = request()->validate([
+            'MemberData'                      => 'array|required',
+            'MemberData.*.iMemberId'          => 'required|exists:users,iMemberId',
+        ]);
+        // loop on request data
+        foreach (request('MemberData') as  $user) {
+            // define user
+            $selectedUser = User::where('iMemberId', $user['iMemberId'])->first();
+            //  users to database
+            $selectedUser->delete();
+        }
+        // return response
+        return response()->json(['message' => 'Users deleted Successfuly']);
     }
 
     ##########################################################################
@@ -196,6 +314,7 @@ class MainController extends Controller
 
         return response()->json(compact('playgrounds'));
     }
+
 
 
 

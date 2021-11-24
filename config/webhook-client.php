@@ -1,7 +1,7 @@
 <?php
 
-use App\Jobs\ProcessWebhookJob;
-use Spatie\WebhookClient\ProcessWebhookJob as webhookJob;
+use App\Jobs\WebhookJob;
+use Spatie\WebhookClient\ProcessWebhookJob;
 
 return [
     'configs' => [
@@ -51,7 +51,7 @@ return [
              *
              * This should be set to a class that extends \Spatie\WebhookClient\ProcessWebhookJob.
              */
-            'process_webhook_job' => ProcessWebhookJob::class,
+            'process_webhook_job' => WebhookJob::class,
         ],
     ],
 ];
