@@ -3,13 +3,13 @@
     {!! Form::label('id', __('models/ticketReservations.fields.id').':') !!}
     <b>{{ $ticketReservation->id }}</b>
 </div>
-
+{{--
 
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', __('models/ticketReservations.fields.user_id').':') !!}
     <b>{{ $ticketReservation->user_id }}</b>
-</div>
+</div> --}}
 
 
 <!-- First Name Field -->
