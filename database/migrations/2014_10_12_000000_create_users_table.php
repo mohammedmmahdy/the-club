@@ -20,31 +20,35 @@ class CreateUsersTable extends Migration
             // $table->string('last_name');
             // $table->string('phone')->nullable();
             // $table->string('member_id')->nullable();
-            // $table->string('email')->unique()->nullable();
-            // $table->string('password')->nullable();
             // $table->unsignedTinyInteger('status')->default(1);
-            // $table->unsignedTinyInteger('social_status')->nullable()->comment(" 1 => Single, 2 => Married ");
-            // $table->unsignedInteger('num_of_children')->nullable();
-            // $table->unsignedInteger('balance')->default(0);
-            // $table->unsignedInteger('points')->default(0);
             // $table->rememberToken();
             // $table->timestamps();
 
 
-            $table->string('iMemberId');
-            $table->string('strCardNumber');
-            $table->string('member_mobile');
-            $table->date('dateCardDateValidFrom')->comment('year-month-day');
-            $table->date('dateCardDateExpire')->comment('year-month-day');
-            $table->time('timeTimeFrom')->comment('24 hour');
-            $table->time('timeTimeTo')->comment('24 hour');
-            $table->string('strMemberName');
-            $table->integer('iMemberType')->comment('0 (Main) / 1 (Sub) / 2 (Academic)');
-            $table->date('dateBirthdate')->comment('year-month-day');
-            $table->boolean('boolMemberStatus')->comment('True (Active) / False (Hold)');
-            $table->string('iMainMemberID');
-            $table->string('strImageName_DataSoft');
-            $table->string('strImgURL_DataSoft');
+
+
+
+            $table->unsignedTinyInteger('social_status')->nullable()->comment(" 1 => Single, 2 => Married ");
+            $table->unsignedInteger('num_of_children')->nullable();
+            $table->unsignedInteger('points')->default(0);
+            $table->string('email')->unique()->nullable();
+            $table->string('password')->nullable();
+            $table->unsignedInteger('balance')->default(0);
+
+            $table->string('iMemberId')->nullable();
+            $table->string('strCardNumber')->nullable();
+            $table->string('member_mobile')->nullable();
+            $table->date('dateCardDateValidFrom')->comment('year-month-day')->nullable();
+            $table->date('dateCardDateExpire')->nullable()->comment('year-month-day');
+            $table->time('timeTimeFrom')->nullable()->comment('24 hour');
+            $table->time('timeTimeTo')->nullable()->comment('24 hour');
+            $table->string('strMemberName')->nullable();
+            $table->integer('iMemberType')->nullable()->comment('0 (Main) / 1 (Sub) / 2 (Academic)');
+            $table->date('dateBirthdate')->nullable()->comment('year-month-day');
+            $table->boolean('boolMemberStatus')->nullable()->comment('True (Active) / False (Hold)');
+            $table->string('iMainMemberID')->nullable();
+            $table->string('strImageName_DataSoft')->nullable();
+            $table->string('strImgURL_DataSoft')->nullable();
             $table->timestamps();
 
 

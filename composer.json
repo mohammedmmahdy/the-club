@@ -17,7 +17,7 @@
 
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "astrotomic/laravel-translatable": "^11.9",
         "cviebrock/eloquent-sluggable": "^8.0",
         "fideloper/proxy": "^4.4",
@@ -30,11 +30,9 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "3.0",
         "laravelcollective/html": "^6.2",
         "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-permission": "^4.0",
-        "spatie/laravel-webhook-client": "^2.7",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
@@ -48,7 +46,8 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform-check": false
     },
     "extra": {
         "laravel": {

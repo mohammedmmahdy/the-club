@@ -17,7 +17,7 @@ Route::post('user/update', [MainController::class, 'updateUsers']);
 Route::post('user/delete', [MainController::class, 'deleteUsers']);
 // Route::post('test-webhook', [MainController::class, 'testWebhook']);
 
-Route::webhooks('test-webhook');
+// Route::webhooks('test-webhook');
 
 // Route::post('test-webhook', [MainController::class, 'testWebhook']);
 

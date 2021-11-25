@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\AcademySchedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\EventReservation;
 use App\Models\Playground;
 use Faker\Provider\Uuid;
 use Illuminate\Validation\ValidationException;
@@ -120,17 +121,18 @@ class CustomerController extends Controller
 
             if (auth('api')->user()) {
                 $data['user'] = auth('api')->user();
-
-            } else {
-                $data['user'] = User::create([
-                    'first_name'            => $attributes['first_name'],
-                    'last_name'             => $attributes['last_name'],
-                    'phone'                 => $attributes['phone'],
-                ]);
+                $data['user']->load('events');
+                $attributes['user_id'] = $data['user']->id;
             }
+            // else {
+            //     $data['user'] = User::create([
+            //         'first_name'            => $attributes['first_name'],
+            //         'last_name'             => $attributes['last_name'],
+            //         'phone'                 => $attributes['phone'],
+            //     ]);
+            // }
 
-            $data['event'] = $data['user']->events()->create($attributes);
-            $data['user']->load('events');
+            $data['event'] = EventReservation::create($attributes);
 
             return response()->json($data);
         }

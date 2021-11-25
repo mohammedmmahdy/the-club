@@ -25,12 +25,12 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         // 'phone',
         // 'status',
         // 'member_id',
-        // 'email',
-        // 'password',
-        // 'balance',
-        // 'points',
-        // 'social_status', //  1 => Single, 2 => Married
-        // 'num_of_children',
+        'email',
+        'password',
+        'balance',
+        'points',
+        'social_status', //  1 => Single, 2 => Married
+        'num_of_children',
 
 
 
