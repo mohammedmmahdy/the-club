@@ -97,7 +97,7 @@ class MainController extends Controller
         // loop on request data
         foreach (request('MemberData') as  $user) {
             // insert users to database
-            User::create([
+            User::updateOrCreate(['member_mobile' => $user['member_mobile'] ],[
                 'iMemberId'             => $user['iMemberId'],
                 'strCardNumber'         => $user['strCardNumber'],
                 'member_mobile'         => $user['member_mobile'],

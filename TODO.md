@@ -1,5 +1,9 @@
 ## Auth
 
+[x] register users with new data ( free visit )
+[x] login users with new data
+
+## Users
 
 ## Branches
 
@@ -9,6 +13,7 @@
     [x] * Edit Models
     [x] * Edit Requests
     [x] * Edit Fields & Views
+
 
 ## Academies
 
@@ -20,16 +25,34 @@
     [x] * Edit Fields & Views
 [x] - Create Academy Gallery.
 [x] - Create Academy Schedule.
-[] - Create Academy Subscription.
-    [] * Handle Subscribe status or approvel.
+[x] - Create Academy Subscription.
+    [x] * Handle Subscribe status or approvel.
+[] Handle new users data in subscribe
+
+## Playgrounds
+
+[] Add photo to playground type
+[] Handle new users data in subscribe
+[] API for playground types
+
+
+## Events
+
+[] Add event categories with pricing for every category
+[] Handle categories in event creation
+[] Handle new users data in subscribe
+
+
+## Admin Dashboard
+
+
+[] Edit users crud with new data
+[] Add filters to users table
+[] make reject user action
+
 
 ## Webhook
 
 [x] create insert users API
 [x] create update users API
 [x] create delete users API
-
-
-## Users
-
-[] users table modified and need to transfer to server

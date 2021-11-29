@@ -14,9 +14,8 @@ class AuthController extends Controller
         public function register_user(Request $request)
         {
             $data = $request->validate([
-                'first_name'        => 'required|string|max:191',
-                'last_name'         => 'required|string|max:191',
-                'phone'             => 'required|numeric|unique:users,phone',
+                'strMemberName'     => 'required|string|max:191',
+                'member_mobile'     => 'required|numeric|unique:users,member_mobile',
                 'email'             => 'required|email|max:191|unique:users,email',
                 'password'          => 'required|string|min:3|max:191|confirmed',
                 'social_status'     => 'required|in:1,2',
@@ -31,16 +30,20 @@ class AuthController extends Controller
 
         public function login_user(Request $request)
         {
-            $credentials = $request->validate(['phone' => 'required|numeric', 'password' => 'required|string|max:191']);
+            $credentials = $request->validate(['member_mobile' => 'required|numeric', 'password' => 'required|string|max:191']);
 
             if (!$token = auth('api')->attempt($credentials)) {
                 return response()->json(['msg' => __('lang.wrongCredential')], 401);
             }
             $user = auth('api')->user();
 
-            // Handle if the user not a member Or academy member ( 2 => member, 3 => academy member )
-            if (!in_array( $user->status, [2, 3])) {
+            // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )
+            if (!$user->iMemberType) {
                 return response()->json(['msg' => 'You are not a member'], 403);
+            }
+            // Handle account status True (Active) / False (Hold)
+            if (!$user->iMemberType) {
+                return response()->json(['msg' => 'Your account is not active'], 403);
             }
             return response()->json(compact('user', 'token'));
         }

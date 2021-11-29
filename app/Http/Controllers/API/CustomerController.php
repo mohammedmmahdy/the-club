@@ -58,9 +58,8 @@ class CustomerController extends Controller
             $attributes = request()->validate([
                 'academy_id'            => 'required|exists:academies,id',
                 'academy_schedule_id'   => 'required|exists:academy_schedules,id',
-                'first_name'            => 'required|string|max:191',
-                'last_name'             => 'required|string|max:191',
-                'phone'                 => 'required|numeric',
+                'strMemberName'         => 'required|string|max:191',
+                'member_mobile'         => 'required|numeric',
                 'age'                   => 'required|integer',
                 'gender'                => 'required|integer|in:1,2'
             ]);
@@ -90,9 +89,8 @@ class CustomerController extends Controller
 
             } else {
                 $data['user'] = User::create([
-                    'first_name'            => $attributes['first_name'],
-                    'last_name'             => $attributes['last_name'],
-                    'phone'                 => $attributes['phone'],
+                    'strMemberName'        => $attributes['strMemberName'],
+                    'member_mobile'        => $attributes['member_mobile'],
                 ]);
             }
 
@@ -113,16 +111,15 @@ class CustomerController extends Controller
         {
             $attributes = request()->validate([
                 'event_id'              => 'required|exists:events,id',
-                'first_name'            => 'required|string|max:191',
-                'last_name'             => 'required|string|max:191',
-                'phone'                 => 'required|numeric',
+                'strMemberName'         => 'required|string|max:191',
+                'member_mobile'         => 'required|numeric',
                 'number_of_tickets'     => 'nullable|numeric',
             ]);
 
             if (auth('api')->user()) {
-                $data['user'] = auth('api')->user();
-                $data['user']->load('events');
-                $attributes['user_id'] = $data['user']->id;
+                // $data['user'] = auth('api')->user();
+                // $data['user']->load('events');
+                $attributes['user_id'] = auth('api')->id();
             }
             // else {
             //     $data['user'] = User::create([
@@ -148,9 +145,8 @@ class CustomerController extends Controller
         {
             $attributes = request()->validate([
                 'playground_id'         => 'required|exists:playgrounds,id',
-                'first_name'            => 'required|string|max:191',
-                'last_name'             => 'required|string|max:191',
-                'phone'                 => 'required|numeric',
+                'strMemberName'         => 'required|string|max:191',
+                'member_mobile'         => 'required|numeric',
                 'date'                  => 'required|date',
                 'time'                  => 'required|date_format:H:i:s',
                 'number_of_people'      => 'required|numeric',
@@ -160,9 +156,8 @@ class CustomerController extends Controller
                 $data['user'] = auth('api')->user();
             } else {
                 $data['user'] = User::create([
-                    'first_name'       => $attributes['first_name'],
-                    'last_name'        => $attributes['last_name'],
-                    'phone'            => $attributes['phone'],
+                    'strMemberName'        => $attributes['strMemberName'],
+                    'member_mobile'        => $attributes['member_mobile'],
                 ]);
             }
 
@@ -204,9 +199,8 @@ class CustomerController extends Controller
         public function ticketReservation()
         {
             $attributes = request()->validate([
-                'first_name'            => 'required|string|max:191',
-                'last_name'             => 'required|string|max:191',
-                'phone'                 => 'required|numeric',
+                'strMemberName'         => 'required|string|max:191',
+                'member_mobile'         => 'required|numeric',
                 'date'                  => 'required|date',
                 'number_of_people'      => 'required|numeric',
             ]);
@@ -215,9 +209,8 @@ class CustomerController extends Controller
                 $data['user'] = auth('api')->user();
             } else {
                 $data['user'] = User::create([
-                    'first_name'       => $attributes['first_name'],
-                    'last_name'        => $attributes['last_name'],
-                    'phone'            => $attributes['phone'],
+                    'strMemberName'        => $attributes['strMemberName'],
+                    'member_mobile'        => $attributes['member_mobile'],
                 ]);
             }
 

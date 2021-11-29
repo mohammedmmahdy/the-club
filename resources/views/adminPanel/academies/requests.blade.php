@@ -108,9 +108,11 @@
                 @foreach ($requests as $request)
                 <tr>
                     <td>
-                        <a href="{{route('adminPanel.users.show',$request->user->id)}}">
-                            {{$request->user->first_name ?? ''}} {{$request->user->last_name ?? ''}}
-                        </a>
+                        @if ($request->user)
+                            <a href="{{route('adminPanel.users.show',$request->user->id)}}">
+                                {{$request->user->strMemberName}}
+                            </a>
+                        @endif
                     </td>
                     <td>{{$request->phone}}</td>
                     <td>{{$request->academy->branch->name ?? ''}}</td>
