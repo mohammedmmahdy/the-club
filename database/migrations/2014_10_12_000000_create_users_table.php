@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('points')->default(0);
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
+            $table->string('verification_code')->nullable();
             $table->unsignedInteger('balance')->default(0);
 
             $table->string('iMemberId')->nullable();

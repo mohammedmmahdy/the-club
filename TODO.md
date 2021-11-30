@@ -1,7 +1,8 @@
 ## Auth
 
 [x] register users with new data ( free visit )
-[x] login users with new data
+[x] login users with new 
+[] edit login process
 
 ## Users
 
