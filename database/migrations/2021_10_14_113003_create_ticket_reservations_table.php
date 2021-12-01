@@ -18,9 +18,8 @@ class CreateTicketReservationsTable extends Migration
             $table->increments('id')->from(100000);
             $table->foreignId('user_id');
 
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone');
+            $table->string('strMemberName')->nullable();
+            $table->string('member_mobile')->nullable();
             $table->dateTime('date');
             $table->integer('number_of_people');
             $table->integer('price')->default(200);

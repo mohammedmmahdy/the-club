@@ -1,14 +1,8 @@
 
 <!-- first_name Field -->
 <div class="form-group show">
-    {!! Form::label('first_name', __('models/users.fields.first_name').':') !!}
-    <b>{{ $user->first_name }}</b>
-</div>
-
-<!-- last_name Field -->
-<div class="form-group show">
-    {!! Form::label('last_name', __('models/users.fields.last_name').':') !!}
-    <b>{{ $user->last_name }}</b>
+    {!! Form::label('strMemberName', __('models/users.fields.name').':') !!}
+    <b>{{ $user->strMemberName }}</b>
 </div>
 
 <!-- id Field -->
@@ -19,14 +13,14 @@
 
 <!-- phone Field -->
 <div class="form-group show">
-    {!! Form::label('phone', __('models/users.fields.phone').':') !!}
-    <b>{{ $user->phone }}</b>
+    {!! Form::label('member_mobile', __('models/users.fields.phone').':') !!}
+    <b>{{ $user->member_mobile }}</b>
 </div>
 
 <!-- member_id Field -->
 <div class="form-group show">
-    {!! Form::label('member_id', __('models/users.fields.member_id').':') !!}
-    <b>{{ $user->member_id }}</b>
+    {!! Form::label('iMemberId', __('models/users.fields.member_id').':') !!}
+    <b>{{ $user->iMemberId }}</b>
 </div>
 
 

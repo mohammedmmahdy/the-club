@@ -47,9 +47,8 @@ class AcademySeeder extends Seeder
                 'academy_id' => rand(1, 5),
                 'user_id' => rand(1, 10),
                 'academy_schedule_id' => rand(1, 10),
-                'first_name' => $faker->firstName(),
-                'last_name' => $faker->lastName(),
-                'phone' => $faker->e164PhoneNumber(),
+                'strMemberName' => $faker->name(),
+                'member_mobile' => $faker->e164PhoneNumber(),
                 'age' => rand(8, 30),
                 'gender' => rand(1, 2), // 1 => Male, 2 => Female
             ]);

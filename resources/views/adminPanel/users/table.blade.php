@@ -42,47 +42,14 @@
         @foreach($users as $user)
         <tr>
             <td>{{ $user->id }}</td>
-            @if ($user->member_id == null)
-            <td>
 
-                <!-- Button trigger modal-->
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#member-{{$user->id}}">
-                    Add ID
-                </button>
+            <td>{{ $user->iMemberId ?? 'Lead' }}</td>
 
-                <!-- Modal-->
-                {!! Form::model($user, ['route' => ['adminPanel.users.addMemberId', $user->id], 'method' => 'patch']) !!}
-                <div class="modal fade" id="member-{{$user->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="memberIdModalLabel">Add Member ID</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <i aria-hidden="true" class="ki ki-close"></i>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                {{-- {!! Form::open(['route' => 'adminPanel.users.addMemberId',$user->id], 'method' => 'patch') !!} --}}
-                                {!! Form::text('member_id', null, ['class' => 'form-control']) !!}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                                {!! Form::submit('Add', ['class' => 'btn btn-primary font-weight-bold']) !!}
-                                {{-- <button type="submit" class="btn btn-primary font-weight-bold">Add</button> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {!! Form::close() !!}
-            </td>
-            @else
-            <td>{{ $user->member_id }}</td>
-            @endif
-            <td>{{ $user->first_name }} {{$user->last_name}}</td>
-            <td>{{ $user->phone }}</td>
+            <td>{{ $user->strMemberName }}</td>
+            <td>{{ $user->member_mobile }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->status }}</td>
+            <td>{{ $user->boolMemberStatus == 1 ? 'Active' : 'Hold' }}</td>
+
             <td nowrap>
                 @can('users view')
                 <a href="{{ route('adminPanel.users.show', [$user->id]) }}" class='btn btn-sm btn-shadow mx-1 btn-transparent-success'><i class="fa fa-eye"></i></a>
@@ -122,24 +89,25 @@
                     type: 'date',
                     format: 'YYYY-MM-DD',
                 }, {
-                    field: 'Status',
+                    field: 'boolMemberStatus',
                     title: 'Status',
                     autoHide: false,
                     // callback function support for column rendering
                     template: function(row) {
                         var status = {
-                            0: {
-                                'title': 'Inactive',
+                            false: {
+                                'title': 'Hold',
                                 'class': ' label-light-danger'
                             },
-                            1: {
-                                'title': 'Lead',
+                            true: {
+                                'title': 'Active',
                                 'class': ' label-light-info'
                             },
-                            2: {
-                                'title': 'Member',
-                                'class': ' label-light-success'
+                            null: {
+                                'title': 'Lead',
+                                'class': ' label-light-info'
                             }
+
                         };
                         return '<span class="label font-weight-bold label-lg' + status[row.Status].class + ' label-inline">' + status[row.Status].title + '</span>';
                     },

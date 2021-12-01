@@ -70,9 +70,8 @@ class CreateAcademiesTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('academy_schedule_id');
 
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone')->nullable();
+            $table->string('strMemberName')->nullable();
+            $table->string('member_mobile')->nullable();
             $table->unsignedTinyInteger('status')->default(0);
 
             $table->unsignedInteger('age');

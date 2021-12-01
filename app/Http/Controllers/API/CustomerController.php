@@ -117,17 +117,8 @@ class CustomerController extends Controller
             ]);
 
             if (auth('api')->user()) {
-                // $data['user'] = auth('api')->user();
-                // $data['user']->load('events');
                 $attributes['user_id'] = auth('api')->id();
             }
-            // else {
-            //     $data['user'] = User::create([
-            //         'first_name'            => $attributes['first_name'],
-            //         'last_name'             => $attributes['last_name'],
-            //         'phone'                 => $attributes['phone'],
-            //     ]);
-            // }
 
             $data['event'] = EventReservation::create($attributes);
 
@@ -176,8 +167,6 @@ class CustomerController extends Controller
 
             return response()->json($data);
         }
-
-
 
         public function playgroundReservedTimes(Playground $playground)
         {

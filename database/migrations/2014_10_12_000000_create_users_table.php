@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
 
 
             $table->unsignedTinyInteger('social_status')->nullable()->comment(" 1 => Single, 2 => Married ");
-            $table->unsignedInteger('num_of_children')->nullable();
+            $table->unsignedInteger('num_of_children')->default(0)->nullable();
             $table->unsignedInteger('points')->default(0);
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
@@ -38,15 +38,15 @@ class CreateUsersTable extends Migration
 
             $table->string('iMemberId')->nullable();
             $table->string('strCardNumber')->nullable();
-            $table->string('member_mobile')->nullable();
             $table->date('dateCardDateValidFrom')->comment('year-month-day')->nullable();
             $table->date('dateCardDateExpire')->nullable()->comment('year-month-day');
             $table->time('timeTimeFrom')->nullable()->comment('24 hour');
             $table->time('timeTimeTo')->nullable()->comment('24 hour');
             $table->string('strMemberName')->nullable();
+            $table->string('member_mobile')->nullable();
             $table->integer('iMemberType')->nullable()->comment('0 (Main) / 1 (Sub) / 2 (Academic)');
             $table->date('dateBirthdate')->nullable()->comment('year-month-day');
-            $table->boolean('boolMemberStatus')->nullable()->comment('True (Active) / False (Hold)');
+            $table->boolean('boolMemberStatus')->default(false)->nullable()->comment('True (Active) / False (Hold)');
             $table->string('iMainMemberID')->nullable();
             $table->string('strImageName_DataSoft')->nullable();
             $table->string('strImgURL_DataSoft')->nullable();

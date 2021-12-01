@@ -190,8 +190,8 @@ class MainController extends Controller
 
     public function landing_page()
     {
-        $data['slider'] = Slider::active()->orderBy('in_order_to')->get();
-
+        // $data['slider'] = Slider::active()->orderBy('in_order_to')->get();
+        $data['events'] = Event::where('date', '>' , now())->get();
         // $blogs = Blog::latest()->limit(3)->get();
 
         return response()->json($data);

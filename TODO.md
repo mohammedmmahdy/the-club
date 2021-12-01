@@ -2,7 +2,7 @@
 
 [x] register users with new data ( free visit )
 [x] login users with new 
-[] edit login process
+[x] edit login process
 
 ## Users
 
@@ -28,7 +28,7 @@
 [x] - Create Academy Schedule.
 [x] - Create Academy Subscription.
     [x] * Handle Subscribe status or approvel.
-[] Handle new users data in subscribe
+[x] Handle new users data in subscribe
 
 ## Playgrounds
 
@@ -47,7 +47,7 @@
 ## Admin Dashboard
 
 
-[] Edit users crud with new data
+[x] Edit users crud with new data
 [] Add filters to users table
 [] make reject user action
 

@@ -39,7 +39,11 @@ class AuthController extends Controller
         $user = User::where('member_mobile', request('member_mobile'))->first();
 
         // handle if user don't registered as a member yet
-        throw_if($user->iMemberId == null, ValidationException::withMessages(['iMemberId' => 'you are not a member, wait for approval']));
+        if ($user->iMemberId == null) {
+            return response()->json([
+                'message'       => 'you are not a member, wait for approval',
+            ], 421);
+        }
         // handle if user don't create his password
         if ($user->password == null) {
             $user->update(['verification_code' => $this->randomCode(4)]);
@@ -52,6 +56,50 @@ class AuthController extends Controller
         return response()->json(['message' => 'Valid user and can login now']);
     }
 
+    public function forgotPassword()
+    {
+        // validate if mobile is numeric and exist in our users
+        request()->validate([
+            'member_mobile'     => 'required|numeric|exists:users,member_mobile',
+        ]);
+        // define user
+        $user = User::where('member_mobile', request('member_mobile'))->first();
+
+        // handle if user don't registered as a member yet
+        if ($user->iMemberId == null) {
+            return response()->json([
+                'message'       => 'you are not a member, wait for approval',
+            ], 421);
+        }
+        // update verification code
+        $user->update(['verification_code' => $this->randomCode(4)]);
+
+        // return data
+        return response()->json([
+            'message'           => 'Use the verification code to verify your mobile number',
+            'verification_code' => $user->verification_code
+        ]);
+
+    }
+
+    public function codeVerification()
+    {
+        // validate mobile and verification code
+        $credentials = request()->validate([
+            'member_mobile'     => 'required|numeric',
+            'verification_code' => 'required|string|max:191',
+        ]);
+
+        $user = User::where($credentials)->first();
+        if (!$user) {
+            return response()->json([
+                'message' => 'Sorry ,wrong verification code'
+            ], 403);
+        }
+
+        return response()->json(['user' => $user]);
+    }
+
     public function createPassword()
     {
         // validate mobile and verification code
@@ -61,28 +109,22 @@ class AuthController extends Controller
             'password'          => 'required|string|min:3|max:191|confirmed',
         ]);
         $user = User::where('member_mobile', request('member_mobile'))->first();
-        throw_if($user->verification_code != request('verification_code'),
-                    ValidationException::withMessages(['verification_code' => 'Sorry ,wrong verification code']));
         // create a new password
         $user->update(['password' => request('password')]);
         // login user
-        $data = $this->doLogin($credentials);
-
-        return response()->json($data);
+        return $this->doLogin($credentials);
     }
 
     public function login_user(Request $request)
     {
         $credentials = $request->validate(['member_mobile' => 'required|numeric', 'password' => 'required|string|max:191']);
 
-        $data = $this->doLogin($credentials);
-
-        return response()->json($data);
+        return $this->doLogin($credentials);
     }
 
     public function logout()
     {
-        auth()->logout();
+        auth('api')->logout();
 
         return response()->json(['msg' => 'success'], 200);
     }
@@ -93,7 +135,7 @@ class AuthController extends Controller
 
 
 
-    ///////////////////////////////////////// Helpeers  /////////////////////////////////////////
+    ///////////////////////////////////////// Helpers  /////////////////////////////////////////
 
     public function randomCode($length = 8)
     {
@@ -124,7 +166,7 @@ class AuthController extends Controller
             return response()->json(['msg' => 'Your account is not active'], 403);
         }
 
-        return $data;
+        return response()->json($data);
 
     }
 }

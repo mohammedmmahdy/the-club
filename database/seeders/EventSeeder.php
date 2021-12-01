@@ -36,9 +36,8 @@ class EventSeeder extends Seeder
                 'event_id' => rand(1,10),
                 'user_id' => rand(1,10),
 
-                'first_name' => $faker->firstName,
-                'last_name'=> $faker->lastName,
-                'phone' => $faker->e164PhoneNumber,
+                'strMemberName' => $faker->name(),
+                'member_mobile' => $faker->e164PhoneNumber(),
                 'number_of_tickets' => rand(1,10),
             ]);
         }

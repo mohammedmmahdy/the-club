@@ -24,7 +24,9 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
 //////////////////////////////// Start Auth //////////////////////////////////
     Route::post('user/register', 'AuthController@register_user');
     Route::post('user/check-mobile-status', 'AuthController@checkMobileStatus');
+    Route::post('user/code-verification', 'AuthController@codeVerification');
     Route::post('user/create-password', 'AuthController@createPassword');
+    Route::post('user/forgot-password', 'AuthController@forgotPassword');
     Route::post('user/login', 'AuthController@login_user');
     // Route::post('user/verify-code', 'AuthController@verify_code_user');
 //////////////////////////////// End Auth //////////////////////////////////
@@ -66,7 +68,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
 
 //////////////////////////////// Start User //////////////////////////////////
     Route::group(['middleware' => ['auth:api']], function () {
-
+        Route::post('logout', 'AuthController@logout');
     });
 ////////////////////////////////// End User //////////////////////////////////
 

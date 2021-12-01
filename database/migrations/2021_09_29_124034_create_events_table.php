@@ -43,9 +43,8 @@ class CreateEventsTable extends Migration
             $table->foreignId('event_id');
             $table->foreignId('user_id')->nullable();
 
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone')->nullable();
+            $table->string('strMemberName')->nullable();
+            $table->string('member_mobile')->nullable();
             $table->unsignedInteger('number_of_tickets')->default(1);
             $table->unsignedTinyInteger('status')->default(0);
 

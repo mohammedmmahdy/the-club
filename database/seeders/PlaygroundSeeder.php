@@ -59,9 +59,8 @@ class PlaygroundSeeder extends Seeder
                 'playground_id' => rand(1,10),
                 'user_id' => rand(1,10),
 
-                'first_name' => $faker->firstName,
-                'last_name'=> $faker->lastName,
-                'phone' => $faker->e164PhoneNumber,
+                'strMemberName' => $faker->name(),
+                'member_mobile' => $faker->e164PhoneNumber(),
                 'date' => $faker->date,
                 'time' => $faker->time,
                 'number_of_people' => rand(8,12),
