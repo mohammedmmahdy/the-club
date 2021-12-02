@@ -16,6 +16,7 @@ use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Playground;
+use App\Models\PlaygroundType;
 use App\Models\User;
 
 class MainController extends Controller
@@ -287,9 +288,15 @@ class MainController extends Controller
 // Events
     public function events()
     {
+
         $events = Event::where('date', '>' , now())->get();
 
-        return response()->json(compact('events'));
+        $upcomingEvent = Event::query()
+                        ->where('date' , '>', now())
+                        ->orderBy('date')
+                        ->first();
+
+        return response()->json(compact('events', 'upcomingEvent'));
     }
 
     public function event(Event $event)
@@ -315,6 +322,12 @@ class MainController extends Controller
         return response()->json(compact('playgrounds'));
     }
 
+    public function playgroundTypes()
+    {
+        $playgroundTypes = PlaygroundType::with('playgrounds')->get();
+
+        return response()->json(compact('playgroundTypes'));
+    }
 
 
 

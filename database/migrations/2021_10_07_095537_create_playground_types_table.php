@@ -16,6 +16,7 @@ class CreatePlaygroundTypesTable extends Migration
     {
         Schema::create('playground_types', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('photo');
             $table->timestamps();
             $table->softDeletes();
         });

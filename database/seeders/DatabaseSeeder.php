@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             PageTableSeeder::class,
             InformationTableSeeder::class,
             SocialLinkTableSeeder::class,
-            AcademySeeder::class,
-            EventSeeder::class,
+            // AcademySeeder::class,
+            // EventSeeder::class,
             PlaygroundSeeder::class,
         ]);
     }

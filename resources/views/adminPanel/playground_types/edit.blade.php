@@ -21,7 +21,7 @@
                             <h3 class="card-title">Edit @lang('models/playgroundTypes.singular')</h3>
                         </div>
                         <div class="card-body">
-                            {!! Form::model($playgroundType, ['route' => ['adminPanel.playgroundTypes.update', $playgroundType->id], 'method' => 'patch']) !!}
+                            {!! Form::model($playgroundType, ['route' => ['adminPanel.playgroundTypes.update', $playgroundType->id], 'method' => 'patch', 'files' => true]) !!}
                               @include('adminPanel.playground_types.fields')
                             {!! Form::close() !!}
                         </div>

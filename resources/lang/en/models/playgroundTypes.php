@@ -7,6 +7,7 @@ return array (
   array (
     'id' => 'Id',
     'name' => 'Name',
+    'photo' => 'Photo',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
   ),

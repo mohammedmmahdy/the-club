@@ -9,6 +9,15 @@
     <tbody>
         @foreach ($playgroundTypes as $playgroundType)
             <tr>
+                <pre>
+
+                    {{ $playgroundType }}
+                </pre>
+                <td>
+                    <img
+                    {{-- onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" --}}
+                    src="{{$playgroundType->photo_thumbnail_path}}" alt="{{$playgroundType->name}}" style="width:80px">
+                </td>
                 <td>{{ $playgroundType->name }}</td>
                 <td nowrap>
                     {!! Form::open(['route' => ['adminPanel.playgroundTypes.destroy', $playgroundType->id], 'method' => 'delete']) !!}

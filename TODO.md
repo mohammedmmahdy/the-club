@@ -9,7 +9,7 @@
 ## Branches
 
 [x] - Generate CRUD.
-[x] - Make CRUD Multilang.
+[x] - Make CRUD multilingual.
     [x] * Edit Migration
     [x] * Edit Models
     [x] * Edit Requests
@@ -19,7 +19,7 @@
 ## Academies
 
 [x] - Create Academies Crud.
-[x] - Make CRUD Multilang.
+[x] - Make CRUD multilingual.
     [x] * Edit Migration
     [x] * Edit Models
     [x] * Edit Requests
@@ -27,14 +27,18 @@
 [x] - Create Academy Gallery.
 [x] - Create Academy Schedule.
 [x] - Create Academy Subscription.
-    [x] * Handle Subscribe status or approvel.
+    [x] * Handle Subscribe status or approval.
 [x] Handle new users data in subscribe
 
 ## Playgrounds
 
-[] Add photo to playground type
-[] Handle new users data in subscribe
-[] API for playground types
+[x] Add photo to playground type
+    [x] migration
+    [x] model
+    [x] change dashboard forms to accept files
+    [x] dashboard view ( table - fields - show fields )
+[x] Handle new users data in subscribe
+[x] API for playground types
 
 
 ## Events
@@ -42,6 +46,7 @@
 [] Add event categories with pricing for every category
 [] Handle categories in event creation
 [] Handle new users data in subscribe
+[] add upcoming event to events endpoint
 
 
 ## Admin Dashboard
@@ -50,10 +55,15 @@
 [x] Edit users crud with new data
 [] Add filters to users table
 [] make reject user action
+[] edit academies & events & playgrounds data with new user data
 
+## News
+
+[] Make news CRUD (multilingual)
 
 ## Webhook
 
 [x] create insert users API
 [x] create update users API
 [x] create delete users API
+

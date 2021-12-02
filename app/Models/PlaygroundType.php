@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\ImageUploaderTrait;
 use Astrotomic\Translatable\Translatable;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class PlaygroundType extends Model
 {
-    use SoftDeletes, Translatable;
+    use SoftDeletes, Translatable, ImageUploaderTrait;
 
 
     public $table = 'playground_types';
@@ -27,7 +28,7 @@ class PlaygroundType extends Model
 
 
     public $fillable = [
-        'name'
+        'photo'
     ];
 
     /**
@@ -52,8 +53,48 @@ class PlaygroundType extends Model
             $rules[$language . '.name'] = 'required|string|min:3|max:191';
         }
 
+        $rules['photo'] = 'required|image|mimes:jpeg,jpg,png';
+
         return $rules;
     }
 
+
+    // Photo handling
+    public function setPhotoAttribute($file)
+    {
+        if ($file) {
+            try {
+                $fileName = $this->createFileName($file);
+
+                $this->originalImage($file, $fileName);
+
+                $this->thumbImage($file, $fileName, 200, 200);
+
+                $this->attributes['photo'] = $fileName;
+            } catch (\Throwable $th) {
+                $this->attributes['photo'] = $file;
+            }
+        }
+    }
+    protected $appends = ['photo_original_path', 'photo_thumbnail_path'];
+
+    public function getPhotoOriginalPathAttribute()
+    {
+        return asset('uploads/images/original/' . $this->photo);
+    }
+    public function getPhotoThumbnailPathAttribute()
+    {
+        return asset('uploads/images/thumbnail/' . $this->photo);
+    }
+    // End Photo handling
+
+
+
+    ################################### Relations ###################################
+
+    public function playgrounds()
+    {
+        return $this->hasMany(Playground::class);
+    }
 
 }

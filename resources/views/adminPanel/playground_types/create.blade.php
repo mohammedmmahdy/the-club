@@ -21,7 +21,7 @@
                             <h3 class="card-title">Create @lang('models/playgroundTypes.singular')</h3>
                         </div>
                         <div class="card-body">
-                            {!! Form::open(['route' => 'adminPanel.playgroundTypes.store']) !!}
+                            {!! Form::open(['route' => 'adminPanel.playgroundTypes.store', 'files' => true ]) !!}
                                 @include('adminPanel.playground_types.fields')
                             {!! Form::close() !!}
                         </div>

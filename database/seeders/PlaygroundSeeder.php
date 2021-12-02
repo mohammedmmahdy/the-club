@@ -20,22 +20,25 @@ class PlaygroundSeeder extends Seeder
 
         PlaygroundType::create(
             [
-                'en' => ['name' => 'Football'],
-                'ar' => ['name' => 'Football'],
+                'en'    => ['name' => 'Football'],
+                'ar'    => ['name' => 'Football'],
+                'photo' => 'image.jpg'
             ],
         );
 
         PlaygroundType::create(
             [
-                'en' => ['name' => 'Basketball'],
-                'ar' => ['name' => 'Basketball'],
+                'en'    => ['name' => 'Basketball'],
+                'ar'    => ['name' => 'Basketball'],
+                'photo' => 'image.jpg'
             ],
         );
 
         PlaygroundType::create(
             [
-                'en' => ['name' => 'Tennis'],
-                'ar' => ['name' => 'Tennis'],
+                'en'    => ['name' => 'Tennis'],
+                'ar'    => ['name' => 'Tennis'],
+                'photo' => 'image.jpg'
             ],
         );
 
