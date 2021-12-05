@@ -67,6 +67,7 @@ Route::group(
             Route::resource('admins', AdminController::class);
             Route::resource('users', UserController::class)->only(['index', 'show']);
             Route::patch('users/add-member-id/{user}', 'UserController@addMemberId')->name('users.addMemberId');
+            Route::post('users/date-filter', 'UserController@dateFilter')->name('users.dateFilter');
 
             Route::resource('metas', MetaController::class);
 
@@ -97,6 +98,8 @@ Route::group(
             Route::delete('academies/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroy.time');
             Route::resource('academies', AcademyController::class);
 
+            Route::resource('eventCategories', EventCategoryController::class);
+
             Route::post('events/reservations-date-filter', 'EventController@dateFilter')->name('events.reservations.dateFilter');
             Route::patch('events/reservations-status/{reservation}', 'EventController@changeReservationStatus')->name('events.reservations.changeReservationStatus');
             Route::get('events/reservations', 'EventController@reservations')->name('events.reservations');
@@ -114,7 +117,3 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
-
-
-Route::group(['prefix' => 'adminPanel'], function () {
-});

@@ -145,5 +145,9 @@ class Event extends Model
         return $this->belongsTo(Branch::class);
     }
 
+    public function prices()
+    {
+        return $this->hasMany(EventPrice::class);
+    }
 
 }

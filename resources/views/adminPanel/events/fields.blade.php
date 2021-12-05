@@ -130,6 +130,41 @@
         </div>
     </div>
 
+    <h3>Pricing</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (isset($event->prices))
+                @foreach ($event->prices as $index => $eventPrice)
+                    <tr>
+                        <td>{{ $eventPrice->eventCategory->name }}</td>
+                        <td>
+                            {!! Form::hidden("category[$index][id]", $eventPrice->eventCategory->id) !!}
+                            {!! Form::number("category[$index][price]", $eventPrice->price, ['class' => 'form-control']) !!}
+                        </td>
+                    </tr>
+                @endforeach
+
+            @else
+                @foreach ($eventCategories as $index => $eventCategory)
+                    <tr>
+                        <td>{{ $eventCategory->name }}</td>
+                        <td>
+                            {!! Form::hidden("category[$index][id]", $eventCategory->id) !!}
+                            {!! Form::number("category[$index][price]", null, ['class' => 'form-control']) !!}
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+        </tbody>
+    </table>
+
 
     <!-- Submit Field -->
     <div class="form-group col-sm-12">

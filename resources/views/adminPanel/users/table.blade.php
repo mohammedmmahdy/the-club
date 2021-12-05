@@ -1,30 +1,71 @@
-<!--begin::Search Form-->
-<div class="mb-7">
-    <div class="row align-items-center">
-        <div class="col-lg-9 col-xl-8">
+        <!--begin::Search Form-->
+        <div class="mb-7">
             <div class="row align-items-center">
-                <div class="col-md-4 my-2 my-md-0">
-                    <div class="input-icon">
-                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
-                        <span><i class="flaticon2-search-1 text-muted"></i></span>
+                <div class="col-lg-12 col-xl-12">
+
+                    {{-- Date Filter --}}
+                    <div class="date-filter">
+                        <h5>Date Filter</h5>
+
+                        {!! Form::open(['route' => 'adminPanel.users.dateFilter']) !!}
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="input-group date" id="kt_datetimepicker_1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" placeholder="From" data-target="#kt_datetimepicker_1" name="users_from" value="{{old('users_from', request('users_from'))}}" />
+                                    <div class=" input-group-append" data-target="#kt_datetimepicker_1" data-toggle="datetimepicker">
+                                        <span class="input-group-text">
+                                            <i class="ki ki-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="input-group date" id="kt_datetimepicker_2" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" placeholder="To" data-target="#kt_datetimepicker_2" name="users_to" value="{{old('users_to', request('users_to'))}}" />
+                                    <div class="input-group-append" data-target="#kt_datetimepicker_2" data-toggle="datetimepicker">
+                                        <span class="input-group-text">
+                                            <i class="ki ki-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                {!! Form::submit('Filter', ['class' => 'form-control btn btn-primary']) !!}
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
                     </div>
-                </div>
-                <div class="col-md-4 my-2 my-md-0">
-                    <div class="d-flex align-items-center">
-                        <label class="mr-3 mb-0 d-none d-md-block">@lang('lang.status'):</label>
-                        <select class="form-control" id="kt_datatable_search_status">
-                            <option value="">@lang('lang.all')</option>
-                            <option value="0">Inactive</option>
-                            <option value="1">Lead</option>
-                            <option value="2">Member</option>
-                        </select>
+                    {{-- End Date Filter --}}
+                    <div class="clearfix"></div>
+                    <hr>
+                    <h5>Quick Filter</h5>
+
+                    <div class="row align-items-center d-flex">
+                        <div class="col-md-4 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" class="form-control" placeholder="Search Keyword..." id="kt_datatable_search_query" />
+                                <span><i class="flaticon2-search-1 text-muted"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 my-2 my-md-0">
+                            <div class="d-flex align-items-center">
+                                <label class="mr-3 mb-0 d-none d-md-block">@lang('lang.status'):</label>
+                                <select class="form-control" id="kt_datatable_search_status">
+                                    <option value="">@lang('lang.all')</option>
+                                    <option value="Hold">Hold</option>
+                                    <option value="Active">Active</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <hr>
             </div>
         </div>
-    </div>
-</div>
-<!--end::Search Form-->
+        <!--end::Search Form-->
 <!--begin: Datatable-->
 <table class="datatable datatable-bordered datatable-head-custom table-hover" id="kt_datatable">
     <thead>
@@ -35,6 +76,7 @@
             <th>@lang('models/users.fields.phone')</th>
             <th>@lang('models/users.fields.email')</th>
             <th>@lang('models/users.fields.status')</th>
+            <th>@lang('models/users.fields.created_at')</th>
             <th>@lang('crud.action')</th>
         </tr>
     </thead>
@@ -49,6 +91,7 @@
             <td>{{ $user->member_mobile }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->boolMemberStatus == 1 ? 'Active' : 'Hold' }}</td>
+            <td>{{ $user->created_at }}</td>
 
             <td nowrap>
                 @can('users view')
@@ -95,18 +138,14 @@
                     // callback function support for column rendering
                     template: function(row) {
                         var status = {
-                            false: {
+                            Hold: {
                                 'title': 'Hold',
                                 'class': ' label-light-danger'
                             },
-                            true: {
+                            Active: {
                                 'title': 'Active',
                                 'class': ' label-light-info'
                             },
-                            null: {
-                                'title': 'Lead',
-                                'class': ' label-light-info'
-                            }
 
                         };
                         return '<span class="label font-weight-bold label-lg' + status[row.Status].class + ' label-inline">' + status[row.Status].title + '</span>';

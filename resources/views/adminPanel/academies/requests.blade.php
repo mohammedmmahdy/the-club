@@ -88,7 +88,6 @@
             </div>
         </div>
         <!--end::Search Form-->
-        <!--end: Search Form-->
         <!--begin: Datatable-->
         <table class="datatable datatable-bordered datatable-head-custom table-hover" id="kt_datatable">
             <thead>

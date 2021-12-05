@@ -12,6 +12,8 @@ use App\Repositories\AdminPanel\EventRepository;
 use App\Http\Requests\AdminPanel\CreateEventRequest;
 use App\Http\Requests\AdminPanel\UpdateEventRequest;
 use App\Models\Branch;
+use App\Models\EventCategory;
+use App\Models\EventPrice;
 
 class EventController extends AppBaseController
 {
@@ -46,7 +48,8 @@ class EventController extends AppBaseController
     public function create()
     {
         $branches = Branch::get()->pluck('name','id');
-        return view('adminPanel.events.create', compact('branches'));
+        $eventCategories = EventCategory::get();
+        return view('adminPanel.events.create', compact('branches', 'eventCategories'));
     }
 
     /**
@@ -56,11 +59,18 @@ class EventController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateEventRequest $request)
+    public function store(Request $request)
     {
         $input = $request->all();
 
         $event = $this->eventRepository->create($input);
+
+        foreach ($request->category as $category) {
+            $event->prices()->create([
+                'event_category_id'  => $category['id'],
+                'price'              => $category['price']
+            ]);
+        }
 
         Flash::success(__('messages.saved', ['model' => __('models/events.singular')]));
 
@@ -105,8 +115,9 @@ class EventController extends AppBaseController
         }
 
         $branches = Branch::get()->pluck('name','id');
+        $eventCategories = EventCategory::get();
 
-        return view('adminPanel.events.edit',compact('branches', 'event'));
+        return view('adminPanel.events.edit',compact('branches', 'event', 'eventCategories'));
     }
 
     /**
@@ -128,6 +139,10 @@ class EventController extends AppBaseController
         }
 
         $event = $this->eventRepository->update($request->all(), $id);
+
+        $event->prices()->updateOrCreate(['event_category_id'  => request('event_category_id'),], [
+            'price'  => request('price')
+        ]);
 
         Flash::success(__('messages.updated', ['model' => __('models/events.singular')]));
 

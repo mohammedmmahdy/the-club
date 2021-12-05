@@ -53,9 +53,9 @@
 
 
 [x] Edit users crud with new data
-[] Add filters to users table
+[x] Add filters to users table
 [] make reject user action
-[] edit academies & events & playgrounds data with new user data
+[x] edit academies & events & playgrounds data with new user data
 
 ## News
 

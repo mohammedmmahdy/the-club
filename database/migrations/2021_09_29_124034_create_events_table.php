@@ -52,6 +52,15 @@ class CreateEventsTable extends Migration
             $table->softDeletes();
 
         });
+
+        Schema::create('event_prices', function (Blueprint $table) {
+            $table->increments('id');
+            $table->foreignId('event_id');
+            $table->integer('event_category_id');
+            $table->integer('price')->nullable();
+        });
+
+
     }
 
     /**
@@ -61,6 +70,7 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('event_prices');
         Schema::drop('event_reservations');
         Schema::drop('event_translations');
         Schema::drop('events');
