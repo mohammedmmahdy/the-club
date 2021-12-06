@@ -60,7 +60,8 @@
 
 ## News
 
-[] Make news CRUD (multilingual)
+[x] Make news CRUD (multilingual)
+[] news api
 
 ## Webhook
 

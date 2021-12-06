@@ -78,6 +78,7 @@ Route::group(
             Route::resource('contacts', ContactController::class);
             Route::get('newsletters', 'NewsletterController@index')->name('newsletters.index');
             Route::resource('blogs', BlogController::class);
+            Route::resource('news', NewsController::class);
             Route::resource('faqCategories', FaqCategoryController::class);
             Route::resource('faqs', FaqController::class);
             // Pages CRUD
@@ -117,3 +118,4 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
+
