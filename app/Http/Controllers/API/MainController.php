@@ -289,9 +289,10 @@ class MainController extends Controller
     public function events()
     {
 
-        $events = Event::where('date', '>' , now())->get();
+        $events = Event::with('prices.eventCategory')->where('date', '>' , now())->get();
 
         $upcomingEvent = Event::query()
+                        ->with('prices.eventCategory')
                         ->where('date' , '>', now())
                         ->orderBy('date')
                         ->first();
@@ -301,12 +302,14 @@ class MainController extends Controller
 
     public function event(Event $event)
     {
+        $event->load('prices.eventCategory');
         return response()->json(compact('event'));
     }
 
     public function upcominEvent()
     {
         $upcomingEvent = Event::query()
+                        ->with('prices.eventCategory')
                         ->where('date' , '>', now())
                         ->orderBy('date')
                         ->first();

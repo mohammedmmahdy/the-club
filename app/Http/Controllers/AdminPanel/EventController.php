@@ -139,10 +139,15 @@ class EventController extends AppBaseController
         }
 
         $event = $this->eventRepository->update($request->all(), $id);
+// dd($request->category);
 
-        $event->prices()->updateOrCreate(['event_category_id'  => request('event_category_id'),], [
-            'price'  => request('price')
-        ]);
+        foreach ($request->category as $category) {
+            $event->prices()
+                ->where('event_category_id', $category['id'])
+                ->update([
+                    'price' => $category['price']
+                ]);
+        }
 
         Flash::success(__('messages.updated', ['model' => __('models/events.singular')]));
 

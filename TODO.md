@@ -43,10 +43,11 @@
 
 ## Events
 
-[] Add event categories with pricing for every category
-[] Handle categories in event creation
-[] Handle new users data in subscribe
-[] add upcoming event to events endpoint
+[x] Add event categories with pricing for every category
+[x] add prices to events endpoint
+[x] Handle categories in event creation
+[x] Handle new users data in subscribe
+[x] add upcoming event to events endpoint
 
 
 ## Admin Dashboard

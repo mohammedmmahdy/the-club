@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-
-
 // Test
 Route::get('test', [MainController::class, 'test']);
 
@@ -58,7 +56,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
 
 //////////////////////////////// Start playgrounds //////////////////////////////////
     Route::post('playgrounds/reservation', [CustomerController::class, 'playgroundReservation']);
-    Route::get('playgrounds/{playground}/reserved-times', [MainController::class, 'playgroundReservedTimes']);
+    Route::get('playgrounds/{playground}/reserved-times', [CustomerController::class, 'playgroundReservedTimes']);
     Route::get('playgrounds', [MainController::class, 'playgrounds']);
     Route::get('playground-types', [MainController::class, 'playgroundTypes']);
 //////////////////////////////// End playgrounds //////////////////////////////////

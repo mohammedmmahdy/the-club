@@ -129,7 +129,8 @@
             </label>
         </div>
     </div>
-
+    <div class="clearfix"></div>
+    <br><hr><br>
     <h3>Pricing</h3>
 
     <table class="table">

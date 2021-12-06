@@ -64,10 +64,31 @@
 
 
 
+
 <!-- Description Field -->
 <div class="form-group">
     {!! Form::label('description', __('models/events.fields.description').':') !!}
     <b>{!! $event->description !!}</b>
 </div>
+
+<div class="clearfix"></div>
+<br><hr><br>
+<h3>Prices</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($event->prices as $category)
+            <tr>
+                <td>{{ $category->eventCategory->name }}</td>
+                <td>{{ $category->price }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
 
