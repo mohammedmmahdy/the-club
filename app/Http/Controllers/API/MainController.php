@@ -15,6 +15,7 @@ use App\Models\SocialLink;
 use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use App\Models\Playground;
 use App\Models\PlaygroundType;
 use App\Models\User;
@@ -193,6 +194,7 @@ class MainController extends Controller
     {
         // $data['slider'] = Slider::active()->orderBy('in_order_to')->get();
         $data['events'] = Event::where('date', '>' , now())->get();
+        $news = News::latest()->limit(4)->get();
         // $blogs = Blog::latest()->limit(3)->get();
 
         return response()->json($data);
@@ -267,6 +269,17 @@ class MainController extends Controller
         $blog = Blog::findOrFail($id);
 
         return response()->json(compact('blog'));
+    }
+
+    public function allNews()
+    {
+        $allNews = News::latest()->get();
+        return response()->json(compact('allNews'));
+    }
+
+    public function singleNews(News $news)
+    {
+        return response()->json(compact('news'));
     }
 
 

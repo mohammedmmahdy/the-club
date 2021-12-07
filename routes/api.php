@@ -35,6 +35,8 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::get('metas', 'MainController@metas');
     Route::get('blogs', 'MainController@blogs');
     Route::get('blog/{id}', 'MainController@blog');
+    Route::get('all-news', 'MainController@allNews');
+    Route::get('single-news/{news}', 'MainController@singleNews');
     Route::get('faqs', 'MainController@faqs');
     Route::post('send-contact', 'MainController@send_contact_message');
     Route::post('newsletter', 'MainController@newsletter');

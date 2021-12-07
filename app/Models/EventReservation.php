@@ -10,9 +10,8 @@ class EventReservation extends Model
         'event_id',
         'user_id',
 
-        'first_name',
-        'last_name',
-        'phone',
+        'strMemberName',
+        'member_mobile',
         'number_of_tickets',
         'status',
 

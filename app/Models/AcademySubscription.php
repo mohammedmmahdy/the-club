@@ -13,9 +13,8 @@ class AcademySubscription extends Model
         'user_id',
         'academy_schedule_id',
 
-        'first_name',
-        'last_name',
-        'phone',
+        'strMemberName',
+        'member_mobile',
         'status',
 
         'age',

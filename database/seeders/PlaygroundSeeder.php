@@ -66,6 +66,8 @@ class PlaygroundSeeder extends Seeder
                 'member_mobile' => $faker->e164PhoneNumber(),
                 'date' => $faker->date,
                 'time' => $faker->time,
+                'reservation_code' => $faker->uuid(),
+                'number_of_hours' => 1,
                 'number_of_people' => rand(8,12),
                 'price' => rand(200,300),
             ]);

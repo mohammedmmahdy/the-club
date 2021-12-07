@@ -33,9 +33,8 @@ class TicketReservation extends Model
 
     public $fillable = [
         'user_id',
-        'first_name',
-        'last_name',
-        'phone',
+        'strMemberName',
+        'member_mobile',
         'date',
         'number_of_people',
         'price'

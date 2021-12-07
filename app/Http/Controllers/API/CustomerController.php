@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\EventReservation;
 use App\Models\Playground;
+use App\Models\PlaygroundReservation;
 use Faker\Provider\Uuid;
 use Illuminate\Validation\ValidationException;
 
@@ -140,16 +141,14 @@ class CustomerController extends Controller
                 'member_mobile'         => 'required|numeric',
                 'date'                  => 'required|date',
                 'time'                  => 'required|date_format:H:i:s',
+                'number_of_hours'      => 'required|numeric',
                 'number_of_people'      => 'required|numeric',
             ]);
 
+            $attributes['reservation_code'] = $this->randomCode();
+
             if (auth('api')->user()) {
-                $data['user'] = auth('api')->user();
-            } else {
-                $data['user'] = User::create([
-                    'strMemberName'        => $attributes['strMemberName'],
-                    'member_mobile'        => $attributes['member_mobile'],
-                ]);
+                $attributes['user_id'] = auth('api')->id();
             }
 
             $playground = Playground::findOrFail($attributes['playground_id']);
@@ -162,8 +161,16 @@ class CustomerController extends Controller
 
             $attributes['price'] = $playground->price;
 
-            $data['playground'] = $data['user']->playgrounds()->create($attributes);
-            $data['user']->load('playgrounds');
+            if (request('number_of_hours') > 1 ) {
+                for ($i= 0; $i < request('number_of_hours') ; $i++) {
+                    $data['playground'] = PlaygroundReservation::create($attributes);
+                    $attributes['time'] = (int) $attributes['time'];
+                    $attributes['time']++;
+                    $attributes['time'] = (string) $attributes['time'] . ":00:00";
+                }
+            }else{
+                $data['playground'] = PlaygroundReservation::create($attributes);
+            }
 
             return response()->json($data);
         }
@@ -210,5 +217,24 @@ class CustomerController extends Controller
         }
 
     //------------------------- End Tickets --------------------------//
+
+
+
+
+
+    ///////////////////////////////////////// Helpers  /////////////////////////////////////////
+
+    public function randomCode($length = 8)
+    {
+        // 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
+    }
 
 }

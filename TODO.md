@@ -39,6 +39,7 @@
     [x] dashboard view ( table - fields - show fields )
 [x] Handle new users data in subscribe
 [x] API for playground types
+[x] edit reservation process by add the number of hours
 
 
 ## Events
@@ -61,7 +62,7 @@
 ## News
 
 [x] Make news CRUD (multilingual)
-[] news api
+[x] news api
 
 ## Webhook
 
