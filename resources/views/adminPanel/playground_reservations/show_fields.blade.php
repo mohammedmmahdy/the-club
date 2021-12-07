@@ -1,3 +1,5 @@
+
+
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', __('models/playgroundReservations.fields.id').':') !!}
@@ -19,17 +21,7 @@
 </div>
 
 
-<!-- Time Field -->
-<div class="form-group">
-    {!! Form::label('time', __('models/playgroundReservations.fields.time').':') !!}
-    <b>{{ $playgroundReservation->time }}</b>
-</div>
 
-<!-- price Field -->
-<div class="form-group">
-    {!! Form::label('price', __('models/playgrounds.fields.price').':') !!}
-    <b>{{ $playgroundReservation->price }} @lang('lang.currency')</b>
-</div>
 
 
 <!-- Number Of People Field -->
@@ -51,5 +43,28 @@
     {!! Form::label('updated_at', __('models/playgroundReservations.fields.updated_at').':') !!}
     <b>{{ $playgroundReservation->updated_at }}</b>
 </div>
+
+<div class="clearfix"></div>
+<br><hr><br>
+<h3>Reservation Times</h3>
+<br><hr><br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($reservations as $reservations)
+        <tr>
+            <td>{{ $reservations->time }}</td>
+            <td>{{ $reservations->price }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
 
 
