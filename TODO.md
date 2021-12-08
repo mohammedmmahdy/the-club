@@ -5,6 +5,7 @@
 [x] edit login process
 
 ## Users
+[] Api for sub users
 
 ## Branches
 
@@ -29,7 +30,10 @@
 [x] - Create Academy Subscription.
     [x] * Handle Subscribe status or approval.
 [x] Handle new users data in subscribe
-
+[x] Add icon to academy 
+[] Single academy Api
+[] subscription flag in academy ( show if user is subscribed or not )
+[] Api for user progress
 ## Playgrounds
 
 [x] Add photo to playground type
@@ -69,4 +73,7 @@
 [x] create insert users API
 [x] create update users API
 [x] create delete users API
+
+
+
 

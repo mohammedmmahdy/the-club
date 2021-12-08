@@ -4,6 +4,12 @@
     <img src="{{$academy->icon_thumbnail_path}}" alt="" width="100">
 </div>
 
+<!-- main_photo Field -->
+<div class="form-group">
+    {!! Form::label('main_photo', __('models/academies.fields.main_photo').':') !!}
+    <img src="{{$academy->main_photo_thumbnail_path}}" alt="" width="100">
+</div>
+
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', __('models/academies.fields.id').':') !!}

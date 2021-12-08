@@ -39,7 +39,8 @@ class Academy extends Model
         'name',
         'about',
         'team',
-        'icon'
+        'icon',
+        'main_photo',
     ];
 
     /**
@@ -68,8 +69,9 @@ class Academy extends Model
             $rules[$language . '.about'] = 'required|string|min:3';
             $rules[$language . '.team'] = 'required|string|min:3';
         }
-        $rules['branch_id'] = 'required|exists:branches,id';
-        $rules['icon']      = 'required|image|mimes:jpg,jpeg,png';
+        $rules['branch_id']       = 'required|exists:branches,id';
+        $rules['icon']            = 'required|image|mimes:jpg,jpeg,png';
+        $rules['main_photo']      = 'required|image|mimes:jpg,jpeg,png';
 
         $rules['photos']    = 'required|array';
         $rules['photos.*']  = 'required|image|mimes:jpg,jpeg,png';
@@ -88,6 +90,8 @@ class Academy extends Model
     protected $appends = [
         'icon_original_path',
         'icon_thumbnail_path',
+        'main_photo_original_path',
+        'main_photo_thumbnail_path',
     ];
     // icon
     public function setIconAttribute($file)
@@ -117,7 +121,37 @@ class Academy extends Model
     {
         return $this->icon ? asset('uploads/images/thumbnail/' . $this->icon) : null;
     }
-    // icon
+    //
+
+    // main_photo
+    public function setMainPhotoAttribute($file)
+    {
+        try {
+            if ($file) {
+
+                $fileName = $this->createFileName($file);
+
+                $this->originalImage($file, $fileName);
+
+                $this->thumbImage($file, $fileName, 200, 200);
+
+                $this->attributes['main_photo'] = $fileName;
+            }
+        } catch (\Throwable $th) {
+            $this->attributes['main_photo'] = $file;
+        }
+    }
+
+    public function getMainPhotoOriginalPathAttribute()
+    {
+        return $this->main_photo ? asset('uploads/images/original/' . $this->main_photo) : null;
+    }
+
+    public function getMainPhotoThumbnailPathAttribute()
+    {
+        return $this->main_photo ? asset('uploads/images/thumbnail/' . $this->main_photo) : null;
+    }
+    // main_photo
 
 
 
