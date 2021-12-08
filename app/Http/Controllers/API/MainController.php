@@ -295,6 +295,12 @@ class MainController extends Controller
         return response()->json(compact('academies'));
     }
 
+    public function academy(Academy $academy)
+    {
+        $academy->load('photos','schedules');
+        return response()->json(compact('academy'));
+    }
+
     public function academySchedule(Academy $academy)
     {
         $schedules = $academy->schedules;

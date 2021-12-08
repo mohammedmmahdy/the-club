@@ -46,6 +46,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
 //////////////////////////////// Start Academy //////////////////////////////////
     Route::get('academies/academy-schedule/{academy}', [MainController::class, 'academySchedule']);
     Route::post('academies/academy-subscribe', [CustomerController::class, 'academySubscribe']);
+    Route::get('academies/{academy}', [MainController::class, 'academy']);
     Route::get('academies', [MainController::class, 'academies']);
 //////////////////////////////// End Academy //////////////////////////////////
 

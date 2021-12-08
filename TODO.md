@@ -31,8 +31,8 @@
     [x] * Handle Subscribe status or approval.
 [x] Handle new users data in subscribe
 [x] Add icon to academy 
-[] Single academy Api
-[] subscription flag in academy ( show if user is subscribed or not )
+[x] Single academy Api
+[x] subscription flag in academy ( show if user is subscribed or not )
 [] Api for user progress
 ## Playgrounds
 

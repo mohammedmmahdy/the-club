@@ -92,6 +92,7 @@ class Academy extends Model
         'icon_thumbnail_path',
         'main_photo_original_path',
         'main_photo_thumbnail_path',
+        'is_user_subscribed',
     ];
     // icon
     public function setIconAttribute($file)
@@ -152,6 +153,23 @@ class Academy extends Model
         return $this->main_photo ? asset('uploads/images/thumbnail/' . $this->main_photo) : null;
     }
     // main_photo
+
+
+    // Handle If Current User subscribed in this academy
+    public function getIsUserSubscribedAttribute()
+    {
+        if (auth('api')->check()) {
+            if (in_array(auth('api')->id(), $this->subscriptions()->pluck('user_id')->toArray())) {
+                $result = 1;
+            }else{
+                $result = 0;
+            }
+        }else{
+            $result = 0;
+        }
+
+        return $result;
+    }
 
 
 
