@@ -71,6 +71,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
 //////////////////////////////// Start User //////////////////////////////////
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('logout', 'AuthController@logout');
+        Route::get('user/submembers', [CustomerController::class, 'userSubmembers']);
     });
 ////////////////////////////////// End User //////////////////////////////////
 

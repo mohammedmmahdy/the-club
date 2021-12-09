@@ -5,7 +5,7 @@
 [x] edit login process
 
 ## Users
-[] Api for sub users
+[] add sub users in login 
 
 ## Branches
 

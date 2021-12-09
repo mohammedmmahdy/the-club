@@ -42,7 +42,7 @@ class Faq extends Model
 
         foreach ($languages as $language) {
             $rules[$language . '.question'] = 'required|string|min:3|max:191';
-            $rules[$language . '.answer'] = 'required|string|min:3';
+            $rules[$language . '.answer']   = 'required|string|min:3';
         }
         $rules['faq_category_id'] = 'required';
 

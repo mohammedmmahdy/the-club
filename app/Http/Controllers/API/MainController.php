@@ -81,7 +81,7 @@ class MainController extends Controller
         $validated = request()->validate([
             'MemberData'                         => 'array|required',
             'MemberData.*.iMemberId'             => 'required',
-            'MemberData.*.member_mobile'         => 'required',
+            'MemberData.*.member_mobile'         => 'required|unique:users,member_mobile',
             'MemberData.*.strCardNumber'         => 'required',
             'MemberData.*.dateCardDateValidFrom' => 'required',
             'MemberData.*.dateCardDateExpire'    => 'required',

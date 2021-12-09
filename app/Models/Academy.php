@@ -159,7 +159,7 @@ class Academy extends Model
     public function getIsUserSubscribedAttribute()
     {
         if (auth('api')->check()) {
-            if (in_array(auth('api')->id(), $this->subscriptions()->pluck('user_id')->toArray())) {
+            if (in_array(auth('api')->id(), $this->subscriptions()->where('status', 1)->pluck('user_id')->toArray())) {
                 $result = 1;
             }else{
                 $result = 0;

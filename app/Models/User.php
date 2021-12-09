@@ -148,4 +148,9 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->hasMany(TicketReservation::class);
     }
+
+    public function submembers()
+    {
+        return $this->hasMany(User::class, 'iMainMemberID', 'iMemberId');
+    }
 }

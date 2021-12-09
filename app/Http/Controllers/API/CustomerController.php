@@ -26,26 +26,35 @@ class CustomerController extends Controller
     # Main
     ##################################################################
 
-        public function update_information(Request $request)
+        // public function update_information(Request $request)
+        // {
+        //     $customer = auth('api.customer')->user();
+        //     $data = $request->validate([
+        //         'name'  => 'required|string|min:3|max:191',
+        //         'email' => 'required|email|unique:customers,email,' . $customer->id,
+        //         'photo' => 'nullable|image|mimes:jpeg,jpg,png',
+        //     ]);
+
+        //     $customer->update($data);
+
+        //     return response()->json(compact('customer'));
+        // }
+
+        // public function wallet()
+        // {
+        //     $customer = auth('api.customer')->user();
+        //     $balance = $customer->balance;
+
+        //     return response()->json(compact('balance'));
+        // }
+
+
+        public function userSubmembers()
         {
-            $customer = auth('api.customer')->user();
-            $data = $request->validate([
-                'name'  => 'required|string|min:3|max:191',
-                'email'  => 'required|email|unique:customers,email,' . $customer->id,
-                'photo' => 'nullable|image|mimes:jpeg,jpg,png',
-            ]);
+            $submembers = User::where('iMainMemberID', auth('api')->user()->iMemberId)->get();
 
-            $customer->update($data);
+            return response()->json(compact('submembers'));
 
-            return response()->json(compact('customer'));
-        }
-
-        public function wallet()
-        {
-            $customer = auth('api.customer')->user();
-            $balance = $customer->balance;
-
-            return response()->json(compact('balance'));
         }
 
     //------------------------- End Main --------------------------//
