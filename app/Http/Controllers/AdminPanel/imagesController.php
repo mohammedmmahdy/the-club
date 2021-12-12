@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class imagesController extends AppBaseController
+class ImagesController extends AppBaseController
 {
     /** @var  imagesRepository */
     private $imagesRepository;

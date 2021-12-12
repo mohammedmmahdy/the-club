@@ -109,7 +109,6 @@
     <br>
     <div id="product-photos">
 
-
         <div id="wrapper">
             <h2>Drop your Files</h2>
             <span>or</span>

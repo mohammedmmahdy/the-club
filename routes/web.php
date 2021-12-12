@@ -79,8 +79,10 @@ Route::group(
             Route::get('newsletters', 'NewsletterController@index')->name('newsletters.index');
             Route::resource('blogs', BlogController::class);
             Route::resource('news', NewsController::class);
-            Route::resource('faqCategories', FaqCategoryController::class);
             Route::resource('faqs', FaqController::class);
+            Route::resource('gallery', GalleryController::class)->only(['index','create','store']);
+            Route::get('gallery/{gallery}', 'GalleryController@destroy')->name('gallery.destroy');
+
             // Pages CRUD
             Route::resource('pages', 'PageController');
             Route::resource('pages.paragraphs', 'ParagraphController')->shallow();

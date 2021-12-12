@@ -5,7 +5,9 @@
 [x] edit login process
 
 ## Users
-[] add sub users in login 
+[x] add sub users in login
+[] update email
+[] update password
 
 ## Branches
 
