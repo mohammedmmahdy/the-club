@@ -39,14 +39,6 @@
             @php $i = 0; @endphp
             @endforeach
 
-
-
-            <div class="form-group col-sm-12">
-                {!! Form::label('faq_category_id', 'Faq Category') !!}
-                {!! Form::select('faq_category_id', $faqCategories, null, ['class' => 'form-control', 'placeholder' => 'Select Category']) !!}
-            </div>
-
-
             <!-- Submit Field -->
             <div class="form-group col-sm-12">
                 {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}

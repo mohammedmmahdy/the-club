@@ -48,15 +48,6 @@ class CustomerController extends Controller
         //     return response()->json(compact('balance'));
         // }
 
-
-        public function userSubmembers()
-        {
-            $submembers = User::where('iMainMemberID', auth('api')->user()->iMemberId)->get();
-
-            return response()->json(compact('submembers'));
-
-        }
-
     //------------------------- End Main --------------------------//
 
     ##################################################################

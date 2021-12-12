@@ -22,11 +22,7 @@ class Faq extends Model
 
     protected $dates = ['deleted_at'];
 
-    public $fillable = [
-        'faq_category_id',
-        // 'question',
-        // 'answer'
-    ];
+    public $fillable = ['id'];
 
     protected $casts = [
         'id' => 'integer',
@@ -44,7 +40,6 @@ class Faq extends Model
             $rules[$language . '.question'] = 'required|string|min:3|max:191';
             $rules[$language . '.answer']   = 'required|string|min:3';
         }
-        $rules['faq_category_id'] = 'required';
 
         return $rules;
     }

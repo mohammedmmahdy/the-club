@@ -68,6 +68,17 @@
 [x] Make news CRUD (multilingual)
 [x] news api
 
+## FAQ
+
+[x] remove categories and prepare faq
+[x] create faq end points
+
+## Gallery
+
+[] make gallery table
+[] make gallery model with photo handling
+[] make gallery view in dashboard
+
 ## Webhook
 
 [x] create insert users API

@@ -16,11 +16,8 @@ class CreateFaqsTable extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('faq_category_id');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('faq_category_id')->references('id')->on('faq_categories')->onDelete('cascade');
         });
 
         Schema::create('faq_translations', function (Blueprint $table) {

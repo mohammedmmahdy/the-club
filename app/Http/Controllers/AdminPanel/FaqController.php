@@ -33,9 +33,7 @@ class FaqController extends AppBaseController
      */
     public function create()
     {
-        $faqCategories = FaqCategory::get()->pluck('name', 'id');
-
-        return view('adminPanel.faqs.create', compact('faqCategories'));
+        return view('adminPanel.faqs.create');
     }
 
     /**
@@ -92,10 +90,8 @@ class FaqController extends AppBaseController
 
             return redirect(route('adminPanel.faqs.index'));
         }
-        $faqCategories = FaqCategory::get()->pluck('name', 'id');
 
-
-        return view('adminPanel.faqs.edit', compact('faqCategories', 'faq'));
+        return view('adminPanel.faqs.edit', compact('faq'));
     }
 
     /**

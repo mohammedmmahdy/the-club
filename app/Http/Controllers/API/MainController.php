@@ -15,6 +15,7 @@ use App\Models\SocialLink;
 use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use App\Models\News;
 use App\Models\Playground;
 use App\Models\PlaygroundType;
@@ -81,7 +82,7 @@ class MainController extends Controller
         $validated = request()->validate([
             'MemberData'                         => 'array|required',
             'MemberData.*.iMemberId'             => 'required',
-            'MemberData.*.member_mobile'         => 'required|unique:users,member_mobile',
+            'MemberData.*.member_mobile'         => 'required',
             'MemberData.*.strCardNumber'         => 'required',
             'MemberData.*.dateCardDateValidFrom' => 'required',
             'MemberData.*.dateCardDateExpire'    => 'required',
@@ -285,6 +286,11 @@ class MainController extends Controller
         return response()->json(compact('news'));
     }
 
+    public function faqs()
+    {
+        $faqs = Faq::get();
+        return response()->json(compact('faqs'));
+    }
 
 // Academies
     public function academies()
