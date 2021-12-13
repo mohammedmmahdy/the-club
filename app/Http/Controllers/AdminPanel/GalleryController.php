@@ -12,6 +12,7 @@ class GalleryController extends AppBaseController
     public function index()
     {
         $gallery = Gallery::latest()->get();
+
         return view('adminPanel.gallery.index', compact('gallery'));
     }
 

@@ -41,6 +41,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::post('send-contact', 'MainController@send_contact_message');
     Route::post('newsletter', 'MainController@newsletter');
     Route::get('landing-page', 'MainController@landing_page');
+    Route::get('gallery', 'MainController@gallery');
 ///////////////////////////////// End Pages //////////////////////////////////
 
 //////////////////////////////// Start Academy //////////////////////////////////
@@ -71,6 +72,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
 //////////////////////////////// Start User //////////////////////////////////
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('logout', 'AuthController@logout');
+        Route::post('user/update-password', [ CustomerController::class, 'updatePassword' ]);
     });
 ////////////////////////////////// End User //////////////////////////////////
 

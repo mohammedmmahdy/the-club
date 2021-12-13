@@ -3,52 +3,56 @@
 namespace App\Models;
 
 use App\Helpers\ImageUploaderTrait;
-use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class images
- * @package App\Models
- * @version September 27, 2020, 12:25 pm UTC
- *
- * @property integer $page_id
- * @property string $photo
- */
 class Gallery extends Model
 {
+
     use ImageUploaderTrait;
 
-    public $fillable = ['photo'];
+    /**
+     * Table name.
+     *
+     * @var string
+     */
+    protected $table = 'galleries';
 
-    protected $casts = [
-        'id' => 'integer',
-        'photo' => 'string'
+    protected $fillable = ['photo'];
+
+
+    ################################### Appends #####################################
+
+    protected $appends = [
+        'photo_original_path',
+        'photo_thumbnail_path',
     ];
-
-    public static $rules = [
-        'photo' => 'required|image|mimes:jpeg,jpg,png',
-    ];
-
-
+    // photo
     public function setPhotoAttribute($file)
     {
-        if ($file) {
-            try {
+        try {
+            if ($file) {
+
                 $fileName = $this->createFileName($file);
 
                 $this->originalImage($file, $fileName);
 
+                $this->thumbImage($file, $fileName, 200, 200);
+
                 $this->attributes['photo'] = $fileName;
-            } catch (\Throwable $th) {
-                $this->attributes['photo'] = $file;
             }
+        } catch (\Throwable $th) {
+            $this->attributes['photo'] = $file;
         }
     }
 
-
-    public function getPhotoAttribute($val)
+    public function getPhotoOriginalPathAttribute()
     {
-        return $val ? asset('uploads/images/original') . '/' . $val : null;
+        return $this->photo ? asset('uploads/images/original/' . $this->photo) : null;
     }
 
+    public function getPhotoThumbnailPathAttribute()
+    {
+        return $this->photo ? asset('uploads/images/thumbnail/' . $this->photo) : null;
+    }
+    // photo
 }

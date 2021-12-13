@@ -15,6 +15,7 @@ use App\Models\EventReservation;
 use App\Models\Playground;
 use App\Models\PlaygroundReservation;
 use Faker\Provider\Uuid;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 use function PHPUnit\Framework\throwException;
@@ -48,6 +49,26 @@ class CustomerController extends Controller
         //     return response()->json(compact('balance'));
         // }
 
+        public function updatePassword()
+        {
+            request()->validate([
+                'old_password' => 'required|string|max:191',
+                'password'     => 'required|string|max:191|confirmed'
+            ]);
+
+            $user = auth('api')->user();
+            if (Hash::check(request('old_password'), $user->password)) {
+
+                $user->update([ 'password' => request('password')]);
+                return response()->json([
+                    'message' => 'Password Updated Successfully'
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'Wrong Old Password'
+            ], 403);
+        }
     //------------------------- End Main --------------------------//
 
     ##################################################################

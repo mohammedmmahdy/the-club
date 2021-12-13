@@ -37,7 +37,7 @@ class EventController extends AppBaseController
         $events = $this->eventRepository->all();
         $reservations_count = $this->reservations()->reservations->count();
 
-        return view('adminPanel.events.index',compact('reservations_count','events'));
+        return view('adminPanel.events.index', compact('reservations_count', 'events'));
     }
 
     /**
@@ -47,7 +47,7 @@ class EventController extends AppBaseController
      */
     public function create()
     {
-        $branches = Branch::get()->pluck('name','id');
+        $branches = Branch::get()->pluck('name', 'id');
         $eventCategories = EventCategory::get();
         return view('adminPanel.events.create', compact('branches', 'eventCategories'));
     }
@@ -64,12 +64,13 @@ class EventController extends AppBaseController
         $input = $request->all();
 
         $event = $this->eventRepository->create($input);
-
-        foreach ($request->category as $category) {
-            $event->prices()->create([
-                'event_category_id'  => $category['id'],
-                'price'              => $category['price']
-            ]);
+        if ($request->category) {
+            foreach ($request->category as $category) {
+                $event->prices()->create([
+                    'event_category_id'  => $category['id'],
+                    'price'              => $category['price']
+                ]);
+            }
         }
 
         Flash::success(__('messages.saved', ['model' => __('models/events.singular')]));
@@ -114,10 +115,10 @@ class EventController extends AppBaseController
             return redirect(route('adminPanel.events.index'));
         }
 
-        $branches = Branch::get()->pluck('name','id');
+        $branches = Branch::get()->pluck('name', 'id');
         $eventCategories = EventCategory::get();
 
-        return view('adminPanel.events.edit',compact('branches', 'event', 'eventCategories'));
+        return view('adminPanel.events.edit', compact('branches', 'event', 'eventCategories'));
     }
 
     /**
@@ -139,14 +140,15 @@ class EventController extends AppBaseController
         }
 
         $event = $this->eventRepository->update($request->all(), $id);
-// dd($request->category);
 
-        foreach ($request->category as $category) {
-            $event->prices()
-                ->where('event_category_id', $category['id'])
-                ->update([
-                    'price' => $category['price']
-                ]);
+        if ($request->category) {
+            foreach ($request->category as $category) {
+                $event->prices()
+                    ->where('event_category_id', $category['id'])
+                    ->update([
+                        'price' => $category['price']
+                    ]);
+            }
         }
 
         Flash::success(__('messages.updated', ['model' => __('models/events.singular')]));
@@ -211,5 +213,4 @@ class EventController extends AppBaseController
 
         return view('adminPanel.events.reservations', compact('reservations'));
     }
-
 }

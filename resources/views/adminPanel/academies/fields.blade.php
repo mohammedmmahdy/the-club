@@ -46,12 +46,12 @@
         </script>
     </div>
     @endforeach
-
+{{--
     <!-- academy Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('branch_id', __('models/academies.fields.branch_id').':') !!}
         {!! Form::select('branch_id', $data['branches'], null, ['class' => 'form-control', 'placeholder' => 'Select Branch']) !!}
-    </div>
+    </div> --}}
 
     <!-- icon Field -->
     <div class="form-group col-sm-6">

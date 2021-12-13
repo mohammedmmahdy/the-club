@@ -65,6 +65,7 @@ class Event extends Model
             $rules[$language . '.description'] = 'required|string|min:3';
         }
 
+        $rules['branch_id'] = 'required|exists:branches,id';
         $rules['date'] = 'required|date';
         $rules['icon'] = 'required|image|mimes:jpg,jpeg,png';
         $rules['photo'] = 'required|image|mimes:jpg,jpeg,png';

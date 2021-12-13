@@ -44,8 +44,9 @@
 
             <div id="gallery" class="container-fluid">
                 @foreach ($gallery as $photo)
+
                 <div class="image">
-                    <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{$photo->photo}}" alt="Gallery" class="img-responsive">
+                    <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{$photo->photo_original_path}}" alt="Gallery" class="img-responsive">
                     <a href="{{ route('adminPanel.gallery.destroy',$photo->id) }}" onclick="return confirm('Are you sure to delete this photo?')" class="btn btn-sm btn-shadow mx-1 btn-transparent-danger"><i class="fa fa-trash"></i></a>
                 </div>
                 @endforeach

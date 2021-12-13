@@ -22,7 +22,7 @@
                         </div>
                         <div class="card-body">
 
-                            {!! Form::open(['route' => 'adminPanel.gallery.store']) !!}
+                            {!! Form::open(['route' => 'adminPanel.gallery.store', 'files' => true]) !!}
                                 @include('adminPanel.gallery.fields')
                             {!! Form::close() !!}
                         </div>

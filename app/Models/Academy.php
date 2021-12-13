@@ -35,7 +35,7 @@ class Academy extends Model
 
 
     public $fillable = [
-        'branch_id',
+        // 'branch_id',
         'name',
         'about',
         'team',
@@ -69,7 +69,7 @@ class Academy extends Model
             $rules[$language . '.about'] = 'required|string|min:3';
             $rules[$language . '.team'] = 'required|string|min:3';
         }
-        $rules['branch_id']       = 'required|exists:branches,id';
+        // $rules['branch_id']       = 'required|exists:branches,id';
         $rules['icon']            = 'required|image|mimes:jpg,jpeg,png';
         $rules['main_photo']      = 'required|image|mimes:jpg,jpeg,png';
 

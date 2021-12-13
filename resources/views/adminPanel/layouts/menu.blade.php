@@ -372,7 +372,7 @@
 </script>
 
 
-<li class="menu-item  {{ Request::is('*branches*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+{{-- <li class="menu-item  {{ Request::is('*branches*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
     <a href="{{ route('adminPanel.branches.index') }}" class="menu-link ">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -392,7 +392,7 @@
         </span>
         <span class="menu-text">@lang('models/branches.plural')</span>
     </a>
-</li>
+</li> --}}
 
 <li class="menu-item  {{ Request::is('*academies*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
     <a href="{{ route('adminPanel.academies.index') }}" class="menu-link ">

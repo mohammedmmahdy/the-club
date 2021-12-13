@@ -16,6 +16,7 @@ use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Models\Gallery;
 use App\Models\News;
 use App\Models\Playground;
 use App\Models\PlaygroundType;
@@ -292,11 +293,16 @@ class MainController extends Controller
         return response()->json(compact('faqs'));
     }
 
+    public function gallery()
+    {
+        $gallery = Gallery::get();
+        return response()->json(compact('gallery'));
+    }
 // Academies
     public function academies()
     {
-        $branch = Branch::firstOrFail();
-        $academies = $branch->academies->load('photos','schedules');
+        // $branch = Branch::firstOrFail();
+        $academies = Academy::with('photos','schedules')->get();
 
         return response()->json(compact('academies'));
     }

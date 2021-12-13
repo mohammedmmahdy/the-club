@@ -16,11 +16,11 @@
     <b>{{ $academy->id }}</b>
 </div>
 
-<!-- Branch Id Field -->
+{{-- <!-- Branch Id Field -->
 <div class="form-group">
     {!! Form::label('branch_id', __('models/academies.fields.branch_id').':') !!}
     <b>{{ $academy->branch->name ?? '' }}</b>
-</div>
+</div> --}}
 
 
 <!-- Name Field -->

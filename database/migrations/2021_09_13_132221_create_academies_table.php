@@ -16,7 +16,7 @@ class CreateAcademiesTable extends Migration
     {
         Schema::create('academies', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('branch_id');
+            // $table->foreignId('branch_id');
             $table->string('main_photo');
             $table->string('icon');
             $table->timestamps();
