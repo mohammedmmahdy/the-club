@@ -227,6 +227,7 @@ class MainController extends Controller
                     ->limit(4)
                     ->get();
         $data['news'] = News::latest()->limit(4)->get();
+        $data['safetyRatio'] = Option::first()->safety_ratio;
         // $blogs = Blog::latest()->limit(3)->get();
 
         return response()->json($data);
@@ -328,9 +329,14 @@ class MainController extends Controller
 // Academies
     public function academies()
     {
-        $academies = Academy::with('photos','schedules')->get();
+        $data['academies'] = Academy::with('photos','schedules')->get();
 
-        return response()->json(compact('academies'));
+        $user = auth('api')->user();
+        if ($user) {
+            $data['user_academies'] = $user->academies;
+        }
+
+        return response()->json($data);
     }
 
     public function academy(Academy $academy)

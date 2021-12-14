@@ -229,7 +229,13 @@ class AcademyController extends AppBaseController
 
     public function updateProgress(AcademySubscription $subscription)
     {
-        $subscription->update(['progress' => request('progress')]);
+        $validated = request()->validate([
+            'level'             => 'required|integer',
+            'total_levels'      => 'required|integer',
+            'session'           => 'required|integer',
+            'total_sessions'    => 'required|integer',
+        ]);
+        $subscription->update($validated);
 
         return back();
     }

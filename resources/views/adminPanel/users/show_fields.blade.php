@@ -84,9 +84,11 @@
         <thead>
             <tr>
                 <th>Academy</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Progress (%)</th>
+                {{-- <th>Age</th>
+                <th>Gender</th> --}}
+                <th>Progress
+                    <small class="d-block">( Level - Total levels - Session - Total sessions )</small>
+                </th>
                 <th>status</th>
             </tr>
         </thead>
@@ -94,7 +96,7 @@
             @foreach ($user->academies as $request)
             <tr>
                 <td>{{$request->academy->name ?? ''}}</td>
-                <td>{{$request->age}}</td>
+                {{-- <td>{{$request->age}}</td>
                 <td>
                     @switch($request->gender)
                     @case(1)
@@ -106,11 +108,15 @@
                     @default
 
                     @endswitch
-                </td>
+                </td> --}}
                 <td>
                     {!! Form::open(['route' => ['adminPanel.academies.updateProgress',$request->id], 'method' => 'patch', 'class' => 'd-flex']) !!}
 
-                    {!! Form::number('status', $request->progress, ['class' => 'form-control mx-2']) !!}
+                    {!! Form::number('level', $request->level, ['class' => 'form-control mx-1 mt-1', 'min' => 0, 'max' => $request->total_levels ]) !!}
+                    {!! Form::number('total_levels', $request->total_levels, ['class' => 'form-control mx-1 mt-1', 'min' => 0]) !!}
+                    {!! Form::number('session', $request->session, ['class' => 'form-control mx-1', 'min' => 0, 'max' => $request->total_sessions]) !!}
+                    {!! Form::number('total_sessions', $request->total_sessions, ['class' => 'form-control mx-1', 'min' => 0]) !!}
+
                     {!! Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) !!}
 
                     {!! Form::close() !!}
