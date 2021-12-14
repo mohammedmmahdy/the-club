@@ -1,3 +1,8 @@
+## General
+
+[] wifi password in options
+[] wifi api
+
 ## Auth
 
 [x] register users with new data ( free visit )
@@ -6,8 +11,8 @@
 
 ## Users
 [x] add sub users in login
-[] update email
-[] update password
+[x] update email
+[x] update password
 
 ## Branches
 
@@ -35,6 +40,7 @@
 [x] Add icon to academy 
 [x] Single academy Api
 [x] subscription flag in academy ( show if user is subscribed or not )
+[] make user progress from admin panel
 [] Api for user progress
 ## Playgrounds
 
@@ -56,9 +62,11 @@
 [x] Handle new users data in subscribe
 [x] add upcoming event to events endpoint
 
+## Tickets
+
+[] Book ticket for members only
 
 ## Admin Dashboard
-
 
 [x] Edit users crud with new data
 [x] Add filters to users table
@@ -77,9 +85,9 @@
 
 ## Gallery
 
-[] make gallery table
-[] make gallery model with photo handling
-[] make gallery view in dashboard
+[x] make gallery table
+[x] make gallery model with photo handling
+[x] make gallery view in dashboard
 
 ## Webhook
 

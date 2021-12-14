@@ -158,7 +158,7 @@ class AuthController extends Controller
         $data['user'] = auth('api')->user();
 
         // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )
-        if (!in_array($data['user']->iMemberType, [0,1,2])) {
+        if (!$data['user']->iMemberId) {
             return response()->json(['msg' => 'You are not a member'], 403);
         }
         // Handle account status True (Active) / False (Hold)

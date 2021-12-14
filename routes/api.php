@@ -66,13 +66,14 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
 //////////////////////////////// End playgrounds //////////////////////////////////
 
 //////////////////////////////// Start Tickets //////////////////////////////////
-    Route::post('tickets/reservation', [CustomerController::class, 'ticketReservation']);
 //////////////////////////////// End Tickets //////////////////////////////////
 
 //////////////////////////////// Start User //////////////////////////////////
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('logout', 'AuthController@logout');
         Route::post('user/update-password', [ CustomerController::class, 'updatePassword' ]);
+        Route::post('user/update-email', [ CustomerController::class, 'updateEmail' ]);
+        Route::post('tickets/reservation', [CustomerController::class, 'ticketReservation']);
     });
 ////////////////////////////////// End User //////////////////////////////////
 

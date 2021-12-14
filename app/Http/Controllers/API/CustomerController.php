@@ -58,7 +58,6 @@ class CustomerController extends Controller
 
             $user = auth('api')->user();
             if (Hash::check(request('old_password'), $user->password)) {
-
                 $user->update([ 'password' => request('password')]);
                 return response()->json([
                     'message' => 'Password Updated Successfully'
@@ -67,6 +66,26 @@ class CustomerController extends Controller
 
             return response()->json([
                 'message' => 'Wrong Old Password'
+            ], 403);
+        }
+
+        public function updateEmail()
+        {
+            request()->validate([
+                'password'     => 'required|string|max:191',
+                'email'        => "required|string|email|unique:users,email," . auth('api')->id(),
+            ]);
+
+            $user = auth('api')->user();
+            if (Hash::check(request('password'), $user->password)) {
+                $user->update([ 'email' => request('email')]);
+                return response()->json([
+                    'message' => 'Email Updated Successfully'
+                ]);
+            }
+
+            return response()->json([
+                'message' => 'Wrong Password'
             ], 403);
         }
     //------------------------- End Main --------------------------//
@@ -222,13 +241,15 @@ class CustomerController extends Controller
                 'number_of_people'      => 'required|numeric',
             ]);
 
-            if (auth('api')->user()) {
-                $data['user'] = auth('api')->user();
-            } else {
-                $data['user'] = User::create([
-                    'strMemberName'        => $attributes['strMemberName'],
-                    'member_mobile'        => $attributes['member_mobile'],
-                ]);
+            $data['user'] = auth('api')->user();
+
+            // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )
+            if (!$data['user']->iMemberId) {
+                return response()->json(['msg' => 'You are not a member'], 403);
+            }
+            // Handle account status True (Active) / False (Hold)
+            if (!$data['user']->boolMemberStatus) {
+                return response()->json(['msg' => 'Your account is not active'], 403);
             }
 
             $data['ticket'] = $data['user']->tickets()->create($attributes);
