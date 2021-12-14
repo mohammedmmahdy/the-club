@@ -83,17 +83,16 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Branch</th>
                 <th>Academy</th>
                 <th>Age</th>
                 <th>Gender</th>
+                <th>Progress (%)</th>
                 <th>status</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($user->academies as $request)
             <tr>
-                <td>{{$request->academy->branch->name ?? ''}}</td>
                 <td>{{$request->academy->name ?? ''}}</td>
                 <td>{{$request->age}}</td>
                 <td>
@@ -107,6 +106,14 @@
                     @default
 
                     @endswitch
+                </td>
+                <td>
+                    {!! Form::open(['route' => ['adminPanel.academies.updateProgress',$request->id], 'method' => 'patch', 'class' => 'd-flex']) !!}
+
+                    {!! Form::number('status', $request->progress, ['class' => 'form-control mx-2']) !!}
+                    {!! Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) !!}
+
+                    {!! Form::close() !!}
                 </td>
                 <td>
                     {!! Form::open(['route' => ['adminPanel.academies.changeRequestStatus',$request->id], 'method' => 'patch', 'class' => 'd-flex']) !!}

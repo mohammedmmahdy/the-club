@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\News;
+use App\Models\Option;
 use App\Models\Playground;
 use App\Models\PlaygroundType;
 use App\Models\User;
@@ -190,6 +191,32 @@ class MainController extends Controller
 
     ##########################################################################
 
+// General
+
+    public function wifiPassword()
+    {
+        $user = auth('api')->user();
+
+            // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )
+            if (!$user->iMemberId) {
+                return response()->json(['msg' => 'You are not a member'], 403);
+            }
+            // Handle account status True (Active) / False (Hold)
+            if (!$user->boolMemberStatus) {
+                return response()->json(['msg' => 'Your account is not active'], 403);
+            }
+
+        $data['wifiName'] = Option::first()->wifi_name;
+        $data['wifiPassword'] = Option::first()->wifi_password;
+        return response()->json($data);
+    }
+
+    public function safetyRatio()
+    {
+        $data['safetyRatio'] = Option::first()->safety_ratio;
+        return response()->json($data);
+    }
+
 // Pages
 
     public function landing_page()
@@ -301,7 +328,6 @@ class MainController extends Controller
 // Academies
     public function academies()
     {
-        // $branch = Branch::firstOrFail();
         $academies = Academy::with('photos','schedules')->get();
 
         return response()->json(compact('academies'));

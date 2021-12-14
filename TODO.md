@@ -64,7 +64,7 @@
 
 ## Tickets
 
-[] Book ticket for members only
+[x] Book ticket for members only
 
 ## Admin Dashboard
 

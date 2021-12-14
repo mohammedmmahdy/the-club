@@ -227,6 +227,13 @@ class AcademyController extends AppBaseController
         return back();
     }
 
+    public function updateProgress(AcademySubscription $subscription)
+    {
+        $subscription->update(['progress' => request('progress')]);
+
+        return back();
+    }
+
 
     public function dateFilter()
     {

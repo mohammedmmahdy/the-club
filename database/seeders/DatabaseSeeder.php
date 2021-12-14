@@ -15,15 +15,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AdminsTableSeeder::class,
-            // UserSeeder::class,
+            UserSeeder::class,
             RolesPermissionsTableSeeder::class,
             OptionTableSeeder::class,
             SliderTableSeeder::class,
             PageTableSeeder::class,
             InformationTableSeeder::class,
             SocialLinkTableSeeder::class,
-            // AcademySeeder::class,
-            // EventSeeder::class,
+            AcademySeeder::class,
+            EventSeeder::class,
             PlaygroundSeeder::class,
         ]);
     }

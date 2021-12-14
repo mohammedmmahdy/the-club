@@ -42,6 +42,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::post('newsletter', 'MainController@newsletter');
     Route::get('landing-page', 'MainController@landing_page');
     Route::get('gallery', 'MainController@gallery');
+    Route::get('safety-ratio', [MainController::class, 'safetyRatio']);
 ///////////////////////////////// End Pages //////////////////////////////////
 
 //////////////////////////////// Start Academy //////////////////////////////////
@@ -74,6 +75,9 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
         Route::post('user/update-password', [ CustomerController::class, 'updatePassword' ]);
         Route::post('user/update-email', [ CustomerController::class, 'updateEmail' ]);
         Route::post('tickets/reservation', [CustomerController::class, 'ticketReservation']);
+        Route::get('wifi-password', [MainController::class, 'wifiPassword']);
+
+
     });
 ////////////////////////////////// End User //////////////////////////////////
 

@@ -73,6 +73,7 @@ class CreateAcademiesTable extends Migration
 
             $table->string('strMemberName')->nullable();
             $table->string('member_mobile')->nullable();
+            $table->integer('progress')->default(0)->nullable();
             $table->unsignedTinyInteger('status')->default(0);
 
             $table->unsignedInteger('age');

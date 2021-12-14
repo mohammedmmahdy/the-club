@@ -18,8 +18,9 @@ class CreateOptionsTable extends Migration
             $table->increments('id');
             $table->string('logo')->default('logo.png');
             $table->string('fav_icon')->default('logo.png');
-            $table->string('welcome_message')->default('Welcome');
-            $table->string('welcome_photo')->default('welcome.jpg');
+            $table->string('wifi_name')->default('theclub');
+            $table->string('wifi_password')->default('password');
+            $table->integer('safety_ratio')->default(30);
 
             $table->timestamps();
             $table->softDeletes();

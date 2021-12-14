@@ -26,15 +26,17 @@ class Option extends Model
     public $fillable = [
         'logo',
         'fav_icon',
-        'welcome_message',
-        'welcome_photo',
+        'wifi_name',
+        'wifi_password',
+        'safety_ratio',
     ];
 
     public static $rules = [
         'logo'              => 'required',
         'fav_icon'          => 'required',
-        'welcome_message'   => 'required',
-        'welcome_photo'     => 'required',
+        'wifi_name'         => 'required',
+        'wifi_password'     => 'required',
+        'safety_ratio'      => 'required',
     ];
 
 
@@ -45,8 +47,6 @@ class Option extends Model
         'logo_thumbnail_path',
         'fav_icon_original_path',
         'fav_icon_thumbnail_path',
-        'welcome_photo_original_path',
-        'welcome_photo_thumbnail_path',
     ];
 
     // fav_icon
@@ -109,33 +109,4 @@ class Option extends Model
     }
     // logo
 
-    // Welcome Photo
-    public function setWelcomePhotoAttribute($file)
-    {
-        try {
-            if ($file) {
-
-                $fileName = $this->createFileName($file);
-
-                $this->originalImage($file, $fileName);
-
-                $this->thumbImage($file, $fileName, 190, 275);
-
-                $this->attributes['welcome_photo'] = $fileName;
-            }
-        } catch (\Throwable $th) {
-            $this->attributes['welcome_photo'] = $file;
-        }
-    }
-
-    public function getWelcomePhotoOriginalPathAttribute()
-    {
-        return $this->welcome_photo ? asset('uploads/images/original/' . $this->welcome_photo) : null;
-    }
-
-    public function getWelcomePhotoThumbnailPathAttribute()
-    {
-        return $this->welcome_photo ? asset('uploads/images/thumbnail/' . $this->welcome_photo) : null;
-    }
-    // Welcome Photo
 }

@@ -10,7 +10,8 @@ return array(
         'updated_at'                        => 'Updated At',
         'logo'                              => 'Logo',
         'fav_icon'                          => 'Fav Icon',
-        'welcome_message'                   => 'Welcome Message',
-        'welcome_photo'                     => 'Welcome Photo',
+        'wifi_name'                         => 'WiFi Name',
+        'wifi_password'                     => 'WiFi Password',
+        'safety_ratio'                      => 'Safety Ratio',
     ),
 );

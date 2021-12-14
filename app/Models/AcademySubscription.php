@@ -15,6 +15,7 @@ class AcademySubscription extends Model
 
         'strMemberName',
         'member_mobile',
+        'progress',
         'status',
 
         'age',
