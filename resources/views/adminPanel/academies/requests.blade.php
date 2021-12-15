@@ -94,7 +94,6 @@
                 <tr>
                     <th>User</th>
                     <th>Phone</th>
-                    <th>Branch</th>
                     <th>Academy</th>
                     <th>Status</th>
                     <th>Created At</th>
@@ -113,8 +112,7 @@
                             </a>
                         @endif
                     </td>
-                    <td>{{$request->phone}}</td>
-                    <td>{{$request->academy->branch->name ?? ''}}</td>
+                    <td>{{$request->member_mobile}}</td>
                     <td>{{$request->academy->name ?? ''}}</td>
                     <td>{{$request->status}}</td>
                     <td>{{$request->created_at}}</td>

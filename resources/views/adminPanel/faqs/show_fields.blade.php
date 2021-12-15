@@ -18,15 +18,23 @@
     <b>{{ $faq->updated_at }}</b>
 </div>
 
-
+<div class="clearfix"></div>
+<br>
+<hr>
+<br>
 
 @foreach (config('langs') as $locale => $name)
 
 <code><h4>{{$name}}</h4></code>
-<!-- Text Field -->
+<!-- question Field -->
 <div class="form-group show col-sm-12">
-    {!! Form::label('text',$name . ' ' . __('models/faqs.fields.text').':') !!}
-    <b>{!! $faq->translateOrNew($locale)->text !!}</b>
+    {!! Form::label('question',$name . ' ' . __('models/faqs.fields.question').':') !!}
+    <b>{!! $faq->translateOrNew($locale)->question !!}</b>
+</div>
+<!-- answer Field -->
+<div class="form-group show col-sm-12">
+    {!! Form::label('answer',$name . ' ' . __('models/faqs.fields.answer').':') !!}
+    <b>{!! $faq->translateOrNew($locale)->answer !!}</b>
 </div>
 
 <div class="clearfix"></div>

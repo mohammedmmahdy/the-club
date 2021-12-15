@@ -6,11 +6,9 @@
 
 
 <!-- Photo Field -->
-<div class="form-group">
-    {!! Form::label('photo', __('models/news.fields.photo').':') !!}
-    <b>{{ $news->photo }}</b>
+<div class="form-group show">
+    <img onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" src="{{ $news->photo_original_path }}" alt="{{ $news->name }}" class="image-thumbnail" width="300">
 </div>
-
 
 <!-- Title Field -->
 <div class="form-group">
@@ -22,7 +20,7 @@
 <!-- Body Field -->
 <div class="form-group">
     {!! Form::label('body', __('models/news.fields.body').':') !!}
-    <b>{{ $news->body }}</b>
+    <b>{!! $news->body !!}</b>
 </div>
 
 

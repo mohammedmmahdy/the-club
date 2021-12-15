@@ -9,10 +9,6 @@
     <tbody>
         @foreach ($playgroundTypes as $playgroundType)
             <tr>
-                <pre>
-
-                    {{ $playgroundType }}
-                </pre>
                 <td>
                     <img
                     {{-- onError="this.onerror=null;this.src='{{asset('uploads/images/original/default.png')}}';" --}}

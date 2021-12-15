@@ -88,6 +88,25 @@ class CustomerController extends Controller
                 'message' => 'Wrong Password'
             ], 403);
         }
+
+        public function loginQR()
+        {
+            $user = auth('api')->user();
+
+            // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )
+            if (!$user->iMemberId) {
+                return response()->json(['msg' => 'You are not a member'], 403);
+            }
+            // Handle account status True (Active) / False (Hold)
+            if (!$user->boolMemberStatus) {
+                return response()->json(['msg' => 'Your account is not active'], 403);
+            }
+
+            $QRdata = $user->only('iMemberId', 'strCardNumber', 'strMemberName');
+            $QRdata['QRId'] = $this->randomCode(10);
+
+            return response()->json(compact('QRdata'));
+        }
     //------------------------- End Main --------------------------//
 
     ##################################################################

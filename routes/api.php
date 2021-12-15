@@ -74,6 +74,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
         Route::post('logout', 'AuthController@logout');
         Route::post('user/update-password', [ CustomerController::class, 'updatePassword' ]);
         Route::post('user/update-email', [ CustomerController::class, 'updateEmail' ]);
+        Route::get('user/loginQR', [CustomerController::class, 'loginQR']);
         Route::post('tickets/reservation', [CustomerController::class, 'ticketReservation']);
         Route::get('wifi-password', [MainController::class, 'wifiPassword']);
 

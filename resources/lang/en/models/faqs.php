@@ -10,7 +10,9 @@ return array(
         'name' => 'Name',
         'question' => 'Question',
         'answer' => 'Answer',
-        'category' => 'Category',
-        'faq_category_id' => 'Faq Category',
+
+
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
     ),
 );

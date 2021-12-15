@@ -21,7 +21,7 @@
                         <h3 class="card-title">Edit @lang('models/faqs.singular')</h3>
                     </div>
                     <div class="card-body">
-                        {!! Form::model($vehicleType, ['route' => ['adminPanel.faqs.update', $vehicleType->id], 'method' => 'patch']) !!}
+                        {!! Form::model($faq, ['route' => ['adminPanel.faqs.update', $faq->id], 'method' => 'patch']) !!}
                         @include('adminPanel.faqs.fields')
                         {!! Form::close() !!}
                     </div>

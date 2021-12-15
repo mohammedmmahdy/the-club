@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @include('adminPanel.faq.show_fields')
+                        @include('adminPanel.faqs.show_fields')
                     </div>
                 </div>
                 <!--end::Card-->
