@@ -26,8 +26,9 @@ class UpdateAcademyRequest extends FormRequest
     public function rules()
     {
         $rules = Academy::rules();
-        $rules['photos'] = 'sometimes';
-        $rules['icon'] = 'sometimes';
+        $rules['photos']       = 'sometimes|image|mimes:png,jpg,jpeg';
+        $rules['icon']         = 'sometimes|image|mimes:png,jpg,jpeg';
+        $rules['main_photo']   = 'sometimes|image|mimes:png,jpg,jpeg';
 
         return $rules;
     }
