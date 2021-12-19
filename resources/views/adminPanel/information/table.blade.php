@@ -49,9 +49,9 @@
             <td nowrap>
                 {!! Form::open(['route' => ['adminPanel.information.destroy', $info->id], 'method' => 'delete']) !!}
                 <div class='btn btn-sm-group'>
-                    @can('information view')
+                    {{-- @can('information view')
                     <a href="{{ route('adminPanel.information.show', [$info->id]) }}" class='btn btn-sm btn-shadow mx-1 btn-transparent-success'><i class="fa fa-eye"></i></a>
-                    @endcan
+                    @endcan --}}
                     @can('information edit')
                     <a href="{{ route('adminPanel.information.edit', [$info->id]) . "?languages=". \App::getLocale() }}" class='btn btn-sm btn-shadow mx-1 btn-transparent-primary'><i class="fa fa-edit"></i></a>
                     @endcan

@@ -28,7 +28,6 @@
 <table class="datatable datatable-bordered datatable-head-custom table-hover" id="kt_datatable">
     <thead>
         <tr>
-            <th>@lang('models/branches.singular')</th>
             <th>@lang('models/playgrounds.fields.name')</th>
             <th>@lang('models/playgrounds.fields.description')</th>
             <th>@lang('models/playgrounds.fields.type_id')</th>
@@ -39,7 +38,6 @@
     <tbody>
         @foreach ($playgrounds as $playground)
             <tr>
-                <td>{{ $playground->branch->name ?? '' }}</td>
                 <td>{{ $playground->name }}</td>
                 <td>{!! Str::limit($playground->description, 80) !!}</td>
                 <td>{{ $playground->playgroundType->name ?? '' }}</td>

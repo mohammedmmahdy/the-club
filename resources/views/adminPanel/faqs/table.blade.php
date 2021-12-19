@@ -34,9 +34,9 @@
             <td nowrap>
                 {!! Form::open(['route' => ['adminPanel.faqs.destroy', $faq->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    @can('faqs view')
+                    {{-- @can('faqs view')
                     <a href="{{ route('adminPanel.faqs.show', [$faq->id]) }}" class='btn btn-sm btn-shadow mx-1 btn-transparent-success'><i class="fa fa-eye"></i></a>
-                    @endcan
+                    @endcan --}}
                     @can('faqs edit')
                     <a href="{{ route('adminPanel.faqs.edit', [$faq->id]) }}" class='btn btn-sm btn-shadow mx-1 btn-transparent-primary'><i class="fa fa-edit"></i></a>
                     @endcan

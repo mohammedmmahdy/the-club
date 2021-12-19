@@ -106,10 +106,10 @@
                 <tr>
                     <td>
                         <a href="{{route('adminPanel.users.show',$reservation->user->id)}}">
-                            {{$reservation->user->first_name ?? ''}} {{$reservation->user->last_name ?? ''}}
+                            {{$reservation->user->strMemberName}}
                         </a>
                     </td>
-                    <td>{{$reservation->phone}}</td>
+                    <td>{{$reservation->member_mobile}}</td>
                     <td>{{$reservation->event->title ?? ''}}</td>
                     <td>{{$reservation->status}}</td>
                     <td>{{$reservation->created_at}}</td>

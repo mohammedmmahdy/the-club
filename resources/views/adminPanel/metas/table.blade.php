@@ -40,9 +40,9 @@
             <td nowrap>
                 {!! Form::open(['route' => ['adminPanel.metas.destroy', $meta->id], 'method' => 'delete']) !!}
                 <div class='btn btn-sm-group'>
-                    @can('metas view')
+                    {{-- @can('metas view')
                     <a href="{{ route('adminPanel.metas.show', [$meta->id]) }}" class='btn btn-sm btn-shadow mx-1 btn-transparent-success'><i class="fa fa-eye"></i></a>
-                    @endcan
+                    @endcan --}}
                     @can('metas edit')
                     <a href="{{ route('adminPanel.metas.edit', [$meta->id]) . "?languages=$locale" }}" class='btn btn-sm btn-shadow mx-1 btn-transparent-primary'>
                         <i class="fa fa-edit"></i>

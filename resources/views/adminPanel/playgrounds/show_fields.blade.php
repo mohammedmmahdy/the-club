@@ -31,13 +31,6 @@
     <b>{{ $playground->description }}</b>
 </div>
 
-<!-- branch Field -->
-<div class="form-group">
-    {!! Form::label('branch_id', __('models/branches.singular') . ':') !!}
-    <b>{{ $playground->branch->name ?? '' }}</b>
-</div>
-
-
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', __('models/playgrounds.fields.created_at') . ':') !!}
