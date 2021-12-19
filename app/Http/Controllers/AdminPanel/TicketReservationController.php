@@ -6,8 +6,10 @@ use App\Http\Requests\AdminPanel\CreateTicketReservationRequest;
 use App\Http\Requests\AdminPanel\UpdateTicketReservationRequest;
 use App\Repositories\AdminPanel\TicketReservationRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Option;
 use Illuminate\Http\Request;
 use Flash;
+use Laracasts\Flash\Flash as FlashFlash;
 use Response;
 
 class TicketReservationController extends AppBaseController
@@ -43,5 +45,13 @@ class TicketReservationController extends AppBaseController
         return view('adminPanel.ticket_reservations.show')->with('ticketReservation', $ticketReservation);
     }
 
+    public function updateTicketPrice()
+    {
+        if (request('ticket_price')) {
+            Option::first()->update(['visit_ticket_price' => request('ticket_price')]);
+            Flash::success('Price Updated Successfully');
+            return back();
+        }
+    }
 
 }

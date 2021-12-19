@@ -114,6 +114,7 @@ Route::group(
             Route::resource('playgroundReservations', PlaygroundReservationController::class)->only(['show', 'index']);
 
             Route::resource('ticketReservations', TicketReservationController::class)->only(['show', 'index']);
+            Route::post('ticket-price', 'TicketReservationController@updateTicketPrice')->name('ticket.updatePrice');
         });
     }
 );

@@ -21,6 +21,7 @@ class CreateOptionsTable extends Migration
             $table->string('wifi_name')->default('theclub');
             $table->string('wifi_password')->default('password');
             $table->integer('safety_ratio')->default(30);
+            $table->integer('visit_ticket_price')->default(200);
 
             $table->timestamps();
             $table->softDeletes();

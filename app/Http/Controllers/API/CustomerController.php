@@ -12,6 +12,7 @@ use App\Models\AcademySchedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\EventReservation;
+use App\Models\Option;
 use App\Models\Playground;
 use App\Models\PlaygroundReservation;
 use Faker\Provider\Uuid;
@@ -260,6 +261,7 @@ class CustomerController extends Controller
                 'number_of_people'      => 'required|numeric',
             ]);
 
+            $attributes['price'] = Option::first()->visit_ticket_price;
             $data['user'] = auth('api')->user();
 
             // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )

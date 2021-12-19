@@ -29,6 +29,7 @@ class Option extends Model
         'wifi_name',
         'wifi_password',
         'safety_ratio',
+        'visit_ticket_price',
     ];
 
     public static $rules = [
