@@ -104,11 +104,7 @@
             <tbody>
                 @foreach ($reservations as $reservation)
                 <tr>
-                    <td>
-                        <a href="{{route('adminPanel.users.show',$reservation->user->id)}}">
-                            {{$reservation->user->strMemberName}}
-                        </a>
-                    </td>
+                    <td>{{$reservation->user->strMemberName  ?? ''}}</td>
                     <td>{{$reservation->member_mobile}}</td>
                     <td>{{$reservation->event->title ?? ''}}</td>
                     <td>{{$reservation->status}}</td>

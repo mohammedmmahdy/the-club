@@ -101,12 +101,6 @@
     </div>
 
 
-    <!-- branch_id Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('branch_id', __('models/branches.singular') . ':') !!}
-        {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'Select Branch']) !!}
-    </div>
-
     {{-- Date --}}
 
     <div class="form-group col-sm-6">

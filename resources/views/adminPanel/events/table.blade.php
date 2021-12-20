@@ -30,7 +30,6 @@
         <tr>
             <th>@lang('models/events.fields.icon')</th>
             <th>@lang('models/events.fields.title')</th>
-            <th>@lang('models/branches.singular')</th>
             <th>@lang('models/events.fields.description')</th>
             <th>@lang('models/events.fields.date')</th>
             <th>@lang('crud.action')</th>
@@ -44,7 +43,6 @@
                         src="{{ $event->icon_original_path }}" alt="{{ $event->title }}" width="60">
                 </td>
                 <td>{{ $event->title }}</td>
-                <td>{{ $event->branch->name ?? '' }}</td>
                 <td>{!! Str::limit($event->description, 80) !!}</td>
                 <td>{{ $event->date }}</td>
 
