@@ -64,6 +64,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::get('playgrounds/{playground}/reserved-times', [CustomerController::class, 'playgroundReservedTimes']);
     Route::get('playgrounds', [MainController::class, 'playgrounds']);
     Route::get('playground-types', [MainController::class, 'playgroundTypes']);
+    Route::get('ticket-price', [MainController::class, 'ticketPrice']);
 //////////////////////////////// End playgrounds //////////////////////////////////
 
 //////////////////////////////// Start Tickets //////////////////////////////////

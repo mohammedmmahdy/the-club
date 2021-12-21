@@ -3,33 +3,19 @@
     {!! Form::label('id', __('models/ticketReservations.fields.id').':') !!}
     <b>{{ $ticketReservation->id }}</b>
 </div>
-{{--
 
-<!-- User Id Field -->
+
+<!-- Name Field -->
 <div class="form-group">
-    {!! Form::label('user_id', __('models/ticketReservations.fields.user_id').':') !!}
-    <b>{{ $ticketReservation->user_id }}</b>
-</div> --}}
-
-
-<!-- First Name Field -->
-<div class="form-group">
-    {!! Form::label('first_name', __('models/ticketReservations.fields.first_name').':') !!}
-    <b>{{ $ticketReservation->first_name }}</b>
-</div>
-
-
-<!-- Last Name Field -->
-<div class="form-group">
-    {!! Form::label('last_name', __('models/ticketReservations.fields.last_name').':') !!}
-    <b>{{ $ticketReservation->last_name }}</b>
+    {!! Form::label('first_name', __('models/ticketReservations.fields.name').':') !!}
+    <b>{{ $ticketReservation->strMemberName }}</b>
 </div>
 
 
 <!-- Phone Field -->
 <div class="form-group">
     {!! Form::label('phone', __('models/ticketReservations.fields.phone').':') !!}
-    <b>{{ $ticketReservation->phone }}</b>
+    <b>{{ $ticketReservation->member_mobile }}</b>
 </div>
 
 

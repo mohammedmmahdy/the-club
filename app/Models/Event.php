@@ -31,7 +31,6 @@ class Event extends Model
 
 
     public $fillable = [
-        'branch_id',
         'title',
         'description',
         'date',

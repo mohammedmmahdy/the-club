@@ -12,6 +12,7 @@ use App\Repositories\AdminPanel\EventRepository;
 use App\Http\Requests\AdminPanel\CreateEventRequest;
 use App\Http\Requests\AdminPanel\UpdateEventRequest;
 use App\Models\Branch;
+use App\Models\Event;
 use App\Models\EventCategory;
 use App\Models\EventPrice;
 
@@ -59,7 +60,7 @@ class EventController extends AppBaseController
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateEventRequest $request)
     {
         $input = $request->all();
 

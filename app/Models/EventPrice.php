@@ -19,6 +19,7 @@ class EventPrice extends Model
 
 
 
+    ################################# Relations #################################
 
     public function eventCategory()
     {

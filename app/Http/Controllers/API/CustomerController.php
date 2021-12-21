@@ -172,8 +172,10 @@ class CustomerController extends Controller
         {
             $attributes = request()->validate([
                 'event_id'              => 'required|exists:events,id',
+                'event_category_id'     => 'required|exists:event_categories,id',
                 'strMemberName'         => 'required|string|max:191',
                 'member_mobile'         => 'required|numeric',
+                'total_price'           => 'required|integer',
                 'number_of_tickets'     => 'nullable|numeric',
             ]);
 

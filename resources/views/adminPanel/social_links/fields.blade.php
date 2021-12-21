@@ -34,18 +34,24 @@
 @endif
 
 <br>
-<!-- Status Field -->
-<div class="form-group col-sm-12">
-    {!! Form::label('status', __('models/socialLinks.fields.status').':') !!}
-    <label class="radio-inline">
-        {!! Form::radio('status', '1', 'active') !!} @lang('lang.active')
-    </label>
 
-    <label class="radio-inline">
-        {!! Form::radio('status', '0', null) !!} @lang('lang.inactive')
-    </label>
+    <!-- Status Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('status', __('models/socialLinks.fields.status').':') !!}
+        <div class="radio-inline">
+            <label class="radio">
+                {!! Form::radio('status', "1", 'Active') !!}
+                <span></span>
+                @lang('lang.active')
+            </label>
 
-</div>
+            <label class="radio">
+                {!! Form::radio('status', " 0", null) !!}
+                <span></span>
+                @lang('lang.inactive')
+            </label>
+        </div>
+    </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

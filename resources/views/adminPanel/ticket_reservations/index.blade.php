@@ -54,7 +54,11 @@
                             <form action="{{ route('adminPanel.ticket.updatePrice') }}" method="post">
                                 @csrf
                                 <div class="modal-body">
-                                    <input type="number" name="ticket_price" class="form-control">
+                                    <div class="form-group">
+                                        <label for="ticket_price">You can update the visit ticket price </label>
+                                        <input type="number" name="ticket_price" class="form-control"
+                                        value="{{ \App\Models\Option::first()->visit_ticket_price ?? old('ticket_price') }}">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

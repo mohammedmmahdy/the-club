@@ -398,6 +398,12 @@ class MainController extends Controller
         return response()->json(compact('playgroundTypes'));
     }
 
+    // Tickets
+    public function ticketPrice()
+    {
+        $ticketPrice = Option::first()->visit_ticket_price;
+        return response()->json(compact('ticketPrice'));
+    }
 
 
 }

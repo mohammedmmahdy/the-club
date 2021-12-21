@@ -30,7 +30,7 @@
         <tr>
             <td>{{$faq->id}}</td>
             <td>{{$faq->question}}</td>
-            <td>{{$faq->answer}}</td>
+            <td>{{ Str::limit($faq->answer, 80 ) }}</td>
             <td nowrap>
                 {!! Form::open(['route' => ['adminPanel.faqs.destroy', $faq->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

@@ -21,7 +21,7 @@
                         <h3 class="card-title">Edit @lang('models/socialLinks.singular')</h3>
                     </div>
                     <div class="card-body">
-                        {!! Form::model($slider, ['route' => ['adminPanel.socialLinks.update', $slider->id], 'method' => 'patch']) !!}
+                        {!! Form::model($socialLink, ['route' => ['adminPanel.socialLinks.update', $socialLink->id], 'method' => 'patch']) !!}
                         @include('adminPanel.social_links.fields')
                         {!! Form::close() !!}
                     </div>

@@ -40,11 +40,13 @@ class CreateEventsTable extends Migration
         Schema::create('event_reservations', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('event_id');
+            $table->foreignId('event_category_id');
             $table->foreignId('user_id')->nullable();
 
             $table->string('strMemberName')->nullable();
             $table->string('member_mobile')->nullable();
             $table->unsignedInteger('number_of_tickets')->default(1);
+            $table->integer('total_price')->nullable();
             $table->unsignedTinyInteger('status')->default(0);
 
             $table->timestamps();
@@ -55,7 +57,7 @@ class CreateEventsTable extends Migration
         Schema::create('event_prices', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('event_id');
-            $table->integer('event_category_id');
+            $table->foreignId('event_category_id');
             $table->integer('price')->nullable();
         });
 

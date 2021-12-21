@@ -2,8 +2,7 @@
 <table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
     <thead>
         <tr>
-            <th>@lang('models/ticketReservations.fields.first_name')</th>
-            <th>@lang('models/ticketReservations.fields.last_name')</th>
+            <th>@lang('models/ticketReservations.fields.name')</th>
             <th>@lang('models/ticketReservations.fields.phone')</th>
             <th>@lang('models/ticketReservations.fields.date')</th>
             <th>@lang('models/ticketReservations.fields.number_of_people')</th>
@@ -14,9 +13,8 @@
     <tbody>
         @foreach($ticketReservations as $ticketReservation)
         <tr>
-            <td>{{ $ticketReservation->first_name }}</td>
-            <td>{{ $ticketReservation->last_name }}</td>
-            <td>{{ $ticketReservation->phone }}</td>
+            <td>{{ $ticketReservation->strMemberName }}</td>
+            <td>{{ $ticketReservation->member_mobile }}</td>
             <td>{{ $ticketReservation->date }}</td>
             <td>{{ $ticketReservation->number_of_people }}</td>
             <td>{{ $ticketReservation->price }}</td>
