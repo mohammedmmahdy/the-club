@@ -16,9 +16,7 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('btn_to')->nullable();
             $table->string('photo');
-            $table->string('type')->comment('1 => All, 2 => Driver, 3 => Customer');
             $table->timestamps();
             $table->softDeletes();
         });

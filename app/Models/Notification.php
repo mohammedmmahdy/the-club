@@ -22,7 +22,6 @@ class Notification extends Model
     public $fillable = [
         'btn_to',
         'photo',
-        'type'//1 => All, 2 => Driver, 3 => Customer
     ];
 
     /**
@@ -52,7 +51,6 @@ class Notification extends Model
 
         $rules['btn_to'] = 'nullable';
         $rules['photo'] = 'required|image|mimes:jpeg,jpg,png';
-        $rules['type'] = 'required|in:1,2,3';
 
         return $rules;
     }
@@ -97,15 +95,4 @@ class Notification extends Model
         return $this->photo ? asset('uploads/images/thumbnail/' . $this->photo) : null;
     }
 
-    ################################### Scopes #####################################
-
-    public function scopeDriver($query)
-    {
-        return $query->where('type', 1)->orWhere('type', 2);
-    }
-
-    public function scopeCustomer($query)
-    {
-        return $query->where('type', 1)->orWhere('type', 3);
-    }
 }

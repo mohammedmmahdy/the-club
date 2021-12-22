@@ -39,11 +39,6 @@
 
     @endforeach
 
-    <!-- Btn To Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('btn_to', __('models/notifications.fields.btn_to').':') !!}
-        {!! Form::select('btn_to', ['' => 'Without Button', 'home' => 'Home', 'about' => 'About'], null, ['class' => 'form-control']) !!}
-    </div>
 
     <!-- Photo Field -->
     <div class="form-group col-sm-6">
@@ -70,11 +65,6 @@
     </div>
     <div class="clearfix"></div>
 
-    <!-- Type Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('type', __('models/notifications.fields.type').':') !!}
-        {!! Form::select('type', ['1' => 'All', '2' => 'Driver', '3' => 'Customer'], null, ['class' => 'form-control']) !!}
-    </div>
 
     <!-- Submit Field -->
     <div class="form-group col-sm-12">
