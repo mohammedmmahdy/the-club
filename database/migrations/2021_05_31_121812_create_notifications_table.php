@@ -16,7 +16,9 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('photo');
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->string('photo')->nullable();
+            $table->string('icon')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,13 +32,6 @@ class CreateNotificationsTable extends Migration
             $table->longText('description');
         });
 
-        Schema::create('notification_to', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('notification_id');
-            $table->morphs('notificationable');
-            $table->timestamps();
-            $table->softDeletes();
-        });
     }
 
     /**
@@ -46,7 +41,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('notification_to');
         Schema::drop('notification_translations');
         Schema::drop('notifications');
     }

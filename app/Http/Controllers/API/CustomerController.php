@@ -285,6 +285,27 @@ class CustomerController extends Controller
 
 
 
+    ##################################################################
+    # Notifications
+    ##################################################################
+
+    public function notifications()
+    {
+        $notifications = Notification::where('user_id', auth('api')->id())
+                                ->orWhere('user_id', null)
+                                ->latest()
+                                ->get();
+
+        return response()->json($notifications);
+    }
+
+    public function notification(Notification $notification)
+    {
+        return response()->json($notification);
+    }
+
+    //--------------------- End Notifications -----------------------//
+
 
 
     ///////////////////////////////////////// Helpers  /////////////////////////////////////////

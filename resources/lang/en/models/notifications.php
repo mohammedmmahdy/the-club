@@ -9,6 +9,7 @@ return array (
     'title' => 'Title',
     'brief' => 'Brief',
     'description' => 'Description',
+    'icon' => 'Icon',
     'photo' => 'Photo',
     'type' => 'Type',
     'btn_to' => 'button To',

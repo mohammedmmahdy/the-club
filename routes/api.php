@@ -35,6 +35,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::get('metas', 'MainController@metas');
     Route::get('blogs', 'MainController@blogs');
     Route::get('blog/{id}', 'MainController@blog');
+    Route::get('web-all-news', 'MainController@webAllNews');
     Route::get('all-news', 'MainController@allNews');
     Route::get('single-news/{news}', 'MainController@singleNews');
     Route::get('faqs', 'MainController@faqs');
@@ -78,7 +79,8 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
         Route::get('user/loginQR', [CustomerController::class, 'loginQR']);
         Route::post('tickets/reservation', [CustomerController::class, 'ticketReservation']);
         Route::get('wifi-password', [MainController::class, 'wifiPassword']);
-
+        Route::get('user/notifications', [CustomerController::class, 'notifications']);
+        Route::get('user/notifications/{notification}', [CustomerController::class, 'notification']);
 
     });
 ////////////////////////////////// End User //////////////////////////////////

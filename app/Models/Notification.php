@@ -20,8 +20,9 @@ class Notification extends Model
     public $translatedAttributes =  ['title', 'brief', 'description'];
 
     public $fillable = [
-        'btn_to',
+        'user_id',
         'photo',
+        'icon',
     ];
 
     /**
@@ -34,9 +35,7 @@ class Notification extends Model
         'title' => 'string',
         'brief' => 'string',
         'description' => 'string',
-        'btn_to' => 'string',
         'photo' => 'string',
-        'type' => 'string'
     ];
 
     public static function rules()
@@ -49,8 +48,8 @@ class Notification extends Model
             $rules[$language . '.description'] = 'required|string';
         }
 
-        $rules['btn_to'] = 'nullable';
-        $rules['photo'] = 'required|image|mimes:jpeg,jpg,png';
+        $rules['photo'] = 'nullable|image|mimes:jpeg,jpg,png';
+        $rules['icon'] = 'nullable|image|mimes:jpeg,jpg,png';
 
         return $rules;
     }
@@ -69,11 +68,34 @@ class Notification extends Model
 
                 $this->originalImage($file, $fileName);
 
-                $this->thumbImage($file, $fileName, 1920, 358);
+                $this->thumbImage($file, $fileName, 300, 200);
 
                 $this->attributes['photo'] = $fileName;
             } catch (\Throwable $th) {
                 $this->attributes['photo'] = $file;
+            }
+        }
+    }
+
+    /**
+     * Prepare icon to save
+     *
+     * @param [type] $file
+     * @return void
+     */
+    public function setIconAttribute($file)
+    {
+        if ($file) {
+            try {
+                $fileName = $this->createFileName($file);
+
+                $this->originalImage($file, $fileName);
+
+                $this->thumbImage($file, $fileName, 150, 150);
+
+                $this->attributes['icon'] = $fileName;
+            } catch (\Throwable $th) {
+                $this->attributes['icon'] = $file;
             }
         }
     }
@@ -83,8 +105,11 @@ class Notification extends Model
     protected $appends = [
         'photo_original_path',
         'photo_thumbnail_path',
+        'icon_original_path',
+        'icon_thumbnail_path',
     ];
 
+    // Photo
     public function getPhotoOriginalPathAttribute()
     {
         return $this->photo ? asset('uploads/images/original/' . $this->photo) : null;
@@ -93,6 +118,17 @@ class Notification extends Model
     public function getPhotoThumbnailPathAttribute()
     {
         return $this->photo ? asset('uploads/images/thumbnail/' . $this->photo) : null;
+    }
+
+    // Icon
+    public function getIconOriginalPathAttribute()
+    {
+        return $this->icon ? asset('uploads/images/original/' . $this->icon) : null;
+    }
+
+    public function getIconThumbnailPathAttribute()
+    {
+        return $this->icon ? asset('uploads/images/thumbnail/' . $this->icon) : null;
     }
 
 }

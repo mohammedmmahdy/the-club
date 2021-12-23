@@ -304,6 +304,12 @@ class MainController extends Controller
         return response()->json(compact('blog'));
     }
 
+    public function webAllNews()
+    {
+        $allNews = News::latest()->paginate(6);
+        return response()->json(compact('allNews'));
+    }
+
     public function allNews()
     {
         $allNews = News::latest()->get();

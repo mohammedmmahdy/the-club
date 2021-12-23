@@ -1,19 +1,15 @@
+<!-- icon Field -->
+<div class="form-group">
+    {{-- {!! Form::label('icon', __('models/notifications.fields.icon').':') !!} --}}
+    <img onerror=this.src="{{ asset('uploads/images/original/default.png') }}"
+    src="{{ asset('uploads/images/original/'. $notification->icon) }}" alt="icon" width="150">
+</div>
+
 <!-- Photo Field -->
 <div class="form-group">
     {{-- {!! Form::label('photo', __('models/notifications.fields.photo').':') !!} --}}
-    <img src="{{ asset('uploads/images/original/'. $notification->photo) }}" alt="photo" width="300">
-</div>
-
-<!-- Btn To Field -->
-<div class="form-group">
-    {!! Form::label('btn_to', __('models/notifications.fields.btn_to').':') !!}
-    <b>{{ config('customestatus.btn_notification.'.$notification->btn_to) }}</b>
-</div>
-
-<!-- Type Field -->
-<div class="form-group">
-    {!! Form::label('type', __('models/notifications.fields.type').':') !!}
-    <b>{{ config('customestatus.type_notification.'.$notification->type) }}</b>
+    <img onerror=this.src="{{ asset('uploads/images/original/default.png') }}"
+    src="{{ asset('uploads/images/original/'. $notification->photo) }}" alt="photo" width="300">
 </div>
 
 
@@ -28,10 +24,11 @@
     {!! Form::label('updated_at', __('models/notifications.fields.updated_at').':') !!}
     <b>{{ $notification->updated_at }}</b>
 </div>
-
+<div class="clearfix"></div>
+<br><hr><br>
 <div class="row">
     @foreach ( config('langs') as $locale => $name)
-        <div class="col-6">
+        <div class="col-12">
             <h2 class="my-4 text-center text-danger">{{ $name }}</h2>
             <!-- Title Field -->
             <div class="form-group">
