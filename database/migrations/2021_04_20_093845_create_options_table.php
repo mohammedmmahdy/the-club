@@ -22,6 +22,7 @@ class CreateOptionsTable extends Migration
             $table->string('wifi_password')->default('password');
             $table->integer('safety_ratio')->default(30);
             $table->integer('visit_ticket_price')->default(200);
+            $table->string('intro_video_link')->default('#');
 
             $table->timestamps();
             $table->softDeletes();

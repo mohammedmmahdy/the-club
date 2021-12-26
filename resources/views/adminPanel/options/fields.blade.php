@@ -68,6 +68,12 @@
     {!! Form::number('safety_ratio', null, ['class' => 'form-control', 'min' => 0, 'max' => 100]) !!}
 </div>
 
+<!-- intro_video_link Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('intro_video_link', __('models/options.fields.intro_video_link').':') !!}
+    {!! Form::text('intro_video_link', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}

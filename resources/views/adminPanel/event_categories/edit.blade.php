@@ -22,7 +22,7 @@
                         </div>
                         <div class="card-body">
                             {!! Form::model($eventCategory, ['route' => ['adminPanel.eventCategories.update', $eventCategory->id], 'method' => 'patch']) !!}
-                              @include('adminPanel.eventCategories.fields')
+                              @include('adminPanel.event_categories.fields')
                             {!! Form::close() !!}
                         </div>
                     </div>

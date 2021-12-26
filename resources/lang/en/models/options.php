@@ -13,5 +13,6 @@ return array(
         'wifi_name'                         => 'WiFi Name',
         'wifi_password'                     => 'WiFi Password',
         'safety_ratio'                      => 'Safety Ratio',
+        'intro_video_link'                  => 'Web Intro Video Link',
     ),
 );

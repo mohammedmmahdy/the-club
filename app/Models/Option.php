@@ -30,6 +30,7 @@ class Option extends Model
         'wifi_password',
         'safety_ratio',
         'visit_ticket_price',
+        'intro_video_link',
     ];
 
     public static $rules = [
