@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Faq;
 use App\Models\Blog;
 use App\Models\Meta;
+use App\Models\News;
 use App\Models\Page;
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Branch;
+use App\Models\Option;
 use App\Models\Slider;
 use App\Models\Academy;
 use App\Models\Contact;
+use App\Models\Gallery;
 use App\Models\Newsletter;
+use App\Models\Onboarding;
+use App\Models\Playground;
 use App\Models\SocialLink;
 use App\Models\Information;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Faq;
-use App\Models\Gallery;
-use App\Models\News;
-use App\Models\Option;
-use App\Models\Playground;
 use App\Models\PlaygroundType;
-use App\Models\User;
+use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
@@ -332,6 +333,14 @@ class MainController extends Controller
         $gallery = Gallery::get();
         return response()->json(compact('gallery'));
     }
+
+    public function onboardings()
+    {
+        $onboardings = Onboarding::get();
+        return response()->json(compact('onboardings'));
+    }
+
+
 // Academies
     public function academies()
     {

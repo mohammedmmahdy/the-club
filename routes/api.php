@@ -43,6 +43,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::post('newsletter', 'MainController@newsletter');
     Route::get('landing-page', 'MainController@landing_page');
     Route::get('gallery', 'MainController@gallery');
+    Route::get('onboardings', 'MainController@onboardings');
     Route::get('safety-ratio', [MainController::class, 'safetyRatio']);
 ///////////////////////////////// End Pages //////////////////////////////////
 

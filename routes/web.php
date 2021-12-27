@@ -115,6 +115,8 @@ Route::group(
 
             Route::resource('ticketReservations', TicketReservationController::class)->only(['show', 'index']);
             Route::post('ticket-price', 'TicketReservationController@updateTicketPrice')->name('ticket.updatePrice');
+
+            Route::resource('onboardings', OnboardingController::class);
         });
     }
 );

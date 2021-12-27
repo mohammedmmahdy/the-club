@@ -93,7 +93,7 @@ class AuthController extends Controller
         $user = User::where($credentials)->first();
         if (!$user) {
             return response()->json([
-                'message' => 'Sorry ,wrong verification code'
+                'message' => 'Sorry ,wrong verification code',
             ], 403);
         }
 
