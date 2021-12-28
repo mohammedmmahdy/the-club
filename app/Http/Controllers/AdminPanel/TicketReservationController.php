@@ -25,7 +25,7 @@ class TicketReservationController extends AppBaseController
 
     public function index(Request $request)
     {
-        $ticketReservations = $this->ticketReservationRepository->all();
+        $ticketReservations = $this->ticketReservationRepository->all()->sortDesc();
 
         return view('adminPanel.ticket_reservations.index')
             ->with('ticketReservations', $ticketReservations);

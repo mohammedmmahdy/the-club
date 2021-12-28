@@ -29,7 +29,7 @@ class BlogController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $blogs = $this->blogRepository->all();
+        $blogs = $this->blogRepository->all()->sortDesc();
 
         return view('adminPanel.blogs.index')
             ->with('blogs', $blogs);

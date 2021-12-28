@@ -21,7 +21,7 @@ class FaqController extends AppBaseController
      */
     public function index()
     {
-        $faqs = Faq::get();
+        $faqs = Faq::latest()->get();
 
         return view('adminPanel.faqs.index', compact('faqs'));
     }

@@ -29,7 +29,7 @@ class ContactController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $contacts = $this->contactRepository->paginate(10);
+        $contacts = $this->contactRepository->all()->sortDesc();
 
         return view('adminPanel.contacts.index')
             ->with('contacts', $contacts);

@@ -32,7 +32,7 @@ class PlaygroundController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $playgrounds = Playground::with('playgroundType')->get();
+        $playgrounds = Playground::with('playgroundType')->latest()->get();
 
         return view('adminPanel.playgrounds.index')
             ->with('playgrounds', $playgrounds);

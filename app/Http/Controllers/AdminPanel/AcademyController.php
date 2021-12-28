@@ -215,7 +215,7 @@ class AcademyController extends AppBaseController
 
     public function requests()
     {
-        $requests = AcademySubscription::inactive()->get();
+        $requests = AcademySubscription::inactive()->latest()->get();
 
         return view('adminPanel.academies.requests', compact('requests'));
     }

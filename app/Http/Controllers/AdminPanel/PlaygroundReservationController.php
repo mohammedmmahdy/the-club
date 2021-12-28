@@ -24,7 +24,7 @@ class PlaygroundReservationController extends AppBaseController
 
     public function index(Request $request)
     {
-        $playgroundReservations = $this->playgroundReservationRepository->all()->unique('reservation_code');
+        $playgroundReservations = $this->playgroundReservationRepository->all()->unique('reservation_code')->sortDesc();
 
         return view('adminPanel.playground_reservations.index')
             ->with('playgroundReservations', $playgroundReservations);

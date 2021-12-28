@@ -22,7 +22,7 @@ class NewsletterController extends AppBaseController
 
     public function index(Request $request)
     {
-        $newsletters = $this->newsletterRepository->paginate(10);
+        $newsletters = $this->newsletterRepository->all()->sortDesc();
 
         return view('adminPanel.newsletters.index')
             ->with('newsletters', $newsletters);

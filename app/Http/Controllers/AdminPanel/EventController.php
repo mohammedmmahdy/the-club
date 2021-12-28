@@ -35,7 +35,7 @@ class EventController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $events = $this->eventRepository->all();
+        $events = $this->eventRepository->all()->sortDesc();
         $reservations_count = $this->reservations()->reservations->count();
 
         return view('adminPanel.events.index', compact('reservations_count', 'events'));
@@ -187,7 +187,7 @@ class EventController extends AppBaseController
 
     public function reservations()
     {
-        $reservations = EventReservation::inactive()->get();
+        $reservations = EventReservation::inactive()->latest()->get();
 
         return view('adminPanel.events.reservations', compact('reservations'));
     }

@@ -9,9 +9,7 @@ use App\Models\News;
 use App\Models\Page;
 use App\Models\User;
 use App\Models\Event;
-use App\Models\Branch;
 use App\Models\Option;
-use App\Models\Slider;
 use App\Models\Academy;
 use App\Models\Contact;
 use App\Models\Gallery;
@@ -219,6 +217,28 @@ class MainController extends Controller
     }
 
 // Pages
+
+    public function webHome()
+    {
+        $data['events'] = Event::where('date', '>' , now())
+                    ->orderBy('date')
+                    ->limit(4)
+                    ->get();
+
+        $data['academies'] = Academy::with('photos','schedules')->get();
+
+        $user = auth('api')->user();
+        if ($user) {
+            $data['user_academies'] = $user->academies;
+        }
+        $data['news'] = News::latest()->limit(4)->get();
+        $data['safetyRatio'] = Option::first()->safety_ratio;
+        $data['introVideoLink'] = Option::first()->intro_video_link;
+        $data['gallery'] = Gallery::get();
+        // $blogs = Blog::latest()->limit(3)->get();
+
+        return response()->json($data);
+    }
 
     public function landing_page()
     {

@@ -29,7 +29,7 @@ class NotificationController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $notifications = $this->notificationRepository->paginate(10);
+        $notifications = $this->notificationRepository->all()->sortDesc();
 
         return view('adminPanel.notifications.index')
             ->with('notifications', $notifications);

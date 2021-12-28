@@ -29,7 +29,7 @@ class NewsController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $news = $this->newsRepository->all();
+        $news = $this->newsRepository->all()->sortDesc();
 
         return view('adminPanel.news.index')
             ->with('news', $news);
