@@ -11,7 +11,7 @@ return array (
     'description' => 'Description',
     'icon' => 'Icon',
     'photo' => 'Photo',
-    'type' => 'Type',
+    'receiver_type' => 'Receiver Type',
     'btn_to' => 'button To',
     'created_by' => 'Created By',
     'created_at' => 'Created At',

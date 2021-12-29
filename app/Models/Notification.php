@@ -11,6 +11,13 @@ class Notification extends Model
 {
     use SoftDeletes, Translatable, ImageUploaderTrait;
 
+    const RECEIVER_TYPES = [
+        4 => 'All',
+        0 => 'Main',
+        1 => 'Sub',
+        2 => 'Academic',
+        3 => 'Lead',
+    ];
 
     public $table = 'notifications';
 
@@ -23,6 +30,7 @@ class Notification extends Model
         'user_id',
         'photo',
         'icon',
+        'receiver_type'   // 0 (Main) / 1 (Sub) / 2 (Academic) / 3 (Lead) / 4 (All)
     ];
 
     /**
@@ -50,6 +58,7 @@ class Notification extends Model
 
         $rules['photo'] = 'nullable|image|mimes:jpeg,jpg,png';
         $rules['icon'] = 'nullable|image|mimes:jpeg,jpg,png';
+        $rules['receiver_type'] = 'required|integer';
 
         return $rules;
     }

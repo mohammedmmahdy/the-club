@@ -14,6 +14,13 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     use HasFactory, Notifiable;
 
+    const TYPE_MAIN     = 0,
+          TYPE_SUB      = 1,
+          TYPE_ACADEMIC = 2,
+          TYPE_LEAD     = 3;
+
+    const STATUS_ACTIVE = true,
+          STATUS_HOLD   = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -153,4 +160,16 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->hasMany(User::class, 'iMainMemberID', 'iMemberId');
     }
+
+    public function mainMember()
+    {
+        return $this->belongsTo(User::class, 'iMainMemberID', 'iMemberId');
+    }
+
+
+    public function paymentHistory()
+    {
+        return $this->hasMany(PaymentHistory::class, 'user_id', 'id')->orderBy('id', 'DESC');
+    }
+
 }

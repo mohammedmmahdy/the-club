@@ -83,6 +83,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
         Route::get('wifi-password', [MainController::class, 'wifiPassword']);
         Route::get('user/notifications', [CustomerController::class, 'notifications']);
         Route::get('user/notifications/{notification}', [CustomerController::class, 'notification']);
+        Route::get('user/payment-history', [CustomerController::class, 'paymentHistory']);
 
     });
 ////////////////////////////////// End User //////////////////////////////////

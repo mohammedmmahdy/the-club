@@ -19,6 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('photo')->nullable();
             $table->string('icon')->nullable();
+            $table->integer('receiver_type')->comment('0 (Main) / 1 (Sub) / 2 (Academic) / 3 (Guest) / 4 (All)');
             $table->timestamps();
             $table->softDeletes();
         });

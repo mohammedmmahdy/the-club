@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\EventReservation;
 use App\Models\Option;
+use App\Models\PaymentHistory;
 use App\Models\Playground;
 use App\Models\PlaygroundReservation;
 use Faker\Provider\Uuid;
@@ -108,6 +109,14 @@ class CustomerController extends Controller
 
             return response()->json(compact('QRdata'));
         }
+
+        public function paymentHistory()
+        {
+            $user = auth('api')->user();
+            $paymentHistory = $user->paymentHistory;
+
+            return response()->json(compact('paymentHistory'));
+        }
     //------------------------- End Main --------------------------//
 
     ##################################################################
@@ -179,8 +188,15 @@ class CustomerController extends Controller
                 'number_of_tickets'     => 'nullable|numeric',
             ]);
 
-            if (auth('api')->user()) {
+            $data['user'] = auth('api')->user();
+
+            if ($data['user']) {
                 $attributes['user_id'] = auth('api')->id();
+                // record payment history
+                $data['user']->paymentHistory()->create([
+                    'payment_type' => 'event_reservation',
+                    'amount'    => request('total_price')
+                ]);
             }
 
             $data['event'] = EventReservation::create($attributes);
@@ -208,8 +224,8 @@ class CustomerController extends Controller
             ]);
 
             $attributes['reservation_code'] = $this->randomCode();
-
-            if (auth('api')->user()) {
+            $data['user'] = auth('api')->user();
+            if ($data['user']) {
                 $attributes['user_id'] = auth('api')->id();
             }
 
@@ -232,6 +248,14 @@ class CustomerController extends Controller
                 }
             }else{
                 $data['playground'] = PlaygroundReservation::create($attributes);
+            }
+
+            if ($data['user']) {
+                // record payment history
+                $data['user']->paymentHistory()->create([
+                    'payment_type' => 'playground_reservation',
+                    'amount'    => $attributes['price']
+                ]);
             }
 
             return response()->json($data);
@@ -264,6 +288,7 @@ class CustomerController extends Controller
             ]);
 
             $attributes['price'] = Option::first()->visit_ticket_price;
+
             $data['user'] = auth('api')->user();
 
             // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )
@@ -274,6 +299,12 @@ class CustomerController extends Controller
             if (!$data['user']->boolMemberStatus) {
                 return response()->json(['msg' => 'Your account is not active'], 403);
             }
+
+            // record payment history
+            $data['user']->paymentHistory()->create([
+                'payment_type' => 'visit_ticket',
+                'amount'    => $attributes['price']
+            ]);
 
             $data['ticket'] = $data['user']->tickets()->create($attributes);
             $data['user']->load('tickets');
@@ -291,8 +322,7 @@ class CustomerController extends Controller
 
     public function notifications()
     {
-        $notifications = Notification::where('user_id', auth('api')->id())
-                                ->orWhere('user_id', null)
+        $notifications = Notification::whereIn('receiver_type', [auth('api')->user()->iMemberType, 4])
                                 ->latest()
                                 ->get();
 

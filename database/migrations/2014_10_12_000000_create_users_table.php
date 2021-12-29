@@ -44,7 +44,7 @@ class CreateUsersTable extends Migration
             $table->time('timeTimeTo')->nullable()->comment('24 hour');
             $table->string('strMemberName')->nullable();
             $table->string('member_mobile')->nullable();
-            $table->integer('iMemberType')->nullable()->comment('0 (Main) / 1 (Sub) / 2 (Academic)');
+            $table->integer('iMemberType')->nullable()->comment('0 (Main) / 1 (Sub) / 2 (Academic) / 3 (Guest)');
             $table->date('dateBirthdate')->nullable()->comment('year-month-day');
             $table->boolean('boolMemberStatus')->default(false)->nullable()->comment('True (Active) / False (Hold)');
             $table->string('iMainMemberID')->nullable();

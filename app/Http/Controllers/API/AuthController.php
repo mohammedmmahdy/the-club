@@ -18,10 +18,12 @@ class AuthController extends Controller
             'strMemberName'     => 'required|string|max:191',
             'member_mobile'     => 'required|numeric|unique:users,member_mobile',
             'email'             => 'required|email|max:191|unique:users,email',
-            // 'password'          => 'required|string|min:3|max:191|confirmed',
             'social_status'     => 'required|in:1,2',
             'num_of_children'   => 'nullable|required_if:social_status,2|numeric'
         ]);
+
+        $data['iMemberType']        = User::TYPE_LEAD;
+        $data['boolMemberStatus']   = User::STATUS_ACTIVE;
 
         $user = User::create($data);
         $userData = User::findOrFail($user->id);
@@ -39,11 +41,12 @@ class AuthController extends Controller
         $user = User::where('member_mobile', request('member_mobile'))->first();
 
         // handle if user don't registered as a member yet
-        if ($user->iMemberId == null) {
-            return response()->json([
-                'message'       => 'you are not a member, wait for approval',
-            ], 421);
-        }
+        // if ($user->iMemberId == null) {
+        //     return response()->json([
+        //         'message'       => 'you are not a member, wait for approval',
+        //     ], 421);
+        // }
+
         // handle if user don't create his password
         if ($user->password == null) {
             $user->update(['verification_code' => $this->randomCode(4)]);
@@ -158,14 +161,14 @@ class AuthController extends Controller
         $data['user'] = auth('api')->user();
 
         // Handle if the user not a member Or academy member ( 0 (Main) / 1 (Sub) / 2 (Academic) )
-        if (!$data['user']->iMemberId) {
-            return response()->json(['msg' => 'You are not a member'], 403);
-        }
+        // if (!$data['user']->iMemberId) {
+        //     return response()->json(['msg' => 'You are not a member'], 403);
+        // }
         // Handle account status True (Active) / False (Hold)
         if (!$data['user']->boolMemberStatus) {
             return response()->json(['msg' => 'Your account is not active'], 403);
         }
-        $data['user']->load('submembers');
+        $data['user']->load('submembers', 'mainMember', 'paymentHistory');
 
         return response()->json($data);
 

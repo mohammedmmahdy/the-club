@@ -90,6 +90,12 @@
     </div>
     <div class="clearfix"></div>
 
+     <!-- receiver_type Field -->
+     <div class="form-group col-sm-6 col-lg-6">
+        {!! Form::label('receiver_type', __('models/notifications.fields.receiver_type').':') !!}
+        {!! Form::select('receiver_type', \App\Models\Notification::RECEIVER_TYPES , null, ['class' => 'form-control']) !!}
+    </div>
+
 
     <!-- Submit Field -->
     <div class="form-group col-sm-12">
