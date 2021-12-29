@@ -24,7 +24,6 @@ class Notification extends Model
 
     protected $dates = ['deleted_at'];
 
-    public $translatedAttributes =  ['title', 'brief', 'description'];
 
     public $fillable = [
         'user_id',
@@ -45,6 +44,8 @@ class Notification extends Model
         'description' => 'string',
         'photo' => 'string',
     ];
+
+    public $translatedAttributes =  ['title', 'brief', 'description'];
 
     public static function rules()
     {

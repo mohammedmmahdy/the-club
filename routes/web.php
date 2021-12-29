@@ -117,6 +117,9 @@ Route::group(
             Route::post('ticket-price', 'TicketReservationController@updateTicketPrice')->name('ticket.updatePrice');
 
             Route::resource('onboardings', OnboardingController::class);
+
+            Route::resource('offerCategories', OfferCategoryController::class);
+            Route::resource('offers', OfferController::class);
         });
     }
 );
@@ -124,4 +127,3 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
-
