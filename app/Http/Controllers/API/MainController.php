@@ -21,6 +21,7 @@ use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Models\PlaygroundType;
 use App\Http\Controllers\Controller;
+use App\Models\Offer;
 
 class MainController extends Controller
 {
@@ -340,6 +341,18 @@ class MainController extends Controller
     public function singleNews(News $news)
     {
         return response()->json(compact('news'));
+    }
+
+    public function offers()
+    {
+        $offers = Offer::with('category')->latest()->get();
+        return response()->json(compact('offers'));
+    }
+
+    public function offer(Offer $offer)
+    {
+        $offer->load('category');
+        return response()->json(compact('offer'));
     }
 
     public function faqs()

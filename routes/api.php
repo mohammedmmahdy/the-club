@@ -38,6 +38,8 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::get('web-all-news', 'MainController@webAllNews');
     Route::get('all-news', 'MainController@allNews');
     Route::get('single-news/{news}', 'MainController@singleNews');
+    Route::get('offers', 'MainController@offers');
+    Route::get('offers/{offer}', 'MainController@offer');
     Route::get('faqs', 'MainController@faqs');
     Route::post('send-contact', 'MainController@send_contact_message');
     Route::post('newsletter', 'MainController@newsletter');
