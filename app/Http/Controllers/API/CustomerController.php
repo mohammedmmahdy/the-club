@@ -16,6 +16,7 @@ use App\Models\Option;
 use App\Models\PaymentHistory;
 use App\Models\Playground;
 use App\Models\PlaygroundReservation;
+use Carbon\Carbon;
 use Faker\Provider\Uuid;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -117,6 +118,20 @@ class CustomerController extends Controller
 
             return response()->json(compact('paymentHistory'));
         }
+
+        public function renewSubscription()
+        {
+            $user = auth()->user();
+
+            // After payment will add 1 year to his subscription
+            $user->update([
+                'dateCardDateValidFrom' => Carbon::parse($user->dateCardDateExpire),
+                'dateCardDateExpire'    => Carbon::parse($user->dateCardDateExpire)->addYear()
+            ]);
+
+            return response()->json(compact('user'));
+        }
+
     //------------------------- End Main --------------------------//
 
     ##################################################################
