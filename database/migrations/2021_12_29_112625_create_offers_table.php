@@ -31,6 +31,7 @@ class CreateOffersTable extends Migration
             $table->string('locale', 2)->index();
 
             $table->string('title');
+            $table->string('brief');
             $table->text('description');
 
             $table->unique(['offer_id', 'locale']);

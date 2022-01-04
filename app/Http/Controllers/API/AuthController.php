@@ -136,7 +136,7 @@ class AuthController extends Controller
     {
         auth('api')->logout();
 
-        return response()->json(['msg' => 'success'], 200);
+        return response()->json(['msg' => 'success']);
     }
 
 

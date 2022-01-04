@@ -23,6 +23,12 @@
                 {!! Form::text($locale . '[title]', isset($offer) ? $offer->translate($locale)->title : '', ['class' => 'form-control', 'placeholder' => $name . ' title']) !!}
             </div>
 
+            <!-- brief Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::label('brief', __('models/offers.fields.brief') . ':') !!}
+                {!! Form::text($locale . '[brief]', isset($offer) ? $offer->translate($locale)->brief : '', ['class' => 'form-control', 'placeholder' => $name . ' brief']) !!}
+            </div>
+
 
             <!-- description Field -->
             <div class="form-group col-sm-12 col-lg-12">
@@ -30,6 +36,13 @@
 
                 {!! Form::textarea($locale . '[description]', isset($offer) ? $offer->translate($locale)->description : '', ['class' => 'form-control', 'placeholder' => $name . ' description']) !!}
             </div>
+
+             <script type="text/javascript">
+            CKEDITOR.replace("{{ $locale . '[description]' }}", {
+                filebrowserUploadUrl: "{{route('adminPanel.ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        </script>
 
         </div>
 
