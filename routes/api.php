@@ -86,10 +86,11 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
         Route::get('user/notifications', [CustomerController::class, 'notifications']);
         Route::get('user/notifications/{notification}', [CustomerController::class, 'notification']);
         Route::get('user/payment-history', [CustomerController::class, 'paymentHistory']);
-        // Route::post('user/renew-subscription', [CustomerController::class, 'renewSubscription']);
+        Route::post('user/renew-subscription', [CustomerController::class, 'renewSubscription']);
+        Route::post('user/update-or-create-review', [CustomerController::class, 'updateOrCreateReview']);
+        Route::post('user/create-complaint', [CustomerController::class, 'createComplaint']);
 
     });
 
-    Route::post('user/renew-subscription', [CustomerController::class, 'renewSubscription']);
 ////////////////////////////////// End User //////////////////////////////////
 

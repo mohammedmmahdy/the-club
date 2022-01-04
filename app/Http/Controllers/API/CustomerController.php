@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Models\AcademySchedule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\AcademyComplaint;
+use App\Models\AcademyReview;
 use App\Models\EventReservation;
 use App\Models\Option;
 use App\Models\PaymentHistory;
@@ -130,6 +132,44 @@ class CustomerController extends Controller
             ]);
 
             return response()->json(compact('user'));
+        }
+
+        public function updateOrCreateReview()
+        {
+            request()->validate([
+                'academy_id' => 'required|integer|exists:academies,id',
+                'rate'       => 'required|integer',
+                'comment'    => 'nullable|string|max:191'
+            ]);
+
+            $review = AcademyReview::updateOrCreate(
+                [
+                    'academy_id' => request('academy_id'),
+                    'user_id'    => auth('api')->id(),
+                ],
+                [
+                    'rate'       => request('rate'),
+                    'comment'    => request('comment'),
+                ]
+            );
+
+            return response()->json(compact('review'));
+        }
+
+        public function createComplaint()
+        {
+            request()->validate([
+                'academy_id'   => 'required|integer|exists:academies,id',
+                'complaint'    => 'required|string'
+            ]);
+
+            $review = AcademyComplaint::create([
+                'user_id'    => auth('api')->id(),
+                'academy_id' => request('academy_id'),
+                'complaint'  => request('complaint'),
+            ]);
+
+            return response()->json(compact('review'));
         }
 
     //------------------------- End Main --------------------------//

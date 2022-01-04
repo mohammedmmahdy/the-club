@@ -195,4 +195,14 @@ class Academy extends Model
         return $this->hasMany(AcademySubscription::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(AcademyReview::class);
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(AcademyComplaint::class);
+    }
+
 }
