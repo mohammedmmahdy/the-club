@@ -336,7 +336,8 @@ class CustomerController extends Controller
                 // record payment history
                 $data['user']->paymentHistory()->create([
                     'payment_type' => 'playground_reservation',
-                    'amount'    => $attributes['price']
+                    'type_id'    => $data['playground']->id,
+                    'amount'    => $attributes['price'],
                 ]);
             }
 
