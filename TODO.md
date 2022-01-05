@@ -43,8 +43,8 @@
 [x] subscription flag in academy ( show if user is subscribed or not )
 [x] make user progress from admin panel
 [x] Api for user progress
-[] complaint academy
-[] academy rating
+[x] complaint academy
+[x] academy rating
 ## Playgrounds
 
 [x] Add photo to playground type

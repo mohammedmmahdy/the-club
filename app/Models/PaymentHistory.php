@@ -13,5 +13,6 @@ class PaymentHistory extends Model
         'user_id',
         'payment_type',
         'amount',
+        'type_id',
     ];
 }

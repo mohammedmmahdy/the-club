@@ -116,9 +116,24 @@ class CustomerController extends Controller
         public function paymentHistory()
         {
             $user = auth('api')->user();
-            $paymentHistory = $user->paymentHistory;
+            $data['paymentHistory'] = $user->paymentHistory;
 
-            return response()->json(compact('paymentHistory'));
+            foreach ($data['paymentHistory'] as $record) {
+                switch ($record->payment_type) {
+                    case 'event_reservation':
+                        $data['event_reservation'] = EventReservation::with('event')->find($record->type_id);
+                        break;
+                    case 'playground_reservation':
+                        $data['playground_reservation'] = PlaygroundReservation::with('playground')->find($record->type_id);
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                }
+            }
+
+            return response()->json($data);
         }
 
         public function renewSubscription()
@@ -127,9 +142,11 @@ class CustomerController extends Controller
 
             // After payment will add 1 year to his subscription
             $user->update([
-                'dateCardDateValidFrom' => Carbon::parse($user->dateCardDateExpire),
+                'dateCardDateValidFrom' => now(),
                 'dateCardDateExpire'    => Carbon::parse($user->dateCardDateExpire)->addYear()
             ]);
+
+            $user->load('submembers');
 
             return response()->json(compact('user'));
         }
@@ -225,6 +242,13 @@ class CustomerController extends Controller
             return response()->json($data);
         }
 
+        public function myAcademies()
+        {
+            return response()->json([
+                'academies' => auth()->user()->academies()->with('academy.photos','academy.schedules')->get()
+            ]);
+        }
+
 
     //------------------------- End Academies --------------------------//
 
@@ -247,14 +271,17 @@ class CustomerController extends Controller
 
             if ($data['user']) {
                 $attributes['user_id'] = auth('api')->id();
-                // record payment history
-                $data['user']->paymentHistory()->create([
-                    'payment_type' => 'event_reservation',
-                    'amount'    => request('total_price')
-                ]);
             }
 
             $data['event'] = EventReservation::create($attributes);
+            if ($data['user']) {
+                // record payment history
+                $data['user']->paymentHistory()->create([
+                    'payment_type' => 'event_reservation',
+                    'type_id'      => $data['event']->id,
+                    'amount'       => request('total_price'),
+                ]);
+            }
 
             return response()->json($data);
         }

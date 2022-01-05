@@ -17,6 +17,7 @@ class CreatePaymentHistoriesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('payment_type');
+            $table->integer('type_id');
             $table->integer('amount');
 
             $table->timestamps();

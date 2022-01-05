@@ -175,7 +175,7 @@ class AuthController extends Controller
         if (!$data['user']->boolMemberStatus) {
             return response()->json(['msg' => 'Your account is not active'], 403);
         }
-        $data['user']->load('submembers', 'mainMember', 'paymentHistory');
+        $data['user']->load('submembers', 'mainMember');
 
         return response()->json($data);
 
