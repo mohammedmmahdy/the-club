@@ -26,7 +26,9 @@ class UpdateAdminRequest extends FormRequest
     public function rules()
     {
         $rules = Admin::$rules;
-        $rules['email'] = $rules['email'].",".$this->route("admin");
+        $rules['email'] = 'required|email|unique:admins,email,'.  $this->admin;
+        $rules['password'] = 'confirmed';
+
         return $rules;
     }
 }

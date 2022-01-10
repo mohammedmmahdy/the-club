@@ -368,6 +368,12 @@ class MainController extends Controller
         return response()->json(compact('gallery'));
     }
 
+    public function galleryWeb()
+    {
+        $gallery = Gallery::paginate(9);
+        return response()->json(compact('gallery'));
+    }
+
     public function onboardings()
     {
         $onboardings = Onboarding::get();
@@ -405,6 +411,20 @@ class MainController extends Controller
     {
 
         $events = Event::with('prices.eventCategory')->where('date', '>' , now())->get();
+
+        $upcomingEvent = Event::query()
+                        ->with('prices.eventCategory')
+                        ->where('date' , '>', now())
+                        ->orderBy('date')
+                        ->first();
+
+        return response()->json(compact('events', 'upcomingEvent'));
+    }
+
+    public function eventsWeb()
+    {
+
+        $events = Event::with('prices.eventCategory')->where('date', '>' , now())->paginate(9);
 
         $upcomingEvent = Event::query()
                         ->with('prices.eventCategory')

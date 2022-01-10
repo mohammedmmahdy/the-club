@@ -382,14 +382,16 @@ class CustomerController extends Controller
             if (!$data['user']->boolMemberStatus) {
                 return response()->json(['msg' => 'Your account is not active'], 403);
             }
+            
+            $data['ticket'] = $data['user']->tickets()->create($attributes);
 
             // record payment history
             $data['user']->paymentHistory()->create([
                 'payment_type' => 'visit_ticket',
+                'type_id'      => $data['ticket']->id,
                 'amount'    => $attributes['price']
             ]);
 
-            $data['ticket'] = $data['user']->tickets()->create($attributes);
             $data['user']->load('tickets');
 
             return response()->json($data);

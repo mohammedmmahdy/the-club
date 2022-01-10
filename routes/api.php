@@ -46,6 +46,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::get('landing-page', 'MainController@landing_page');
     Route::get('web-home', 'MainController@webHome');
     Route::get('gallery', 'MainController@gallery');
+    Route::get('gallery-web', 'MainController@galleryWeb');
     Route::get('onboardings', 'MainController@onboardings');
     Route::get('safety-ratio', [MainController::class, 'safetyRatio']);
 ///////////////////////////////// End Pages //////////////////////////////////
@@ -61,6 +62,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::post('events/event-reservation', [CustomerController::class, 'eventReservation']);
     Route::get('events/upcoming-event', [MainController::class, 'upcominEvent']);
     Route::get('events', [MainController::class, 'events']);
+    Route::get('events-web', [MainController::class, 'eventsWeb']);
     Route::get('events/{event}', [MainController::class, 'event']);
 //////////////////////////////// End Events //////////////////////////////////
 
