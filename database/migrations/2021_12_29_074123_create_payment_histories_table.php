@@ -16,8 +16,7 @@ class CreatePaymentHistoriesTable extends Migration
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('payment_type');
-            $table->integer('type_id');
+            $table->morphs('reservable');
             $table->integer('amount');
 
             $table->timestamps();

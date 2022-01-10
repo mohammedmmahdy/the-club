@@ -31,6 +31,11 @@ class EventReservation extends Model
         return $this->belongsTo(Event::class);
     }
 
+    public function eventCategory()
+    {
+        return $this->belongsTo(EventCategory::class);
+    }
+
 
     ################################# Scopes #################################
 
@@ -42,6 +47,11 @@ class EventReservation extends Model
     public function scopeInactive($query)
     {
         return $query->where('status', 0);
+    }
+
+    public function paymentHistory()
+    {
+        return $this->morphOne(PaymentHistory::class, 'reservable');
     }
 
 }

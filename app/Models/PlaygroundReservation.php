@@ -71,4 +71,10 @@ class PlaygroundReservation extends Model
         return $this->belongsTo(Playground::class);
     }
 
+
+    public function paymentHistory()
+    {
+        return $this->morphOne(PaymentHistory::class, 'reservable');
+    }
+
 }

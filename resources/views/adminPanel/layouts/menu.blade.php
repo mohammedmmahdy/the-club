@@ -1,4 +1,4 @@
-@can('options view')
+{{-- @can('options view') --}}
     <li class="menu-item  {{ Request::is('*options*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.options.edit', 1) }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -20,9 +20,9 @@
             <span class="menu-text">@lang('models/options.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('onboardings view')
+{{-- @can('onboardings view') --}}
     <li class="menu-item  {{ Request::is('*adminPanel/onboardings*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.onboardings.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -44,7 +44,7 @@
             <span class="menu-text">@lang('models/onboardings.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
 
 {{-- Users --}}
@@ -72,7 +72,7 @@
     <div class="menu-submenu "><i class="menu-arrow"></i>
         <ul class="menu-subnav">
 
-            @can('admins view')
+            {{-- @can('admins view') --}}
                 <li class="menu-item  {{ Request::is('*admins*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.admins.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -95,9 +95,9 @@
                         <span class="menu-text">@lang('models/admins.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('users view')
+            {{-- @can('users view') --}}
                 <li class="menu-item  {{ Request::is('*users*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.users.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -121,8 +121,8 @@
                         <span class="menu-text">@lang('models/users.plural')</span>
                     </a>
                 </li>
-            @endcan
-            @can('roles view')
+            {{-- @endcan --}}
+            {{-- @can('roles view') --}}
                 <li class="menu-item  {{ Request::is('*roles*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.roles.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -140,7 +140,7 @@
                         <span class="menu-text">@lang('models/roles.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
         </ul>
     </div>
@@ -157,7 +157,7 @@
         <ul class="menu-subnav">
 
 
-            @can('metas view')
+            {{-- @can('metas view') --}}
                 <li class="menu-item  {{ Request::is('*metas*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.metas.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -186,9 +186,9 @@
                         <span class="menu-text">@lang('models/metas.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('information view')
+            {{-- @can('information view') --}}
                 <li class="menu-item  {{ Request::is('*information*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.information.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -209,9 +209,9 @@
                         <span class="menu-text">@lang('models/information.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('sliders view')
+            {{-- @can('sliders view') --}}
                 <li class="menu-item  {{ Request::is('*sliders*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.sliders.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -232,9 +232,9 @@
                         <span class="menu-text">@lang('models/sliders.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('contacts view')
+            {{-- @can('contacts view') --}}
                 <li class="menu-item  {{ Request::is('*contacts*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.contacts.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -255,9 +255,9 @@
                         <span class="menu-text">@lang('models/contacts.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('newsletters view')
+            {{-- @can('newsletters view') --}}
                 <li class="menu-item  {{ Request::is('*newsletters*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.newsletters.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -278,9 +278,9 @@
                         <span class="menu-text">@lang('models/newsletters.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('blogs view')
+            {{-- @can('blogs view') --}}
                 <li class="menu-item  {{ Request::is('*blogs*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.blogs.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -300,9 +300,9 @@
                         <span class="menu-text">@lang('models/blogs.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('news view')
+            {{-- @can('news view') --}}
                 <li class="menu-item  {{ Request::is('*adminPanel/news*') ? 'menu-item-active' : '' }}"
                     aria-haspopup="true">
                     <a href="{{ route('adminPanel.news.index') }}" class="menu-link ">
@@ -322,9 +322,9 @@
                         <span class="menu-text">@lang('models/news.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('socialLinks view')
+            {{-- @can('socialLinks view') --}}
                 <li class="menu-item  {{ Request::is('*socialLinks*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.socialLinks.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -355,9 +355,9 @@
                         <span class="menu-text">@lang('models/socialLinks.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('pages view')
+            {{-- @can('pages view') --}}
                 <li class="menu-item  {{ Request::is('*pages*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.pages.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -378,9 +378,9 @@
                         <span class="menu-text">@lang('models/pages.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
-            @can('faqs view')
+            {{-- @can('faqs view') --}}
                 <li class="menu-item  {{ Request::is('*faqs*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                     <a href="{{ route('adminPanel.faqs.index') }}" class="menu-link ">
                         <span class="svg-icon menu-icon">
@@ -399,7 +399,7 @@
                         <span class="menu-text">@lang('models/faqs.plural')</span>
                     </a>
                 </li>
-            @endcan
+            {{-- @endcan --}}
 
 
         </ul>
@@ -407,7 +407,7 @@
 </li>
 
 
-@can('notifications view')
+{{-- @can('notifications view') --}}
     <li class="menu-item  {{ Request::is('*notifications*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.notifications.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -426,7 +426,7 @@
             <span class="menu-text">@lang('models/notifications.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
 {{-- <li class="menu-item  {{ Request::is('*branches*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
     <a href="{{ route('adminPanel.branches.index') }}" class="menu-link ">
@@ -450,7 +450,7 @@
     </a>
 </li> --}}
 
-@can('academies view')
+{{-- @can('academies view') --}}
     <li class="menu-item  {{ Request::is('*academies*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.academies.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -470,9 +470,9 @@
             <span class="menu-text">@lang('models/academies.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('academies requests')
+{{-- @can('academies requests') --}}
     @php
     $academyRequestsCount = \App\Models\AcademySubscription::inactive()->count();
     @endphp
@@ -498,9 +498,9 @@
                     class="badge badge-pill badge-danger mx-2">{{ $academyRequestsCount }}</span></span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('eventCategories view')
+{{-- @can('eventCategories view') --}}
     <li class="menu-item  {{ Request::is('*adminPanel/eventCategories*') ? 'menu-item-active' : '' }}"
         aria-haspopup="true">
         <a href="{{ route('adminPanel.eventCategories.index') }}" class="menu-link ">
@@ -520,9 +520,9 @@
             <span class="menu-text">@lang('models/eventCategories.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('events view')
+{{-- @can('events view') --}}
     <li class="menu-item  {{ Request::is('*events*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.events.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -543,9 +543,9 @@
             <span class="menu-text">@lang('models/events.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('events reservations')
+{{-- @can('events reservations') --}}
     @php
     $eventReservationsCount = \App\Models\EventReservation::inactive()->count();
     @endphp
@@ -572,9 +572,9 @@
                     class="badge badge-pill badge-danger mx-2">{{ $eventReservationsCount }}</span></span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('events reservations')
+{{-- @can('events reservations') --}}
     <li class="menu-item  {{ Request::is('*gallery*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.gallery.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -593,9 +593,9 @@
             <span class="menu-text">@lang('models/gallery.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('playgroundTypes view')
+{{-- @can('playgroundTypes view') --}}
     <li class="menu-item  {{ Request::is('*playgroundTypes*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.playgroundTypes.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -616,9 +616,9 @@
             <span class="menu-text">@lang('models/playgroundTypes.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('playgrounds view')
+{{-- @can('playgrounds view') --}}
     <li class="menu-item  {{ Request::is('*playgrounds*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.playgrounds.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -638,9 +638,9 @@
             <span class="menu-text">@lang('models/playgrounds.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('playgroundReservations view')
+{{-- @can('playgroundReservations view') --}}
     <li class="menu-item  {{ Request::is('*playgroundReservations*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.playgroundReservations.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -662,9 +662,9 @@
             <span class="menu-text">@lang('models/playgroundReservations.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('events reservations')
+{{-- @can('events reservations') --}}
     <li class="menu-item  {{ Request::is('*ticketReservations*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.ticketReservations.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -686,10 +686,10 @@
             <span class="menu-text">@lang('models/ticketReservations.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
 
-@can('offerCategories view')
+{{-- @can('offerCategories view') --}}
     <li class="menu-item  {{ Request::is('*adminPanel/offerCategories*') ? 'menu-item-active' : '' }}"
         aria-haspopup="true">
         <a href="{{ route('adminPanel.offerCategories.index') }}" class="menu-link ">
@@ -710,9 +710,9 @@
             <span class="menu-text">@lang('models/offerCategories.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
-@can('offers view')
+{{-- @can('offers view') --}}
     <li class="menu-item  {{ Request::is('*adminPanel/offers*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
         <a href="{{ route('adminPanel.offers.index') }}" class="menu-link ">
             <span class="svg-icon menu-icon">
@@ -737,7 +737,7 @@
             <span class="menu-text">@lang('models/offers.plural')</span>
         </a>
     </li>
-@endcan
+{{-- @endcan --}}
 
 
 
