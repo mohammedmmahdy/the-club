@@ -101,7 +101,6 @@ class AdminController extends AppBaseController
         $admin = Admin::where('id', $id)->with('roles')->first();
 
         $roles = Role::pluck('name', 'id');
-
         if (empty($admin)) {
             Flash::error(__('messages.not_found', ['model' => __('models/admins.singular')]));
 

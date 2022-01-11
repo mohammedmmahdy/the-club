@@ -1,6 +1,6 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', __('models/roles.fields.name').':') !!}
+    {!! Form::label('name', __('models/roles.fields.name') . ':') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -27,42 +27,35 @@
             @php $page = null @endphp
 
             @forelse ($permissions as $permission)
-            @if ($page != $permission->page)
-            <tr>
-                <td>
-
-                    {{-- <label class="checkbox checkbox-outline checkbox-primary">
-                        <input type="checkbox" name="Checkboxes15" />
-                        <span></span>
-                        Default
-                    </label> --}}
-
-                    <label class="checkbox checkbox-outline checkbox-primary">
-                        <input type="checkbox" class="check_inputs inputs-permmission" value=".{{ $permission->page }}">
-                        <span></span>
-                        <strong class="m-2">{{ $permission->page }}:</strong>
-                    </label>
-                </td>
-                {{-- <td>
-                        <strong>{{ $permission->page }}:</strong>
-                </td> --}}
+                @if ($page != $permission->page)
+                    <tr>
+                        <td>
+                            <label class="checkbox checkbox-outline checkbox-primary">
+                                <input type="checkbox" class="check_inputs inputs-permmission"
+                                    value=".{{ $permission->page }}">
+                                <span></span>
+                                <strong class="m-2">{{ $permission->page }}:</strong>
+                            </label>
+                        </td>
                 @endif
                 <td>
                     @php
-                    $checked = old('permissions['. $permission->name .']', isset($roles) ? $roles->hasPermissionTo($permission->name): false );
+                        $checked = old('permissions[' . $permission->name . ']', isset($roles) ? $roles->hasPermissionTo($permission->name) : false);
                     @endphp
 
                     <label class="checkbox checkbox-outline checkbox-primary">
-                        <input type="checkbox" name="{{ 'permissions['. $permission->name .']' }}" value="{{ $permission->name }}" {{ $checked ? 'checked' : '' }} class="inputs-permmission {{ $permission->page }}">
+                        <input type="checkbox" name="{{ 'permissions[' . $permission->name . ']' }}"
+                            value="{{ $permission->name }}" {{ $checked ? 'checked' : '' }}
+                            class="inputs-permmission {{ $permission->page }}">
                         <span></span>
                         <code class="ml-2">{{ $permission->action }}</code>
                     </label>
                 </td>
                 @php $page = $permission->page @endphp
-                {{$page != $permission->page ? '</tr>':''}}
-                @empty
+                {{ $page != $permission->page ? '</tr>' : '' }}
+            @empty
                 <h3 class="text-danger">No Permission Found</h3>
-                @endforelse
+            @endforelse
         </tbody>
     </table>
 
@@ -75,3 +68,14 @@
     {!! Form::submit(__('crud.save'), ['class' => 'btn btn-sm btn-primary']) !!}
     <a href="{{ route('adminPanel.roles.index') }}" class="btn btn-default">@lang('crud.cancel')</a>
 </div>
+
+
+@section('styles')
+    <style>
+        tr {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+    </style>
+@endsection
