@@ -191,7 +191,7 @@ class MainController extends Controller
 
     ##########################################################################
 
-// General
+    ################################# General ###################################
 
     public function wifiPassword()
     {
@@ -217,7 +217,7 @@ class MainController extends Controller
         return response()->json($data);
     }
 
-// Pages
+    ################################### Pages ####################################
 
     public function webHome()
     {
@@ -380,15 +380,15 @@ class MainController extends Controller
         return response()->json(compact('onboardings'));
     }
 
+    ################################### Academies ####################################
 
-// Academies
     public function academies()
     {
         $data['academies'] = Academy::with('photos','schedules')->get();
 
         $user = auth('api')->user();
         if ($user) {
-            $data['user_academies'] = $user->academies;
+            $data['user_academies'] = $user->academies()->where('status', 1)->get();
         }
 
         return response()->json($data);
@@ -406,7 +406,8 @@ class MainController extends Controller
         return response()->json(compact('schedules'));
     }
 
-// Events
+    ################################### Events ####################################
+
     public function events()
     {
 
@@ -452,7 +453,8 @@ class MainController extends Controller
         return response()->json(compact('upcomingEvent'));
     }
 
-    // Playgrounds
+    ################################### Playgrounds ####################################
+
     public function playgrounds()
     {
         $playgrounds = Playground::with('playgroundType')->get();
@@ -467,7 +469,8 @@ class MainController extends Controller
         return response()->json(compact('playgroundTypes'));
     }
 
-    // Tickets
+    ################################### Tickets ####################################
+
     public function ticketPrice()
     {
         $ticketPrice = Option::first()->visit_ticket_price;

@@ -33,28 +33,6 @@ class CustomerController extends Controller
     # Main
     ##################################################################
 
-    // public function update_information(Request $request)
-    // {
-    //     $customer = auth('api.customer')->user();
-    //     $data = $request->validate([
-    //         'name'  => 'required|string|min:3|max:191',
-    //         'email' => 'required|email|unique:customers,email,' . $customer->id,
-    //         'photo' => 'nullable|image|mimes:jpeg,jpg,png',
-    //     ]);
-
-    //     $customer->update($data);
-
-    //     return response()->json(compact('customer'));
-    // }
-
-    // public function wallet()
-    // {
-    //     $customer = auth('api.customer')->user();
-    //     $balance = $customer->balance;
-
-    //     return response()->json(compact('balance'));
-    // }
-
     public function updatePassword()
     {
         request()->validate([
@@ -137,6 +115,13 @@ class CustomerController extends Controller
             'dateCardDateValidFrom' => now(),
             'dateCardDateExpire'    => Carbon::parse($user->dateCardDateExpire)->addYear()
         ]);
+
+        foreach ($user->submembers as $submember) {
+            $submember->update([
+                'dateCardDateValidFrom' => now(),
+                'dateCardDateExpire'    => Carbon::parse($user->dateCardDateExpire)->addYear()
+            ]);
+        }
 
         $user->load('submembers');
 
@@ -293,7 +278,7 @@ class CustomerController extends Controller
             'member_mobile'         => 'required|numeric',
             'date'                  => 'required|date',
             'time'                  => 'required|date_format:H:i:s',
-            'number_of_hours'      => 'required|numeric',
+            'number_of_hours'       => 'required|numeric',
             'number_of_people'      => 'required|numeric',
         ]);
 
@@ -329,7 +314,7 @@ class CustomerController extends Controller
             $data['user']->paymentHistory()->create([
                 'reservable_type'  => 'playground_reservation',
                 'reservable_id'    => $data['playground']->id,
-                'amount'           => $attributes['price'],
+                'amount'           => $attributes['price'] * request('number_of_hours'),
             ]);
         }
 

@@ -21,7 +21,7 @@
                             <h3 class="card-title">Edit @lang('models/admins.singular')</h3>
                         </div>
                         <div class="card-body">
-                            {!! Form::model($offer, ['route' => ['adminPanel.admins.update', $offer->id], 'method' => 'patch', 'files' => true]) !!}
+                            {!! Form::model($admin, ['route' => ['adminPanel.admins.update', $admin->id], 'method' => 'patch', 'files' => true]) !!}
                               @include('adminPanel.admins.fields')
                             {!! Form::close() !!}
                         </div>
