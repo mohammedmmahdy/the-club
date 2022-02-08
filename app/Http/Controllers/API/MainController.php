@@ -368,7 +368,7 @@ class MainController extends Controller
 
         $user = auth('api')->user();
         if ($user) {
-            $data['user_academies'] = $user->academies;
+            $data['user_academies'] = $user->academies()->active()->get();
         }
 
         return response()->json($data);
@@ -377,7 +377,13 @@ class MainController extends Controller
     public function academy(Academy $academy)
     {
         $academy->load('photos','schedules');
-        return response()->json(compact('academy'));
+        $data['academy'] = $academy;
+
+        $user = auth('api')->user();
+        if ($user) {
+            $data['user_academies'] = $user->academies()->active()->with('appointment')->get();
+        }
+        return response()->json($data);
     }
 
     public function academySchedule(Academy $academy)
