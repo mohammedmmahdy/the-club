@@ -120,6 +120,7 @@ class UpdatePermissions extends Command
         }
 
         $bar->finish();
+        // dd($permissions);
         foreach ($permissions as $permission) {
             Permission::createOnlyNew($permission);
         }

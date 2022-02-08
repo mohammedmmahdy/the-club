@@ -24,6 +24,7 @@ class AcademyFactory extends Factory
         return [
             'icon'       => 'icon.png',
             'main_photo' => 'image.jpg',
+            'web_main_photo' => 'image.jpg',
             'en' => [ 'name' => $this->faker->sentence(3), 'about' => $this->faker->paragraph(10),'team' => $this->faker->paragraph(10),],
             'ar' => [ 'name' => $this->faker->sentence(3), 'about' => $this->faker->paragraph(10),'team' => $this->faker->paragraph(10),],
         ];

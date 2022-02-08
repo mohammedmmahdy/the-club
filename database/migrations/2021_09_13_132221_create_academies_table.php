@@ -18,6 +18,7 @@ class CreateAcademiesTable extends Migration
             $table->id();
             // $table->foreignId('branch_id');
             $table->string('main_photo');
+            $table->string('web_main_photo');
             $table->string('icon');
             $table->timestamps();
             $table->softDeletes();

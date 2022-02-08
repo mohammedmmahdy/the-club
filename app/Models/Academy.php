@@ -41,6 +41,7 @@ class Academy extends Model
         'team',
         'icon',
         'main_photo',
+        'web_main_photo',
     ];
 
     /**
@@ -72,6 +73,7 @@ class Academy extends Model
         // $rules['branch_id']       = 'required|exists:branches,id';
         $rules['icon']            = 'required|image|mimes:jpg,jpeg,png';
         $rules['main_photo']      = 'required|image|mimes:jpg,jpeg,png';
+        $rules['web_main_photo']      = 'required|image|mimes:jpg,jpeg,png';
 
         $rules['photos']    = 'required|array';
         $rules['photos.*']  = 'required|image|mimes:jpg,jpeg,png';
@@ -92,6 +94,8 @@ class Academy extends Model
         'icon_thumbnail_path',
         'main_photo_original_path',
         'main_photo_thumbnail_path',
+        'web_main_photo_original_path',
+        'web_main_photo_thumbnail_path',
         'is_user_subscribed',
         'rating_avg',
     ];
@@ -154,6 +158,36 @@ class Academy extends Model
         return $this->main_photo ? asset('uploads/images/thumbnail/' . $this->main_photo) : null;
     }
     // main_photo
+
+    // web_main_photo
+    public function setWebMainPhotoAttribute($file)
+    {
+        try {
+            if ($file) {
+
+                $fileName = $this->createFileName($file);
+
+                $this->originalImage($file, $fileName);
+
+                $this->thumbImage($file, $fileName, 200, 200);
+
+                $this->attributes['web_main_photo'] = $fileName;
+            }
+        } catch (\Throwable $th) {
+            $this->attributes['web_main_photo'] = $file;
+        }
+    }
+
+    public function getWebMainPhotoOriginalPathAttribute()
+    {
+        return $this->web_main_photo ? asset('uploads/images/original/' . $this->web_main_photo) : null;
+    }
+
+    public function getWebMainPhotoThumbnailPathAttribute()
+    {
+        return $this->web_main_photo ? asset('uploads/images/thumbnail/' . $this->web_main_photo) : null;
+    }
+    // web_main_photo
 
 
     // Handle If Current User subscribed in this academy

@@ -43,7 +43,7 @@ class PermissionHandler
                 $permission = $page .' edit';
                 break;
 
-            case in_array($action, ['destory']):
+            case in_array($action, ['destroy']):
                 $permission = $page .' delete';
                 break;
 
