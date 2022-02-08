@@ -10,14 +10,14 @@
 @endsection
 @section('content')
     <div class="d-flex flex-column-fluid">
-		<!--begin::Container-->
-		<div class=" container ">
-			<div class="row">
+        <!--begin::Container-->
+        <div class=" container ">
+            <div class="row">
                 <div class="col-lg-12">
                     <!--begin::Card-->
                     <div class="card card-custom gutter-b example example-compact show-fields">
                         <div class="card-header">
-                            <h3 class="card-title">Details</h3>
+                            <h3 class="card-title">@lang('crud.detail')</h3>
                             <div class="card-toolbar">
                                 <!--begin::Button-->
                                 <a href="{{ route('adminPanel.admins.index') }}" class="btn btn-secondary font-weight-bolder">
@@ -32,7 +32,7 @@
                                         </svg>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    Back
+                                    @lang('crud.back')
                                 </a>
                                 <!--end::Button-->
                             </div>
@@ -45,6 +45,6 @@
                 </div>
             </div>
         </div>
-		<!--end::Container-->
+        <!--end::Container-->
     </div>
 @endsection

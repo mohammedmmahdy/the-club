@@ -1,7 +1,7 @@
 ## General
 
-[] wifi password in options
-[] wifi api
+[x] wifi password in options
+[x] wifi api
 
 ## Auth
 
@@ -13,6 +13,7 @@
 [x] add sub users in login
 [x] update email
 [x] update password
+[x] renew subscription
 
 ## Branches
 
@@ -40,8 +41,10 @@
 [x] Add icon to academy 
 [x] Single academy Api
 [x] subscription flag in academy ( show if user is subscribed or not )
-[] make user progress from admin panel
-[] Api for user progress
+[x] make user progress from admin panel
+[x] Api for user progress
+[x] complaint academy
+[x] academy rating
 ## Playgrounds
 
 [x] Add photo to playground type
@@ -65,12 +68,13 @@
 ## Tickets
 
 [x] Book ticket for members only
+[] tickets categories
+[] tickets CRUD with pricing by day
 
 ## Admin Dashboard
 
 [x] Edit users crud with new data
 [x] Add filters to users table
-[] make reject user action
 [x] edit academies & events & playgrounds data with new user data
 
 ## News

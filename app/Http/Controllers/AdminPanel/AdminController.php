@@ -9,6 +9,9 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Spatie\Permission\Models\Role;
+use App\Models\Admin;
+
 
 class AdminController extends AppBaseController
 {
@@ -29,7 +32,7 @@ class AdminController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $admins = $this->adminRepository->paginate(10);
+        $admins = $this->adminRepository->allQuery($request->all())->paginate(10);
 
         return view('adminPanel.admins.index')
             ->with('admins', $admins);
@@ -42,7 +45,8 @@ class AdminController extends AppBaseController
      */
     public function create()
     {
-        return view('adminPanel.admins.create');
+        $roles = Role::pluck('name', 'id');
+        return view('adminPanel.admins.create', compact('roles'));
     }
 
     /**
@@ -54,8 +58,10 @@ class AdminController extends AppBaseController
      */
     public function store(CreateAdminRequest $request)
     {
-        $input = $request->all();
-        $admin = $this->adminRepository->create($input);
+        // return $request;
+        $admin = $this->adminRepository->create($request->all());
+
+        $admin->syncRoles([request('role')]);
 
         Flash::success(__('messages.saved', ['model' => __('models/admins.singular')]));
 
@@ -79,7 +85,7 @@ class AdminController extends AppBaseController
             return redirect(route('adminPanel.admins.index'));
         }
 
-        return view('adminPanel.admins.show')->with('admin', $admin);
+        return view('adminPanel.admins.show', compact('admin'));
     }
 
     /**
@@ -91,15 +97,17 @@ class AdminController extends AppBaseController
      */
     public function edit($id)
     {
-        $admin = $this->adminRepository->find($id);
+        // $admin = $this->adminRepository->find($id);
+        $admin = Admin::where('id', $id)->with('roles')->first();
 
+        $roles = Role::pluck('name', 'id');
         if (empty($admin)) {
             Flash::error(__('messages.not_found', ['model' => __('models/admins.singular')]));
 
             return redirect(route('adminPanel.admins.index'));
         }
 
-        return view('adminPanel.admins.edit')->with('admin', $admin);
+        return view('adminPanel.admins.edit', compact('admin','roles'));
     }
 
     /**
@@ -112,8 +120,8 @@ class AdminController extends AppBaseController
      */
     public function update($id, UpdateAdminRequest $request)
     {
-        dd($request->all());
         $admin = $this->adminRepository->find($id);
+        $admin->syncRoles([request('role')]);
 
         if (empty($admin)) {
             Flash::error(__('messages.not_found', ['model' => __('models/admins.singular')]));
@@ -153,4 +161,6 @@ class AdminController extends AppBaseController
 
         return redirect(route('adminPanel.admins.index'));
     }
+
 }
+

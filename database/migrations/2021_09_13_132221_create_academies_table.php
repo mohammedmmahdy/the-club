@@ -15,7 +15,7 @@ class CreateAcademiesTable extends Migration
     public function up()
     {
         Schema::create('academies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             // $table->foreignId('branch_id');
             $table->string('main_photo');
             $table->string('icon');
@@ -26,7 +26,7 @@ class CreateAcademiesTable extends Migration
 
         Schema::create('academy_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('academy_id')->unsigned();
+            $table->foreignId('academy_id')->constrained('academies');
             $table->string('locale', 2)->index();
 
             $table->string('name');
@@ -35,15 +35,11 @@ class CreateAcademiesTable extends Migration
 
             $table->unique(['academy_id', 'locale']);
 
-            $table->foreign('academy_id')
-                ->references('id')
-                ->on('academies')
-                ->onDelete('cascade');
         });
 
         Schema::create('academy_photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('academy_id');
+            $table->foreignId('academy_id')->constrained('academies');
 
             $table->string('photo');
 
@@ -54,7 +50,7 @@ class CreateAcademiesTable extends Migration
 
         Schema::create('academy_schedules', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('academy_id');
+            $table->foreignId('academy_id')->constrained('academies');
 
             $table->string('day');
             $table->time('from');
@@ -67,8 +63,8 @@ class CreateAcademiesTable extends Migration
 
         Schema::create('academy_subscriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('academy_id');
-            $table->foreignId('user_id');
+            $table->foreignId('academy_id')->constrained('academies');
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('academy_schedule_id');
 
             $table->string('strMemberName')->nullable();

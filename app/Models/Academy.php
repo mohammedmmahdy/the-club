@@ -93,6 +93,7 @@ class Academy extends Model
         'main_photo_original_path',
         'main_photo_thumbnail_path',
         'is_user_subscribed',
+        'rating_avg',
     ];
     // icon
     public function setIconAttribute($file)
@@ -171,6 +172,12 @@ class Academy extends Model
         return $result;
     }
 
+    // Handle Rating average
+    public function getRatingAvgAttribute()
+    {
+        return (float) round($this->reviews->avg('rate'), 2);
+    }
+
 
 
     ################################### Relations #################################
@@ -193,6 +200,16 @@ class Academy extends Model
     public function subscriptions()
     {
         return $this->hasMany(AcademySubscription::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(AcademyReview::class);
+    }
+
+    public function complaints()
+    {
+        return $this->hasMany(AcademyComplaint::class);
     }
 
 }

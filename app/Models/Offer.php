@@ -51,7 +51,7 @@ class Offer extends Model
     ];
 
 
-    public $translatedAttributes =  ['title', 'description'];
+    public $translatedAttributes =  ['title', 'brief','description'];
 
     public static function rules()
     {
@@ -59,6 +59,7 @@ class Offer extends Model
 
         foreach ($languages as $language) {
             $rules[$language . '.title'] = 'required|string|max:191';
+            $rules[$language . '.brief'] = 'required|string|max:191';
             $rules[$language . '.description'] = 'required|string';
         }
 

@@ -13,5 +13,16 @@ class PaymentHistory extends Model
         'user_id',
         'payment_type',
         'amount',
+        'reservable_type',
+        'reservable_id',
     ];
+
+
+
+
+
+    public function reservable()
+    {
+        return $this->morphTo();
+    }
 }

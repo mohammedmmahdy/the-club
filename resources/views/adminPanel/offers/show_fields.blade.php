@@ -11,11 +11,19 @@
 </div>
 
 
+<!-- brief Field -->
+<div class="form-group">
+    {!! Form::label('brief', __('models/offers.fields.brief').':') !!}
+    <b>{{ $offer->brief }}</b>
+</div>
+
 <!-- Description Field -->
 <div class="form-group">
     {!! Form::label('description', __('models/offers.fields.description').':') !!}
-    <b>{{ $offer->description }}</b>
+    <b>{!! $offer->description !!}</b>
 </div>
+
+
 
 
 <!-- Discount Value Field -->

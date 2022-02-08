@@ -38,12 +38,15 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::get('web-all-news', 'MainController@webAllNews');
     Route::get('all-news', 'MainController@allNews');
     Route::get('single-news/{news}', 'MainController@singleNews');
+    Route::get('offers', 'MainController@offers');
+    Route::get('offers/{offer}', 'MainController@offer');
     Route::get('faqs', 'MainController@faqs');
     Route::post('send-contact', 'MainController@send_contact_message');
     Route::post('newsletter', 'MainController@newsletter');
     Route::get('landing-page', 'MainController@landing_page');
     Route::get('web-home', 'MainController@webHome');
     Route::get('gallery', 'MainController@gallery');
+    Route::get('gallery-web', 'MainController@galleryWeb');
     Route::get('onboardings', 'MainController@onboardings');
     Route::get('safety-ratio', [MainController::class, 'safetyRatio']);
 ///////////////////////////////// End Pages //////////////////////////////////
@@ -59,6 +62,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::post('events/event-reservation', [CustomerController::class, 'eventReservation']);
     Route::get('events/upcoming-event', [MainController::class, 'upcominEvent']);
     Route::get('events', [MainController::class, 'events']);
+    Route::get('events-web', [MainController::class, 'eventsWeb']);
     Route::get('events/{event}', [MainController::class, 'event']);
 //////////////////////////////// End Events //////////////////////////////////
 
@@ -84,7 +88,12 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
         Route::get('user/notifications', [CustomerController::class, 'notifications']);
         Route::get('user/notifications/{notification}', [CustomerController::class, 'notification']);
         Route::get('user/payment-history', [CustomerController::class, 'paymentHistory']);
+        Route::post('user/renew-subscription', [CustomerController::class, 'renewSubscription']);
+        Route::post('user/update-or-create-review', [CustomerController::class, 'updateOrCreateReview']);
+        Route::post('user/create-complaint', [CustomerController::class, 'createComplaint']);
+        Route::get('user/academies', [CustomerController::class, 'myAcademies']);
 
     });
+
 ////////////////////////////////// End User //////////////////////////////////
 

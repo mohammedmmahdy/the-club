@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentHistoriesTable extends Migration
+class CreateAcademyReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePaymentHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_histories', function (Blueprint $table) {
+        Schema::create('academy_reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->morphs('reservable');
-            $table->integer('amount');
-
+            $table->foreignId('academy_id')->constrained('academies');
+            $table->foreignId('user_id')->constrained('users');
+            $table->integer('rate');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePaymentHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_histories');
+        Schema::dropIfExists('academy_reviews');
     }
 }

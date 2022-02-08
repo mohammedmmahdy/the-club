@@ -6,9 +6,9 @@
 </ul>
 @endsection
 @section('content')
+    @include('flash::message')
     <!--begin::Card-->
     <div class="card card-custom gutter-b">
-        @include('flash::message')
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
                 <h3 class="card-label">
@@ -16,6 +16,7 @@
                     <span class="d-block text-muted pt-2 font-size-sm">Descriptions</span>
                 </h3>
             </div>
+            @can('admins create')
             <div class="card-toolbar">
                 <!--begin::Button-->
                 <a href="{{ route('adminPanel.admins.create') }}" class="btn btn-primary font-weight-bolder">
@@ -30,17 +31,18 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    Add New
+                    @lang('crud.add_new')
                 </a>
                 <!--end::Button-->
             </div>
+            @endcan
         </div>
 
         <div class="card-body">
             @include('adminPanel.admins.table')
-            {{-- <div class="pull-right mr-3">
-                @include('coreui-templates::common.paginate', ['records' => $admins])
-            </div> --}}
+            <div class="pull-right mr-3">
+
+            </div>
         </div>
     </div>
 <!--end::Card-->

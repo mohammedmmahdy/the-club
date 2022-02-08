@@ -21,6 +21,7 @@ use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Models\PlaygroundType;
 use App\Http\Controllers\Controller;
+use App\Models\Offer;
 
 class MainController extends Controller
 {
@@ -190,7 +191,7 @@ class MainController extends Controller
 
     ##########################################################################
 
-// General
+    ################################# General ###################################
 
     public function wifiPassword()
     {
@@ -216,7 +217,7 @@ class MainController extends Controller
         return response()->json($data);
     }
 
-// Pages
+    ################################### Pages ####################################
 
     public function webHome()
     {
@@ -243,11 +244,12 @@ class MainController extends Controller
     public function landing_page()
     {
         // $data['slider'] = Slider::active()->orderBy('in_order_to')->get();
-        $data['events'] = Event::where('date', '>' , now())
-                    ->orderBy('date')
-                    ->limit(4)
-                    ->get();
+        // $data['events'] = Event::where('date', '>' , now())
+        //             ->orderBy('date')
+        //             ->limit(4)
+        //             ->get();
         $data['news'] = News::latest()->limit(4)->get();
+        $data['offers'] = Offer::latest()->limit(4)->get();
         $data['safetyRatio'] = Option::first()->safety_ratio;
         // $blogs = Blog::latest()->limit(3)->get();
 
@@ -342,6 +344,18 @@ class MainController extends Controller
         return response()->json(compact('news'));
     }
 
+    public function offers()
+    {
+        $offers = Offer::with('category')->latest()->get();
+        return response()->json(compact('offers'));
+    }
+
+    public function offer(Offer $offer)
+    {
+        $offer->load('category');
+        return response()->json(compact('offer'));
+    }
+
     public function faqs()
     {
         $faqs = Faq::get();
@@ -354,14 +368,20 @@ class MainController extends Controller
         return response()->json(compact('gallery'));
     }
 
+    public function galleryWeb()
+    {
+        $gallery = Gallery::paginate(9);
+        return response()->json(compact('gallery'));
+    }
+
     public function onboardings()
     {
         $onboardings = Onboarding::get();
         return response()->json(compact('onboardings'));
     }
 
+    ################################### Academies ####################################
 
-// Academies
     public function academies()
     {
         $data['academies'] = Academy::with('photos','schedules')->get();
@@ -392,11 +412,26 @@ class MainController extends Controller
         return response()->json(compact('schedules'));
     }
 
-// Events
+    ################################### Events ####################################
+
     public function events()
     {
 
         $events = Event::with('prices.eventCategory')->where('date', '>' , now())->get();
+
+        $upcomingEvent = Event::query()
+                        ->with('prices.eventCategory')
+                        ->where('date' , '>', now())
+                        ->orderBy('date')
+                        ->first();
+
+        return response()->json(compact('events', 'upcomingEvent'));
+    }
+
+    public function eventsWeb()
+    {
+
+        $events = Event::with('prices.eventCategory')->where('date', '>' , now())->paginate(9);
 
         $upcomingEvent = Event::query()
                         ->with('prices.eventCategory')
@@ -424,7 +459,8 @@ class MainController extends Controller
         return response()->json(compact('upcomingEvent'));
     }
 
-    // Playgrounds
+    ################################### Playgrounds ####################################
+
     public function playgrounds()
     {
         $playgrounds = Playground::with('playgroundType')->get();
@@ -439,7 +475,8 @@ class MainController extends Controller
         return response()->json(compact('playgroundTypes'));
     }
 
-    // Tickets
+    ################################### Tickets ####################################
+
     public function ticketPrice()
     {
         $ticketPrice = Option::first()->visit_ticket_price;

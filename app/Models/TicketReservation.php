@@ -66,4 +66,13 @@ class TicketReservation extends Model
     ];
 
 
+
+
+
+    public function paymentHistory()
+    {
+        return $this->morphOne(PaymentHistory::class, 'reservable');
+    }
+
+
 }
