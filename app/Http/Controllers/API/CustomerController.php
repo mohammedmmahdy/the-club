@@ -222,7 +222,7 @@ class CustomerController extends Controller
     public function myAcademies()
     {
         return response()->json([
-            'academies' => auth()->user()->academies()->with('academy.photos', 'academy.schedules')->get()
+            'academies' => auth()->user()->academies()->active()->with('academy.photos', 'academy.schedules')->get()
         ]);
     }
 
