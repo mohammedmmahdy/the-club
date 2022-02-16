@@ -193,7 +193,7 @@
 
                     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                    <a href="{{route('adminPanel.academies.destroy.time',$time->id)}}" id="time-{{$time->id}}" data-id="{{ $time->id }}" data-url="{{route('adminPanel.academies.destroy.time',$time->id)}}" class="delete-time btn btn-danger">Delete</a>
+                    <a href="{{route('adminPanel.academies.destroyTime',$time->id)}}" id="time-{{$time->id}}" data-id="{{ $time->id }}" data-url="{{route('adminPanel.academies.destroyTime',$time->id)}}" class="delete-time btn btn-danger">Delete</a>
 
 
                     @php $timeCounter = $time->id @endphp

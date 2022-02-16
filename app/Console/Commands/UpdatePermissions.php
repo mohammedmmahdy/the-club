@@ -98,7 +98,7 @@ class UpdatePermissions extends Command
                             ];
                             break;
 
-                        case in_array($action, ['destory']):
+                        case in_array($action, ['destroy']):
                             $permissions[$page . '_delete'] = [
                                 'page' => $page,
                                 'action' => 'delete',

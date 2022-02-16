@@ -19,9 +19,10 @@ class Permission extends \Spatie\Permission\Models\Permission implements Permiss
     {
         // $attributes['guard_name'] = $attributes['guard_name'] ?? Guard::getDefaultName(static::class);
         $attributes['guard_name'] = $attributes['guard_name'] ?? 'admin';
-        
+
+        // dd($attributes);
         $permission = static::getPermissions(['name' => $attributes['name'], 'guard_name' => $attributes['guard_name']])->first();
-        
+
         if (! $permission) {
             return static::query()->create($attributes);
         }

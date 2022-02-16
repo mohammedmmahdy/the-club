@@ -94,12 +94,12 @@ Route::group(
 
             Route::resource('branches', BranchController::class);
 
-            Route::get('academies/requests', 'AcademyController@requests')->name('academies.requests');
-            Route::post('academies/requests-date-filter', 'AcademyController@dateFilter')->name('academies.requests.dateFilter');
-            Route::patch('academies/change-request-status/{subscription}', 'AcademyController@changeRequestStatus')->name('academies.changeRequestStatus');
-            Route::patch('academies/update-request-progress/{subscription}', 'AcademyController@updateProgress')->name('academies.updateProgress');
-            Route::get('academies/destroy-photo/{id}', 'AcademyController@destroyPhoto')->name('academies.destroyPhoto');
-            Route::delete('academies/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroy.time');
+            Route::get('academy/requests', 'AcademyController@requests')->name('academies.requests');
+            Route::post('academy/requests-date-filter', 'AcademyController@dateFilter')->name('academies.requestDateFilter');
+            Route::patch('academy/change-request-status/{subscription}', 'AcademyController@changeRequestStatus')->name('academies.changeRequestStatus');
+            Route::patch('academy/update-request-progress/{subscription}', 'AcademyController@updateProgress')->name('academies.updateProgress');
+            Route::get('academy/destroy-photo/{id}', 'AcademyController@destroyPhoto')->name('academies.destroyPhoto');
+            Route::delete('academy/delete-time/{id}', 'AcademyController@destroyTime')->name('academies.destroyTime');
             Route::resource('academies', AcademyController::class);
 
             Route::resource('eventCategories', EventCategoryController::class);

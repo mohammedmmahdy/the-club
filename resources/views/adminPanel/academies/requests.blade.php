@@ -29,7 +29,7 @@
                     <div class="date-filter">
                         <h5>Date Filter</h5>
 
-                        {!! Form::open(['route' => 'adminPanel.academies.requests.dateFilter']) !!}
+                        {!! Form::open(['route' => 'adminPanel.academies.requestDateFilter']) !!}
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <div class="input-group date" id="kt_datetimepicker_1" data-target-input="nearest">

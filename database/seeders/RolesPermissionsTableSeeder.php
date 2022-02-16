@@ -31,8 +31,8 @@ class RolesPermissionsTableSeeder extends Seeder
 
         \Artisan::call('permissions:update');
 
-        $permessions = Permission::pluck('id');
-        foreach ($permessions as $permission) {
+        $permissions = Permission::pluck('id');
+        foreach ($permissions as $permission) {
             DB::table('role_has_permissions')->insert([
                 'permission_id' => $permission,
                 'role_id' => 1,

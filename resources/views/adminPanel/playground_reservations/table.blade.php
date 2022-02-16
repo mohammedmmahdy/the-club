@@ -14,7 +14,7 @@
     <tbody>
         @foreach($playgroundReservations as $playgroundReservation)
         <tr>
-            <td>{{ $playgroundReservation->playground->name }}</td>
+            <td>{{ $playgroundReservation->playground->name ?? '' }}</td>
             {{-- <td>{{ $playgroundReservation->reservation_code }}</td> --}}
             <td>{{ $playgroundReservation->date }}</td>
             <td>{{ $playgroundReservation->time }}</td>
