@@ -21,6 +21,7 @@ use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Models\PlaygroundType;
 use App\Http\Controllers\Controller;
+use App\Models\Loyalty;
 use App\Models\Offer;
 
 class MainController extends Controller
@@ -353,6 +354,17 @@ class MainController extends Controller
     {
         $offer->load('category');
         return response()->json(compact('offer'));
+    }
+
+    public function loyalties()
+    {
+        $loyalties = Loyalty::latest()->get();
+        return response()->json(compact('loyalties'));
+    }
+
+    public function loyalty(Loyalty $loyalty)
+    {
+        return response()->json(compact('loyalty'));
     }
 
     public function faqs()

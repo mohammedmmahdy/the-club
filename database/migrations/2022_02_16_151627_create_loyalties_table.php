@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOffersTable extends Migration
+class CreateLoyaltiesTable extends Migration
 {
 
     /**
@@ -14,31 +14,30 @@ class CreateOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('offers', function (Blueprint $table) {
+        Schema::create('loyalties', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('photo');
             $table->integer('discount_value');
-            $table->integer('offer_category_id');
 
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::create('offer_translations', function (Blueprint $table) {
+        Schema::create('loyalty_translations', function (Blueprint $table) {
             $table->increments('trans_id');
-            $table->integer('offer_id')->unsigned();
+            $table->integer('loyalty_id')->unsigned();
             $table->string('locale', 2)->index();
 
             $table->string('title');
             $table->string('brief');
             $table->text('description');
 
-            $table->unique(['offer_id', 'locale']);
+            $table->unique(['loyalty_id', 'locale']);
 
-            $table->foreign('offer_id')
+            $table->foreign('loyalty_id')
                 ->references('id')
-                ->on('offers')
+                ->on('loyalties')
                 ->onDelete('cascade');
         });
     }
@@ -50,6 +49,6 @@ class CreateOffersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('offers');
+        Schema::drop('loyalties');
     }
 }

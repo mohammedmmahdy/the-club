@@ -40,6 +40,8 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
     Route::get('single-news/{news}', 'MainController@singleNews');
     Route::get('offers', 'MainController@offers');
     Route::get('offers/{offer}', 'MainController@offer');
+    Route::get('loyalties', 'MainController@loyalties');
+    Route::get('loyalties/{loyalty}', 'MainController@loyalty');
     Route::get('faqs', 'MainController@faqs');
     Route::post('send-contact', 'MainController@send_contact_message');
     Route::post('newsletter', 'MainController@newsletter');

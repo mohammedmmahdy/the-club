@@ -120,6 +120,8 @@ Route::group(
 
             Route::resource('offerCategories', OfferCategoryController::class);
             Route::resource('offers', OfferController::class);
+
+            Route::resource('loyalties', LoyaltyController::class);
         });
     }
 );
