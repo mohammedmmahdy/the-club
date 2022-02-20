@@ -244,10 +244,10 @@ class MainController extends Controller
 
     public function landing_page()
     {
-        // $data['events'] = Event::where('date', '>' , now())
-        //             ->orderBy('date')
-        //             ->limit(4)
-        //             ->get();
+        $data['events'] = Event::where('date', '>' , now())
+                    ->orderBy('date')
+                    ->limit(4)
+                    ->get();
         $data['news'] = News::latest()->limit(4)->get();
         $data['offers'] = Offer::latest()->limit(4)->get();
         $data['safetyRatio'] = Option::first()->safety_ratio;
@@ -456,7 +456,16 @@ class MainController extends Controller
     public function event(Event $event)
     {
         $event->load('prices.eventCategory');
-        return response()->json(compact('event'));
+        $events = Event::where('date', '>' , now())
+                    ->orderBy('date')
+                    ->limit(4)
+                    ->get();
+        // dd($events->count());
+        $moreEvents = collect();
+        if ($events->count() > 3) {
+            $moreEvents = $events->random(3);
+        }
+        return response()->json(compact('event', 'moreEvents'));
     }
 
     public function upcominEvent()
