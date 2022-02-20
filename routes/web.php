@@ -122,6 +122,8 @@ Route::group(
             Route::resource('offers', OfferController::class);
 
             Route::resource('loyalties', LoyaltyController::class);
+
+            Route::resource('champs', ChampController::class);
         });
     }
 );
@@ -129,8 +131,3 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
-
-
-Route::group(['prefix' => 'adminPanel'], function () {
-    Route::resource('champs', App\Http\Controllers\AdminPanel\ChampController::class, ["as" => 'adminPanel']);
-});
