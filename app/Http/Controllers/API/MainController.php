@@ -21,6 +21,7 @@ use App\Models\Information;
 use Illuminate\Http\Request;
 use App\Models\PlaygroundType;
 use App\Http\Controllers\Controller;
+use App\Models\Champ;
 use App\Models\Loyalty;
 use App\Models\Offer;
 
@@ -342,6 +343,24 @@ class MainController extends Controller
     public function singleNews(News $news)
     {
         return response()->json(compact('news'));
+    }
+
+
+    public function webChamps()
+    {
+        $champs = Champ::latest()->paginate(6);
+        return response()->json(compact('champs'));
+    }
+
+    public function champs()
+    {
+        $champs = Champ::latest()->get();
+        return response()->json(compact('champs'));
+    }
+
+    public function champ(Champ $champ)
+    {
+        return response()->json(compact('champ'));
     }
 
     public function offers()

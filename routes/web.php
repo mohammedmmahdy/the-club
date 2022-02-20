@@ -129,3 +129,8 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
+
+
+Route::group(['prefix' => 'adminPanel'], function () {
+    Route::resource('champs', App\Http\Controllers\AdminPanel\ChampController::class, ["as" => 'adminPanel']);
+});
