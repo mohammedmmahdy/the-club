@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    use  AuthenticatesUsers;
+    // use  AuthenticatesUsers;
 
     public function register_user(Request $request)
     {

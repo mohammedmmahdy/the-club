@@ -104,7 +104,7 @@
             <tbody>
                 @foreach ($reservations as $reservation)
                 <tr>
-                    <td>{{$reservation->user->strMemberName  ?? ''}}</td>
+                    <td>{{$reservation->strMemberName  ?? ''}}</td>
                     <td>{{$reservation->member_mobile}}</td>
                     <td>{{$reservation->event->title ?? ''}}</td>
                     <td>{{$reservation->status}}</td>

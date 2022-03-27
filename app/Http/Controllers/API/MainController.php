@@ -24,12 +24,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Champ;
 use App\Models\Loyalty;
 use App\Models\Offer;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class MainController extends Controller
 {
     public function test()
     {
-        $url = 'https://webhook.site/29e0b687-bd0b-47ae-b42c-9275dd3a2f0b';
+        // $url = 'https://webhook.site/29e0b687-bd0b-47ae-b42c-9275dd3a2f0b';
         // $data = [
         //     'status_code' => 200,
         //     'status' => 'success',
@@ -39,29 +41,57 @@ class MainController extends Controller
         //         'last_name' => 'Makwana',
         //     ],
         // ];
-        $data = User::all();
-    	$json_array = json_encode($data);
-        $curl = curl_init();
-        $headers = ['Content-Type: application/json'];
+        // $data = User::all();
+    	// $json_array = json_encode($data);
+        // $curl = curl_init();
+        // $headers = ['Content-Type: application/json'];
 
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $json_array);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HEADER, 1);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+        // curl_setopt($curl, CURLOPT_URL, $url);
+        // curl_setopt($curl, CURLOPT_POST, 1);
+        // curl_setopt($curl, CURLOPT_POSTFIELDS, $json_array);
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($curl, CURLOPT_HEADER, 1);
+        // curl_setopt($curl, CURLOPT_TIMEOUT, 30);
 
-        $response = curl_exec($curl);
-        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        // $response = curl_exec($curl);
+        // $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-        curl_close($curl);
+        // curl_close($curl);
 
-        if ($http_code >= 200 && $http_code < 300) {
-            echo "webhook send successfully.";
-        } else {
-            echo "webhook failed.";
-        }
+        // if ($http_code >= 200 && $http_code < 300) {
+        //     echo "webhook send successfully.";
+        // } else {
+        //     echo "webhook failed.";
+        // }
+
+
+
+        // $url = 'http://103.136.40.46:72/api/resource/Sales Invoice';
+        // $headers = [
+        //     'Authorization' => 'token dfc4dbec3968677:daad250857fc081'
+        // ];
+        // $params = [
+        //     'fields' => '["name", "grand_total"]'
+        // ];
+
+        // $response = Http::withHeaders($headers)
+        //                 ->get($url, $params);
+
+
+        $name = 'حلا حسنى كسبه-ابناء';
+        $url = 'http://103.136.40.46:72/api/resource/Address/' . $name;
+        $headers = [
+            'Authorization' => 'token dfc4dbec3968677:daad250857fc081'
+        ];
+        $body = [
+            'email_id' => 'test@email.com'
+        ];
+
+        $response = Http::withHeaders($headers)
+                        ->put($url, $body);
+
+        return $response->json();
 
     }
 

@@ -20,9 +20,10 @@ use App\Models\EventReservation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use App\Models\PlaygroundReservation;
-use function PHPUnit\Framework\throwException;
 
+use function PHPUnit\Framework\throwException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -63,9 +64,16 @@ class CustomerController extends Controller
         $user = auth('api')->user();
         if (Hash::check(request('password'), $user->password)) {
             $user->update(['email' => request('email')]);
-            return response()->json([
-                'message' => 'Email Updated Successfully'
-            ]);
+
+            // Update Email in ERP
+            $name       = $user->strMemberName;
+            $url        = 'http://103.136.40.46:72/api/resource/Address/' . $name;
+            $headers    = ['Authorization' => 'token dfc4dbec3968677:daad250857fc081'];
+            $body       = ['email_id' => request('email')];
+
+            Http::withHeaders($headers)->put($url, $body);
+
+            return response()->json(['message' => 'Email Updated Successfully']);
         }
 
         return response()->json([
