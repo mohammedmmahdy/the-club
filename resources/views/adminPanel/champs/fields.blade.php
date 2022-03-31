@@ -42,6 +42,10 @@
     @endforeach
 
 
+    <div class="form-group col-sm-6 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Photo Hint:</strong> 10:7 with good resolution like 1365*955</p>
+    </div>
+
     <!-- Photo -->
     <div class="form-group col-sm-6">
         {!! Form::label('photo', __('models/champs.fields.photo') . ':') !!}

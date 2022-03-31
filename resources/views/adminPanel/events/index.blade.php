@@ -36,7 +36,7 @@
                 <!--end::Button-->
                 @endcan
 
-                <a href="{{route('adminPanel.events.reservations')}}" class="btn btn-primary font-weight-bolder mx-2">
+                <a href="{{route('adminPanel.eventsReservations.index')}}" class="btn btn-primary font-weight-bolder mx-2">
                     Reservations  <span class="badge badge-danger">{{$reservations_count}}</span>
                 </a>
             </div>

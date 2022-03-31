@@ -40,6 +40,11 @@
     @endforeach
 
 
+    <div class="form-group col-sm-6 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Icon Hint:</strong> 1:1 like Square 192*192</p>
+    </div>
+
+
     <!-- icon Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('icon', __('models/notifications.fields.icon').':') !!}
@@ -64,6 +69,11 @@
         </div>
     </div>
     <div class="clearfix"></div>
+
+
+    <div class="form-group col-sm-6 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Photo Hint:</strong> 10:7 with good resolution like 1365*955</p>
+    </div>
 
     <!-- Photo Field -->
     <div class="form-group col-sm-6">

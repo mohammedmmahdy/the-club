@@ -45,11 +45,14 @@
         @php $i = 0; @endphp
     @endforeach
 
-
+    <div class="form-group col-sm-6 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Photo Hint:</strong> 10:7 with good resolution like 1365*955</p>
+    </div>
     <!-- Photo -->
     <div class="form-group col-sm-6">
         {!! Form::label('photo', __('models/news.fields.photo') . ':') !!}
         <br>
+
         <div class="image-input image-input-outline" id="kt_image_4"
             style="background-image: url({{ asset('uploads/images/original/default.png') }})">
             <div class="image-input-wrapper" style="background-image: url({{ $news->photo_original_path ?? '' }})">
@@ -72,6 +75,8 @@
                 <i class="ki ki-bold-close icon-xs text-muted"></i>
             </span>
         </div>
+
+
     </div>
 
 

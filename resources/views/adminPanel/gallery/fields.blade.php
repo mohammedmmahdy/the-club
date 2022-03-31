@@ -1,3 +1,7 @@
+
+    <div class="form-group col-sm-12 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Photo Hint:</strong> 10:7 with good resolution like 1365*955</p>
+    </div>
 <div id="product-photos">
 
     <div id="wrapper">

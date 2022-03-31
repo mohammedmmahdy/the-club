@@ -30,6 +30,11 @@
     @endforeach
 
 
+
+    <div class="form-group col-sm-6 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Photo Hint:</strong> 9:20 like 375*812 </p>
+    </div>
+
     <!-- Photo -->
     <div class="form-group col-sm-6">
         {!! Form::label('photo', __('models/onboardings.fields.photo') . ':') !!}

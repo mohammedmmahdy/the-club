@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -38,5 +39,8 @@ class RolesPermissionsTableSeeder extends Seeder
                 'role_id' => 1,
             ]);
         }
+
+        $admin = Admin::first();
+        $admin->assignRole('owner');
     }
 }

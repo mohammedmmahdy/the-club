@@ -104,9 +104,9 @@ Route::group(
 
             Route::resource('eventCategories', EventCategoryController::class);
 
-            Route::post('events/reservations-date-filter', 'EventController@dateFilter')->name('events.reservations.dateFilter');
-            Route::patch('events/reservations-status/{reservation}', 'EventController@changeReservationStatus')->name('events.reservations.changeReservationStatus');
-            Route::get('events/reservations', 'EventController@reservations')->name('events.reservations');
+            Route::post('events/reservations-date-filter', 'EventController@dateFilter')->name('eventsReservations.dateFilter');
+            Route::patch('events/reservations-status/{reservation}', 'EventController@changeReservationStatus')->name('eventsReservations.changeReservationStatus');
+            Route::get('events/reservations', 'EventController@reservations')->name('eventsReservations.index');
             Route::resource('events', EventController::class);
 
             Route::resource('playgroundTypes', PlaygroundTypeController::class);

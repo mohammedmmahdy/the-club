@@ -12,6 +12,7 @@ return array (
     'team' => 'Team',
     'icon' => 'Icon',
     'main_photo' => 'Main Photo',
+    'web_main_photo' => 'Web Main Photo',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
   ),

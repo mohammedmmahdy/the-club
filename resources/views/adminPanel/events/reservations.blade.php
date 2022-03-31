@@ -29,7 +29,7 @@
                     <div class="date-filter">
                         <h5>Date Filter</h5>
 
-                        {!! Form::open(['route' => 'adminPanel.events.reservations.dateFilter']) !!}
+                        {!! Form::open(['route' => 'adminPanel.eventsReservations.dateFilter']) !!}
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <div class="input-group date" id="kt_datetimepicker_1" data-target-input="nearest">
@@ -110,7 +110,7 @@
                     <td>{{$reservation->status}}</td>
                     <td>{{$reservation->created_at}}</td>
                     <td>
-                        {!! Form::open(['route' => ['adminPanel.events.reservations.changeReservationStatus',$reservation->id], 'method' => 'patch', 'class' => 'd-flex']) !!}
+                        {!! Form::open(['route' => ['adminPanel.eventsReservations.changeReservationStatus',$reservation->id], 'method' => 'patch', 'class' => 'd-flex']) !!}
 
                         {!! Form::select('status', [1 => 'Active', 0 => 'Inactive '], $reservation->status, ['class' => 'form-control mx-2']) !!}
                         {!! Form::submit('Save', ['class' => 'btn btn-sm btn-primary']) !!}

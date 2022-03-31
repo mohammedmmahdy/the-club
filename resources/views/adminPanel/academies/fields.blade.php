@@ -53,6 +53,10 @@
         {!! Form::select('branch_id', $data['branches'], null, ['class' => 'form-control', 'placeholder' => 'Select Branch']) !!}
     </div> --}}
 
+    <div class="form-group col-sm-6 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Icon Hint:</strong> 1:1 like 128*128 </p>
+    </div>
+
     <!-- icon Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('icon', __('models/academies.fields.icon').':') !!}
@@ -134,6 +138,10 @@
 
     <h3>Academy Photos</h3>
     <br>
+
+    <div class="form-group col-sm-12 float-right d-flex">
+        <p class="p-4 text-center align-middle bg-warning  text-white rounded"><strong>Photo Hint:</strong> 1:1 like 600*600 </p>
+    </div>
     <div id="product-photos">
 
         <div id="wrapper">
