@@ -81,6 +81,34 @@ class CustomerController extends Controller
         ], 403);
     }
 
+    public function getSubscriptions()
+    {
+        $url = 'http://103.136.40.46:72/api/resource/Sales Invoice';
+        $headers = [
+            'Authorization' => 'token dfc4dbec3968677:daad250857fc081'
+        ];
+
+        $params = [
+            'filters' => [
+                'status' => request('status'),
+                'customer' => auth('api')->user()->strMemberName
+            ],
+            // "filters['status']"     => request('filter'),
+            // "filters['customer']"   => auth('api')->user()->strMemberName,
+            'fields'                => '["name", "grand_total"]'
+        ];
+
+        // dd(request('filter'));
+
+        $response = Http::withHeaders($headers)
+                        ->get($url, $params);
+
+                        // dd($response);
+
+        return $response->json();
+
+    }
+
     public function loginQR()
     {
         $user = auth('api')->user();
@@ -223,6 +251,26 @@ class CustomerController extends Controller
 
         $data['academy'] = $data['user']->academies()->create($attributes);
         $data['user']->load('academies');
+
+
+        // Store Academy in ERP
+        $url = 'http://103.136.40.46:72/api/resource/Student Applicant';
+        $headers = ['Authorization' => 'token dfc4dbec3968677:daad250857fc081'];
+        $body = [
+            'academic_term'         =>$data['academy']->name,
+            'first_name'            =>$data['user']->strMemberName,
+            'customer_gender'       => request('gender') == 1 ? 'ذكر' : 'انثى',
+            'student_email_id'      =>$data['user']->email,
+            'student_mobile_number' =>$data['user']->member_mobile,
+
+            // Dummy Data
+            'program'               => "برنامج ايجار ملعب",
+
+        ];
+
+        $response = Http::withHeaders($headers)->post($url, $body);
+
+        // return $response->json();
 
         return response()->json($data);
     }

@@ -97,6 +97,7 @@ Route::post('user/delete', [MainController::class, 'deleteUsers']);
         Route::post('user/update-or-create-review', [CustomerController::class, 'updateOrCreateReview']);
         Route::post('user/create-complaint', [CustomerController::class, 'createComplaint']);
         Route::get('user/academies', [CustomerController::class, 'myAcademies']);
+        Route::get('user/get-subscriptions', [CustomerController::class, 'getSubscriptions']);
 
     });
 
