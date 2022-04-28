@@ -147,6 +147,9 @@ class CustomerController extends Controller
         $user = auth()->user();
 
         // After payment will add 1 year to his subscription
+        if (Carbon::parse($user->dateCardDateExpire)->subMonths(3) > now()) {
+            return response()->json(['msg' => "You don't need to renew your subscription"], 403);
+        }
         $user->update([
             'dateCardDateValidFrom' => now(),
             'dateCardDateExpire'    => Carbon::parse($user->dateCardDateExpire)->addYear()
